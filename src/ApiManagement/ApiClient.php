@@ -1,6 +1,6 @@
 <?php
 
-namespace LocationManagement;
+namespace ApiManagement;
 
 
 interface ApiClient {
