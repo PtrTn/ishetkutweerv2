@@ -2,32 +2,42 @@
 
 namespace LocationManagement;
 
+use ApiManagement\AbstractApiClient;
 
-class IpinfodbApiClient implements ApiClient {
+class IpinfodbApiClient extends AbstractApiClient
+{
 
     private $url;
-    private $apiKey;
+    private $apikey;
     private $format;
 
-    public function __construct($config) {
-        if(empty($config['apikey']) || empty($config['format']) || empty($config['url'])) {
+    public function __construct(array $config)
+    {
+        if (!$this->hasConfigFields(
+            array(
+                'apikey',
+                'format',
+                'url'
+            ),
+            $config)) {
             throw new \InvalidArgumentException('Not all required fields have been specified in IpInfoDb-config');
         }
-        $this->apiKey = $config['apikey'];
+        $this->apikey = $config['apikey'];
         $this->url = $config['url'];
         $this->format = $config['format'];
     }
 
-    public function getData() {
+    public function getData()
+    {
 
         // Debug only
         $ip = $_SERVER['REMOTE_ADDR'];
-        if($ip == '::1') {
+        if ($ip == '::1') {
             $ip = '213.34.237.15';
         }
 
         $parameters = array(
-            'key' => $this->apiKey,
+            'key' => $this->apikey,
             'ip' => $ip,
             'format' => $this->format
         );
