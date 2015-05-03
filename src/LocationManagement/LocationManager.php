@@ -3,16 +3,18 @@
 namespace LocationManagement;
 
 
+use ApiManagement\ApiClient;
+
 class LocationManager {
 
-    private $ipinfodbApiClient;
+    private $apiClient;
 
-    public function __construct(IpinfodbApiClient $ipinfodbApiClient) {
-        $this->ipinfodbApiClient = $ipinfodbApiClient;
+    public function __construct(ApiClient $apiClient) {
+        $this->apiClient = $apiClient;
     }
 
     public function getLocation() {
-        return $this->ipinfodbApiClient->getData();
+        return $this->apiClient->getData();
     }
 
 } 
