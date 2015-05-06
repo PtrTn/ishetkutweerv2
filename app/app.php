@@ -5,9 +5,13 @@ require('bootstrap.php');
 $app = new Silex\Application();
 $app['debug'] = true;
 
+$app->register(new Silex\Provider\TwigServiceProvider(), array(
+        'twig.path' => __DIR__ . '/Resources/views',
+    ));
+
 // Routing
 $app->get('/', function () use ($app) {
-        return 'Welcome to the homepage';
+        return $app['twig']->render('home.twig');
     });
 
 /* ----- IpInfoDb ApiClient ----- */
