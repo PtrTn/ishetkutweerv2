@@ -15,7 +15,10 @@ abstract class AbstractApiClient implements ApiClient {
     }
 
     protected function getXmlFromUrl($url) {
-        $contents = file_get_contents($url);
+        $contents = @file_get_contents($url);
+        if(empty($contents)) {
+            throw new \RuntimeException('Unable to retrieve data from: ' . $url);
+        }
         $json = json_encode(simplexml_load_string($contents));
         return json_decode($json, true);
     }

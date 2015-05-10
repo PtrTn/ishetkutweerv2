@@ -30,12 +30,12 @@ class BuienradarApiClient extends AbstractApiClient {
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getData() {
         $data = $this->getXmlFromUrl($this->url);
         if(empty($data['weergegevens']['verwachting_vandaag']['formattedtekst'])) {
-            return false;
+            throw new \RuntimeException('Unable to retrieve data from buienradar API');
         }
         return $data['weergegevens']['verwachting_vandaag']['formattedtekst'];
     }

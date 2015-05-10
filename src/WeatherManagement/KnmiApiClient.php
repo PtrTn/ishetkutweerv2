@@ -30,19 +30,18 @@ class KnmiApiClient extends AbstractApiClient {
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getData() {
         $data = $this->getXmlFromUrl($this->url);
-        if(empty($data['data']['location']['block'])) {
-            return false;
-        }
-        foreach($data['data']['location']['block'] as $block) {
-            if($block['field_id'] == 'Verwachting') {
-                return $block['field_content'];
+        if(!empty($data['data']['location']['block'])) {
+            foreach($data['data']['location']['block'] as $block) {
+                if($block['field_id'] == 'Verwachting') {
+                    return $block['field_content'];
+                }
             }
         }
-        return false;
+        throw new \RuntimeException('Unable to retrieve data from knmi API');
     }
 
 } 
