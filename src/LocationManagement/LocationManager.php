@@ -14,7 +14,12 @@ class LocationManager {
     }
 
     public function getLocation() {
-        return $this->apiClient->getData();
+        // Debug only
+        $ip = $_SERVER['REMOTE_ADDR'];
+        if ($ip == '::1') {
+            $ip = '213.34.237.15';
+        }
+        return $this->apiClient->getData(['ip' => $ip]);
     }
 
 } 

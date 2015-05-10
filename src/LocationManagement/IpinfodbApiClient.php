@@ -6,11 +6,24 @@ use ApiManagement\AbstractApiClient;
 
 class IpinfodbApiClient extends AbstractApiClient
 {
-
+    /**
+     * @var
+     */
     private $url;
+
+    /**
+     * @var
+     */
     private $apikey;
+
+    /**
+     * @var
+     */
     private $format;
 
+    /**
+     * @param array $config
+     */
     public function __construct(array $config)
     {
         if (!$this->hasConfigFields(
@@ -27,18 +40,19 @@ class IpinfodbApiClient extends AbstractApiClient
         $this->format = $config['format'];
     }
 
-    public function getData()
+    /**
+     * @param bool $input
+     * @return mixed
+     */
+    public function getData($input = false)
     {
-
-        // Debug only
-        $ip = $_SERVER['REMOTE_ADDR'];
-        if ($ip == '::1') {
-            $ip = '213.34.237.15';
+        if($input === false) {
+            return false;
         }
 
         $parameters = array(
             'key' => $this->apikey,
-            'ip' => $ip,
+            'ip' => $input['ip'],
             'format' => $this->format
         );
         $parsedUrl = $this->url . '?' . http_build_query($parameters);
