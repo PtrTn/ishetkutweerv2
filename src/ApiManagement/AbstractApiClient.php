@@ -14,4 +14,10 @@ abstract class AbstractApiClient implements ApiClient {
         return true;
     }
 
+    protected function getXmlFromUrl($url) {
+        $contents = file_get_contents($url);
+        $json = json_encode(simplexml_load_string($contents));
+        return json_decode($json, true);
+    }
+
 } 
