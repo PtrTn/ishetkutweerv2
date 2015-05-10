@@ -1,29 +1,44 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Peter
- * Date: 3-5-2015
- * Time: 19:09
- */
 
 namespace WeatherManagement;
 
 
-use ApiManagement\ApiClient;
-use LocationManagement\LocationManager;
+use ApiManagement\ApiClientFactory;
 
+/**
+ * Class WeatherManager
+ * @package WeatherManagement
+ */
 class WeatherManager {
 
-    private $apiClient;
-    private $locationManager;
+    /**
+     * @var ApiClientFactory
+     */
+    private $apiClientFactory;
 
-    public function __construct(ApiClient $apiClient, LocationManager $locationManager) {
-        $this->apiClient = $apiClient;
-        $this->locationManager = $locationManager;
+    /**
+     * @param ApiClientFactory $apiClientFactory
+     */
+    public function __construct(ApiClientFactory $apiClientFactory) {
+        $this->apiClientFactory = $apiClientFactory;
     }
 
-    public function getWeather() {
-        return $this->apiClient->getData();
+    /**
+     * @param mixed $lat
+     * @param mixed $lon
+     * @return mixed
+     */
+    public function getWeather($lat = false, $lon = false) {
+        $client = $this->apiClientFactory->getApiClient('wunderground');
+        return $client->getData(['lat' => $lat, 'lon' => $lon]);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWeatherMessage() {
+        $client = $this->apiClientFactory->getApiClient('buienradar');
+        return $client->getData(false);
     }
 
 } 
