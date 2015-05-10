@@ -1,3 +1,6 @@
 /.idea/
 /vendor/
 *.yml.dist
+/public/styles/content
+/public/styles/general/reset.css
+.sass-cache
