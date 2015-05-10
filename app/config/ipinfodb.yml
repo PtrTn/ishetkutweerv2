@@ -1,0 +1,3 @@
+apikey: pleasechangeme
+url: http://api.ipinfodb.com/v3/ip-city
+format: json
