@@ -26,9 +26,9 @@ class WundergroundDayFactory
             ) {
                 $forecast->addDay(new Day(
                     $dayData['date']['epoch'],
-                    new Measurement('Rain', $dayData['qpf_allday']['mm']),
-                    new Measurement('Temp', false, $dayData['low']['celsius'], $dayData['high']['celsius']),
-                    new Measurement('Wind', $dayData['avewind']['kph'])
+                    new Measurement('rain', $dayData['qpf_allday']['mm']),
+                    new Measurement('temp', false, $dayData['low']['celsius'], $dayData['high']['celsius']),
+                    new Measurement('wind', $dayData['avewind']['kph'])
                 ));
             }
         }
