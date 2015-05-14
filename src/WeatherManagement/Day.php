@@ -83,6 +83,10 @@ class Day {
         ];
     }
 
+    /**
+     * @param $date
+     * @return string
+     */
     private function getDayOfWeek($date) {
         $days = ['Zo', 'Ma', 'Di', 'Wo', 'Do', 'Vr', 'Za'];
         return $days[date('w', $date)];
