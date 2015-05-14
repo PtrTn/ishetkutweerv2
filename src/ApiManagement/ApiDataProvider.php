@@ -28,13 +28,14 @@ class ApiDataProvider {
      * @param $lon
      * @return array
      */
-    public function getWeatherDataByLatLon($lat, $lon) {
+    public function getWeatherDataByLatLon($lat = false, $lon = false) {
         $forecast = $this->weatherManager->getForecast($lat, $lon);
         return array(
+            'location' => $forecast->getLocation(),
             'today' => [
                 'general' => $forecast->getTodayStatus(),
                 'specific' => $forecast->getTodayData(),
-                'message' => $this->weatherManager->getWeatherMessage(),
+                'message' => $forecast->getMessage(),
             ],
             'week' => $forecast->getForecastData()
         );

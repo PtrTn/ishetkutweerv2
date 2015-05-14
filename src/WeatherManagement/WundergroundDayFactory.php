@@ -16,7 +16,8 @@ class WundergroundDayFactory
     public function createForecast($data)
     {
         $daysData = $this->extractForecastDays($data);
-        $forecast = new Forecast();
+        $location = $this->extractLocation($data);
+        $forecast = new Forecast($location);
         foreach ($daysData as $dayData) {
             if (isset($dayData['high']['celsius'])
                 && isset($dayData['low']['celsius'])
@@ -26,9 +27,9 @@ class WundergroundDayFactory
             ) {
                 $forecast->addDay(new Day(
                     $dayData['date']['epoch'],
-                    new Measurement('Rain', $dayData['qpf_allday']['mm']),
-                    new Measurement('Temp', false, $dayData['low']['celsius'], $dayData['high']['celsius']),
-                    new Measurement('Wind', $dayData['avewind']['kph'])
+                    new Measurement('rain', $dayData['qpf_allday']['mm']),
+                    new Measurement('temp', false, $dayData['low']['celsius'], $dayData['high']['celsius']),
+                    new Measurement('wind', $dayData['avewind']['kph'])
                 ));
             }
         }
@@ -37,14 +38,29 @@ class WundergroundDayFactory
 
     /**
      * @param $data
-     * @return mixed
+     * @return array
      */
     private function extractForecastDays($data)
     {
         if (empty($data['forecast']['simpleforecast']['forecastday'])) {
-            throw new \RuntimeException('Unable to extract correct data');
+            throw new \RuntimeException('Unable to extract forecast data');
         }
         return $data['forecast']['simpleforecast']['forecastday'];
+    }
+
+    /**
+     * @param $data
+     * @return string
+     */
+    private function extractLocation($data) {
+        if (!empty($data['location']['city'])) {
+            return $data['location']['city'];
+        }
+        if (!empty($data['location']['country_name'])) {
+            return $data['location']['country_name'];
+        }
+
+        throw new \RuntimeException('Unable to extract location');
     }
 
 } 

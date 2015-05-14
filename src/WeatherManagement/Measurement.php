@@ -24,8 +24,13 @@ class Measurement {
     private $max;
 
     /**
-     * @param $type
-     * @param $avg
+     * @var Rating
+     */
+    private $rating;
+
+    /**
+     * @param string $type
+     * @param int $avg
      * @param mixed $min
      * @param mixed $max
      */
@@ -34,6 +39,28 @@ class Measurement {
         $this->avg = $avg;
         $this->min = $min;
         $this->max = $max;
+        $this->rating = '';
+    }
+
+    /**
+     * @return string
+     */
+    public function getType() {
+        return $this->type;
+    }
+
+    /**
+     * @param Rating $rating
+     */
+    public function setRating(Rating $rating) {
+        $this->rating = $rating;
+    }
+
+    /**
+     * @return Rating
+     */
+    public function getRating() {
+        return $this->rating;
     }
 
     /**

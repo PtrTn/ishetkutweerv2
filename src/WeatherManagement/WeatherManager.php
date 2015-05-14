@@ -9,7 +9,8 @@ use ApiManagement\ApiClientFactory;
  * Class WeatherManager
  * @package WeatherManagement
  */
-class WeatherManager {
+class WeatherManager
+{
 
     /**
      * @var ApiClientFactory
@@ -17,12 +18,28 @@ class WeatherManager {
     private $apiClientFactory;
 
     /**
+     * @var WundergroundDayFactory
+     */
+    private $dayFactory;
+
+    /**
+     * @var RatingDecorator
+     */
+    private $ratingDecorator;
+
+    /**
      * @param ApiClientFactory $apiClientFactory
      * @param WundergroundDayFactory $dayFactory
+     * @param RatingDecorator $ratingDecorator
      */
-    public function __construct(ApiClientFactory $apiClientFactory, WundergroundDayFactory $dayFactory) {
+    public function __construct(
+        ApiClientFactory $apiClientFactory,
+        WundergroundDayFactory $dayFactory,
+        RatingDecorator $ratingDecorator
+    ) {
         $this->apiClientFactory = $apiClientFactory;
         $this->dayFactory = $dayFactory;
+        $this->ratingDecorator = $ratingDecorator;
     }
 
     /**
@@ -30,33 +47,35 @@ class WeatherManager {
      * @param mixed $lon
      * @return mixed
      */
-    public function getForecast($lat = false, $lon = false) {
+    public function getForecast($lat = false, $lon = false)
+    {
         $client = $this->apiClientFactory->getApiClient('wunderground');
         $data = $client->getData(['lat' => $lat, 'lon' => $lon]);
-        return $this->dayFactory->createForecast($data);
+        $forecast = $this->dayFactory->createForecast($data);
+        $forecast->setMessage($this->getWeatherMessage());
+        return $this->ratingDecorator->decorate($forecast);
     }
 
     /**
      * @return mixed
      */
-    public function getWeatherMessage() {
+    public function getWeatherMessage()
+    {
         try {
             $data = $this->apiClientFactory->getApiClient('buienradar')->getData();
-        }
-        catch(\Exception $e) {
+        } catch (\Exception $e) {
 
         }
-        if(!empty($data)) {
+        if (!empty($data)) {
             return $data;
         }
 
         try {
             $data = $this->apiClientFactory->getApiClient('knmi')->getData();
-        }
-        catch(\Exception $e) {
+        } catch (\Exception $e) {
 
         }
-        if(!empty($data)) {
+        if (!empty($data)) {
             return $data;
         }
         return 'Er kan geen weerbericht worden opgehaald';
