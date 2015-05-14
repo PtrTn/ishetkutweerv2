@@ -46,7 +46,7 @@ class Day {
      */
     public function toArray() {
         return [
-            'day' => date('D', $this->date),
+            'day' => $this->getDayOfWeek($this->date),
             'rain' => $this->rain->getAverage(),
             'temp' => $this->temp->getAverage(),
             'wind' => $this->wind->getAverage(),
@@ -81,6 +81,11 @@ class Day {
                 'indicatior' => 'bad'
             ]
         ];
+    }
+
+    private function getDayOfWeek($date) {
+        $days = ['Zo', 'Ma', 'Di', 'Wo', 'Do', 'Vr', 'Za'];
+        return $days[date('w', $date)];
     }
 
 } 
