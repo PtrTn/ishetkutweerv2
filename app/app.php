@@ -23,6 +23,7 @@ $app['api_client_factory'] = function () use ($app) {
 $app['day_factory'] = function () use ($app) {
     return new \WeatherManagement\WundergroundDayFactory();
 };
+
 $app['rating_decorator'] = function () use ($app) {
     return new \WeatherManagement\RatingDecorator();
 };

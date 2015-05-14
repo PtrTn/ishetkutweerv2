@@ -14,10 +14,45 @@ class Forecast {
     private $days;
 
     /**
+     * @var
+     */
+    private $message;
+
+    /**
+     * @var
+     */
+    private $location;
+
+    /**
+     * @param $location
+     */
+    public function __construct($location) {
+        $this->location = $location;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLocation() {
+        return $this->location;
+    }
+
+    /**
      * @param Day $day
      */
     public function addDay(Day $day) {
         $this->days[] = $day;
+    }
+
+    public function setMessage($message) {
+        $this->message = $message;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMessage() {
+        return $this->message;
     }
 
     /**

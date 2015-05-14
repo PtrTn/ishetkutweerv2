@@ -63,7 +63,7 @@ class WundergroundApiClient extends AbstractApiClient {
 
         $parameters = array(
             'apikey' => $this->apikey,
-            'features' => ['forecast10day'],
+            'features' => ['forecast10day', 'geolookup'],
             'settings' => 'lang:' . $this->lang,
             'query' => $query,
             'format' => $this->format

@@ -52,6 +52,7 @@ class WeatherManager
         $client = $this->apiClientFactory->getApiClient('wunderground');
         $data = $client->getData(['lat' => $lat, 'lon' => $lon]);
         $forecast = $this->dayFactory->createForecast($data);
+        $forecast->setMessage($this->getWeatherMessage());
         return $this->ratingDecorator->decorate($forecast);
     }
 
