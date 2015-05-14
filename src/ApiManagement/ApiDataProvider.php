@@ -5,87 +5,41 @@ namespace ApiManagement;
 
 use WeatherManagement\WeatherManager;
 
+/**
+ * Class ApiDataProvider
+ * @package ApiManagement
+ */
 class ApiDataProvider {
 
+    /**
+     * @var WeatherManager
+     */
     private $weatherManager;
 
+    /**
+     * @param WeatherManager $weatherManager
+     */
     public function __construct(WeatherManager $weatherManager) {
         $this->weatherManager = $weatherManager;
     }
 
-    public function getWeatherData() {
+    /**
+     * @param $lat
+     * @param $lon
+     * @return array
+     */
+    public function getWeatherDataByLatLon($lat, $lon) {
+        $forecast = $this->weatherManager->getForecast($lat, $lon);
         return array(
             'today' => [
                 'general' => [
                     'message' => 'Het is geen kutweer',
                     'indicator' => 'good'
                 ],
-                'specific' =>
-                [
-                    'rain' => [
-                        'value' => '11',
-                        'indicator' => 'meh'
-                    ],
-                    'temperature' => [
-                        'value' => '20',
-                        'indicator' => 'good'
-                    ],
-                    'wind' => [
-                        'value' => '80',
-                        'indicator' => 'bad'
-                    ]
-                ],
+                'specific' => $forecast->getToday()->toEnrichedArray(),
                 'message' => $this->weatherManager->getWeatherMessage(),
             ],
-            'week' => [
-                '1' => [
-                    'day' => 'Wo',
-                    'rain' => '10',
-                    'temperature' => '20',
-                    'wind' => '30'
-                ],
-                '2' => [
-                    'day' => 'Do',
-                    'rain' => '10',
-                    'temperature' => '20',
-                    'wind' => '30'
-                ],
-                '3' => [
-                    'day' => 'Vr',
-                    'rain' => '10',
-                    'temperature' => '20',
-                    'wind' => '30'
-                ],
-                '4' => [
-                    'day' => 'Za',
-                    'rain' => '10',
-                    'temperature' => '20',
-                    'wind' => '30'
-                ],
-                '5' => [
-                    'day' => 'Zo',
-                    'rain' => '10',
-                    'temperature' => '20',
-                    'wind' => '30'
-                ],
-                '6' => [
-                    'day' => 'Ma',
-                    'rain' => '10',
-                    'temperature' => '20',
-                    'wind' => '30'
-                ],
-                '7' => [
-                    'day' => 'Di',
-                    'rain' => '10',
-                    'temperature' => '20',
-                    'wind' => '30'
-                ],
-            ]
+            'week' => $forecast->toArray()
         );
     }
-
-    public function getWeatherDataByLatLon($lat, $lon) {
-        return $this->weatherManager->getWeather($lat, $lon);
-    }
-
 } 
