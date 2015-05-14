@@ -23,12 +23,19 @@ $app['api_client_factory'] = function () use ($app) {
 $app['day_factory'] = function () use ($app) {
     return new \WeatherManagement\WundergroundDayFactory();
 };
-
-$app['weather_manager'] = function() use ($app) {
-    return new \WeatherManagement\WeatherManager($app['api_client_factory'], $app['day_factory']);
+$app['rating_decorator'] = function () use ($app) {
+    return new \WeatherManagement\RatingDecorator();
 };
 
-$app['api_data_provider'] = function() use ($app) {
+$app['weather_manager'] = function () use ($app) {
+    return new \WeatherManagement\WeatherManager(
+        $app['api_client_factory'],
+        $app['day_factory'],
+        $app['rating_decorator']
+    );
+};
+
+$app['api_data_provider'] = function () use ($app) {
     return new \ApiManagement\ApiDataProvider($app['weather_manager']);
 };
 
