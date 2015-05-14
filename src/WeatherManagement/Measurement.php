@@ -24,7 +24,7 @@ class Measurement {
     private $max;
 
     /**
-     * @var
+     * @var Rating
      */
     private $rating;
 
@@ -50,14 +50,14 @@ class Measurement {
     }
 
     /**
-     * @param $rating
+     * @param Rating $rating
      */
-    public function setRating($rating) {
+    public function setRating(Rating $rating) {
         $this->rating = $rating;
     }
 
     /**
-     * @return string
+     * @return Rating
      */
     public function getRating() {
         return $this->rating;

@@ -64,8 +64,8 @@ class Day {
      */
     public function getStatus() {
         return [
-            'message' => 'Het is geen kutweer',
-            'indicator' => $this->rating
+            'message' => $this->rating->getText(),
+            'indicator' => $this->rating->getIndicator()
         ];
     }
 
@@ -76,15 +76,15 @@ class Day {
         return [
             'rain' => [
                 'value' => $this->rain->getAverage(),
-                'indicatior' => $this->rain->getRating()
+                'indicatior' => $this->rain->getRating()->getIndicator()
             ],
             'temp' => [
                 'value' => $this->temp->getAverage(),
-                'indicatior' => $this->temp->getRating()
+                'indicatior' => $this->temp->getRating()->getIndicator()
             ],
             'wind' => [
                 'value' => $this->wind->getAverage(),
-                'indicatior' => $this->wind->getRating()
+                'indicatior' => $this->wind->getRating()->getIndicator()
             ]
         ];
     }
@@ -113,7 +113,7 @@ class Day {
     /**
      * @param $rating
      */
-    public function setRating($rating) {
+    public function setRating(Rating $rating) {
         $this->rating = $rating;
     }
 

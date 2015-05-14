@@ -63,7 +63,7 @@ class RatingDecorator {
     private function rateOverall(Day $today, $ratings) {
         $average = array_sum($ratings) / count($ratings);
         $rounded = intval(round($average));
-        $today->setRating($this->messages[$rounded]);
+        $today->setRating(new Rating($this->values[$rounded], $this->messages[$rounded]));
     }
 
     /**
@@ -78,7 +78,7 @@ class RatingDecorator {
             $ratings['max'],
             $ratings['inverted']
         );
-        $measurement->setRating($this->values[$rating]);
+        $measurement->setRating(new Rating($this->values[$rating]));
         return $rating;
     }
 
