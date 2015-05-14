@@ -29,6 +29,11 @@ class Day {
     private $wind;
 
     /**
+     * @var
+     */
+    private $rating;
+
+    /**
      * @param $date
      * @param Measurement $rain
      * @param Measurement $temp
@@ -39,6 +44,7 @@ class Day {
         $this->rain = $rain;
         $this->temp = $temp;
         $this->wind = $wind;
+        $this->rating = '';
     }
 
     /**
@@ -59,7 +65,7 @@ class Day {
     public function getStatus() {
         return [
             'message' => 'Het is geen kutweer',
-            'indicator' => 'good'
+            'indicator' => $this->rating
         ];
     }
 
@@ -70,17 +76,45 @@ class Day {
         return [
             'rain' => [
                 'value' => $this->rain->getAverage(),
-                'indicatior' => 'meh'
+                'indicatior' => $this->rain->getRating()
             ],
             'temp' => [
                 'value' => $this->temp->getAverage(),
-                'indicatior' => 'good'
+                'indicatior' => $this->temp->getRating()
             ],
             'wind' => [
                 'value' => $this->wind->getAverage(),
-                'indicatior' => 'bad'
+                'indicatior' => $this->wind->getRating()
             ]
         ];
+    }
+
+    /**
+     * @return Measurement
+     */
+    public function getRain() {
+        return $this->rain;
+    }
+
+    /**
+     * @return Measurement
+     */
+    public function getTemp() {
+        return $this->temp;
+    }
+
+    /**
+     * @return Measurement
+     */
+    public function getWind() {
+        return $this->wind;
+    }
+
+    /**
+     * @param $rating
+     */
+    public function setRating($rating) {
+        $this->rating = $rating;
     }
 
     /**

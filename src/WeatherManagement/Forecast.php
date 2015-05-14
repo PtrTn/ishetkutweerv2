@@ -21,7 +21,14 @@ class Forecast {
     }
 
     /**
-     *
+     * @return day
+     */
+    public function getToday() {
+        return reset($this->days);
+    }
+
+    /**
+     * @return array
      */
     public function getTodayStatus() {
         return reset($this->days)->getStatus();
