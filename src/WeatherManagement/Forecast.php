@@ -21,21 +21,28 @@ class Forecast {
     }
 
     /**
+     *
+     */
+    public function getTodayStatus() {
+        return reset($this->days)->getStatus();
+    }
+
+    /**
      * @return array
      */
-    public function toArray() {
+    public function getTodayData() {
+        return reset($this->days)->toEnrichedArray();
+    }
+
+    /**
+     * @return array
+     */
+    public function getForecastData() {
         $arrayValues = array();
         foreach($this->days as $day) {
             $arrayValues[] = $day->toArray();
         }
         return $arrayValues;
-    }
-
-    /**
-     * @return Day
-     */
-    public function getToday() {
-        return reset($this->days);
     }
 
 } 

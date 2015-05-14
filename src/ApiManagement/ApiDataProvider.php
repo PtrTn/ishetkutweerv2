@@ -32,14 +32,11 @@ class ApiDataProvider {
         $forecast = $this->weatherManager->getForecast($lat, $lon);
         return array(
             'today' => [
-                'general' => [
-                    'message' => 'Het is geen kutweer',
-                    'indicator' => 'good'
-                ],
-                'specific' => $forecast->getToday()->toEnrichedArray(),
+                'general' => $forecast->getTodayStatus(),
+                'specific' => $forecast->getTodayData(),
                 'message' => $this->weatherManager->getWeatherMessage(),
             ],
-            'week' => $forecast->toArray()
+            'week' => $forecast->getForecastData()
         );
     }
 } 

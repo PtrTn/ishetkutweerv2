@@ -53,6 +53,19 @@ class Day {
         ];
     }
 
+    /**
+     * @return array
+     */
+    public function getStatus() {
+        return [
+            'message' => 'Het is geen kutweer',
+            'indicator' => 'good'
+        ];
+    }
+
+    /**
+     * @return array
+     */
     public function toEnrichedArray() {
         return [
             'rain' => [
