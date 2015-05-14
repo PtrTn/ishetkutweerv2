@@ -25,21 +25,22 @@ class ApiControllerProvider implements ControllerProviderInterface
         $controllers->get(
             '/weather/{lat}/{lon}',
             function ($lat, $lon) use ($app) {
-                return $app->json($app['weather_manager']->getWeather($lat, $lon));
+                return $app->json($app['api_data_provider']->getWeatherDataByLatLon($lat, $lon));
+            }
+        );
+
+        $controllers->get(
+            '/',
+            function () use ($app) {
+                return $app['twig']->render('api.twig');
             }
         );
 
         $controllers->get(
             '/weather',
             function () use ($app) {
-                return $app->json($app['weather_manager']->getWeather());
-            }
-        );
-
-        $controllers->get(
-            'weather/message',
-            function () use ($app) {
-                return $app->json($app['weather_manager']->getWeatherMessage());
+                // Todo use IP-based lat/lon
+                return $app->json($app['api_data_provider']->getWeatherDataByLatLon(51.44126129, 3.59591007));
             }
         );
 
