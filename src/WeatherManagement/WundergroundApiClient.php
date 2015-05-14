@@ -4,6 +4,10 @@ namespace WeatherManagement;
 
 use ApiManagement\AbstractApiClient;
 
+/**
+ * Class WundergroundApiClient
+ * @package WeatherManagement
+ */
 class WundergroundApiClient extends AbstractApiClient {
 
     /**
