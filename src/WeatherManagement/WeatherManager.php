@@ -18,9 +18,11 @@ class WeatherManager {
 
     /**
      * @param ApiClientFactory $apiClientFactory
+     * @param WundergroundDayFactory $dayFactory
      */
-    public function __construct(ApiClientFactory $apiClientFactory) {
+    public function __construct(ApiClientFactory $apiClientFactory, WundergroundDayFactory $dayFactory) {
         $this->apiClientFactory = $apiClientFactory;
+        $this->dayFactory = $dayFactory;
     }
 
     /**
@@ -28,9 +30,10 @@ class WeatherManager {
      * @param mixed $lon
      * @return mixed
      */
-    public function getWeather($lat = false, $lon = false) {
+    public function getForecast($lat = false, $lon = false) {
         $client = $this->apiClientFactory->getApiClient('wunderground');
-        return $client->getData(['lat' => $lat, 'lon' => $lon]);
+        $data = $client->getData(['lat' => $lat, 'lon' => $lon]);
+        return $this->dayFactory->createForecast($data);
     }
 
     /**

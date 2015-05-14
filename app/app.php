@@ -1,5 +1,7 @@
 <?php
 
+date_default_timezone_set('Europe/Amsterdam');
+
 // Load application
 require('bootstrap.php');
 $app = new Silex\Application();
@@ -18,8 +20,12 @@ $app['api_client_factory'] = function () use ($app) {
     return new \ApiManagement\ApiClientFactory();
 };
 
+$app['day_factory'] = function () use ($app) {
+    return new \WeatherManagement\WundergroundDayFactory();
+};
+
 $app['weather_manager'] = function() use ($app) {
-    return new \WeatherManagement\WeatherManager($app['api_client_factory']);
+    return new \WeatherManagement\WeatherManager($app['api_client_factory'], $app['day_factory']);
 };
 
 $app['api_data_provider'] = function() use ($app) {
