@@ -1,6 +1,6 @@
 /.idea/
 /vendor/
-*.yml.dist
+/app/config/*.yaml
 /public/styles/content
 /public/styles/general/reset.css
 .sass-cache
