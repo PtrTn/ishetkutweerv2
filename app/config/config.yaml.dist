@@ -1,0 +1,14 @@
+dev:
+  database:
+    name:
+    host:
+    user:
+    password:
+    driver:
+prod:
+  database:
+    name:
+    host:
+    user:
+    password:
+    driver:
