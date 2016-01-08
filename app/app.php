@@ -11,36 +11,42 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
         'twig.path' => __DIR__ . '/resources/views',
     ));
 
+// Load config file
+$app->register(new DerAlex\Silex\YamlConfigServiceProvider( __DIR__ . '/config/config.yaml'));
+
+// Get database config based on env
+$databaseConfig = $app['config']['prod']['database'];
+if ($app['debug'] === true) {
+    $databaseConfig = $app['config']['dev']['database'];
+}
+
+// Setup database
+$app->register(new Silex\Provider\DoctrineServiceProvider(), array(
+    'db.options' => array(
+        'dbname' => $databaseConfig['name'],
+        'user' => $databaseConfig['user'],
+        'password' => $databaseConfig['password'],
+        'host' => $databaseConfig['host'],
+        'driver'   => $databaseConfig['driver']
+    ),
+));
+
+$date = date('md');
+$result = $app['db']->fetchAll("SELECT * FROM weatherdata WHERE date LIKE ? ORDER BY date", ['%' . $date]);
+var_dump($date);
+var_dump($result);
+
 // Set homepage
 $app->get('/', function () use ($app) {
         return $app['twig']->render('home.twig');
     });
 
-$app['api_client_factory'] = function () use ($app) {
-    return new \ApiManagement\ApiClientFactory();
-};
+// Locatie omzetten naar weerstation
 
-$app['day_factory'] = function () use ($app) {
-    return new \WeatherManagement\WundergroundDayFactory();
-};
+// Gegevens van weerstation ophalen
 
-$app['rating_decorator'] = function () use ($app) {
-    return new \WeatherManagement\RatingDecorator();
-};
+// Gegevens verwerken (rating geven etc)
 
-$app['weather_manager'] = function () use ($app) {
-    return new \WeatherManagement\WeatherManager(
-        $app['api_client_factory'],
-        $app['day_factory'],
-        $app['rating_decorator']
-    );
-};
-
-$app['api_data_provider'] = function () use ($app) {
-    return new \ApiManagement\ApiDataProvider($app['weather_manager']);
-};
-
-// Setup internal API endpoints
-$app->mount('/api', new \Routing\ApiControllerProvider($app['api_data_provider']));
+// Gegevens formatten voor weergaven
 
 return $app;
