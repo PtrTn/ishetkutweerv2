@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2aa33166cf032fbf03f1990e86ff0840",
-    "content-hash": "8f10fccee808475efe76f3fa01cd2f89",
+    "hash": "8e89ab1236e21f97132e9282c8be4d39",
+    "content-hash": "047ef09c8372395b82cd05a7a920be24",
     "packages": [
         {
             "name": "deralex/yaml-config-service-provider",
@@ -527,6 +527,51 @@
                 "parser"
             ],
             "time": "2014-09-09 13:34:57"
+        },
+        {
+            "name": "jeroendesloovere/distance",
+            "version": "1.0.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jeroendesloovere/distance.git",
+                "reference": "c2fd9afa0c0958c3c9f476d7690a7e5bdc0ef474"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jeroendesloovere/distance/zipball/c2fd9afa0c0958c3c9f476d7690a7e5bdc0ef474",
+                "reference": "c2fd9afa0c0958c3c9f476d7690a7e5bdc0ef474",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "JeroenDesloovere\\Distance\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeroen Desloovere",
+                    "email": "info@jeroendesloovere.be",
+                    "homepage": "http://jeroendesloovere.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Get distance between two locations using PHP.",
+            "homepage": "https://github.com/jeroendesloovere/distance",
+            "keywords": [
+                "coordinates",
+                "distance",
+                "location",
+                "php"
+            ],
+            "time": "2015-05-20 15:13:07"
         },
         {
             "name": "pimple/pimple",

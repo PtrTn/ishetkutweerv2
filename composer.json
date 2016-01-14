@@ -17,6 +17,7 @@
         "symfony/yaml": "^2.6",
         "twig/twig": "^1.18",
         "doctrine/dbal": "~2.2",
-        "deralex/yaml-config-service-provider": "^1.0"
+        "deralex/yaml-config-service-provider": "^1.0",
+        "jeroendesloovere/distance": "1.0.*"
     }
 }
