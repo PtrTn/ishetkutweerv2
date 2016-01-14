@@ -29,9 +29,6 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__ . '/resources/views',
 ));
-$app->get('/', function () use ($app) {
-    return $app['twig']->render('home.twig');
-});
 
 // Define service providers
 $app->register(new \Providers\LocationServiceProvider());
@@ -52,13 +49,23 @@ $station = $app['stationFinder']->findStation($location);
 // Get data based on station
 $presentData = $app['presentDataProvider']->getDataByStation($station);
 $historicData = $app['historicDataProvider']->getDataByStation($station);
+$messages = $app['presentMessageProvider']->getData();
 
 var_dump($station);
+var_dump($messages);
 var_dump($presentData);
 var_dump($historicData);
 
 // TODO Gegevens verwerken (rating geven etc)
 
 // TODO Gegevens formatten voor weergaven
+
+$app->get('/', function () use ($app, $station, $messages, $presentData) {
+    return $app['twig']->render('home.twig', [
+        'station' => $station,
+        'messages' => $messages,
+        'data' => $presentData
+    ]);
+});
 
 return $app;

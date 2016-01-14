@@ -20,7 +20,7 @@
     </div>
     <div id="location-search">
         <i class="fa fa-location-arrow"></i>
-        <span id="location">Vlissingen</span>
+        <span id="location">{{ station.getName() }}</span>
     </div>
 </header>
 <div class="content">
@@ -29,30 +29,28 @@
             <div class="measurement good">
                 <p>
                     <i class="wi wi-rain-mix"></i>
-                    <span class="value">12</span>
+                    <span class="value">{{ data.getRain() }}</span>
                     <span class="suffix">mm</span>
                 </p>
             </div>
             <div class="measurement meh">
                 <p>
                     <i class="wi wi-thermometer"></i>
-                    <span class="value">10</span>
+                    <span class="value">{{ data.getTemp() }}</span>
                     <span class="suffix">&deg;C</span>
                 </p>
             </div>
             <div class="measurement bad">
                 <p>
                     <i class="wi wi-cloudy-windy"></i>
-                    <span class="value">88</span>
+                    <span class="value">{{ data.getWindspeed() }}</span>
                     <span class="suffix">km/h</span>
                 </p>
             </div>
 
         </div>
         <div id="text-summary">
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut placerat eleifend purus quis ultrices. Aliquam dictum varius diam vel suscipit. Aliquam eu fringilla nisl. Nunc gravida sem elit, id malesuada sem feugiat id. Cras dapibus elementum neque, at ultrices ante pharetra sit amet. Sed ultricies enim enim, eu venenatis leo sagittis nec. Nulla justo lectus, lobortis nec nisi id, pharetra ultricies ante. Donec dignissim non turpis a faucibus. Sed posuere elementum lectus ac gravida. Mauris ultricies felis quis tellus feugiat varius. Integer pretium gravida lorem in faucibus. Etiam condimentum mauris at lacus luctus suscipit. In hac habitasse platea dictumst.
-            </p>
+            <p>{{ messages.getLongMsg() }}</p>
         </div>
     </div>
     <div id="table" class="block">
