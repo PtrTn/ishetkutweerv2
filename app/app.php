@@ -33,25 +33,9 @@ $app->get('/', function () use ($app) {
     return $app['twig']->render('home.twig');
 });
 
-// Define services
-$app['locator'] = function () use ($app) {
-    return new \Location\Locator();
-};
-$app['distanceCalc'] = function () {
-    return new JeroenDesloovere\Distance\Distance;
-};
-$app['stationFactory'] = function () use ($app) {
-    return new \Location\StationFactory();
-};
-$app['stationFinder'] = function () use ($app) {
-    return new \Location\StationFinder($app['stationFactory'], $app['distanceCalc']);
-};
-$app['presentDataProvider'] = function () use ($app) {
-    return new \DataProviding\PresentDataProvider();
-};
-$app['historicDataProvider'] = function () use ($app) {
-    return new \DataProviding\HistoricDataProvider($app['db']);
-};
+// Define service providers
+$app->register(new \Providers\LocationServiceProvider());
+$app->register(new \Providers\DataProvidingServiceProvider());
 
 // Get IP using connection details
 $ip = $_SERVER['REMOTE_ADDR'];
