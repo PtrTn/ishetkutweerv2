@@ -19,5 +19,15 @@ class PresentWeatherData extends WeatherData
         $this->temp = $temp;
         $this->rain = $rain;
     }
+
+    public function getTemp()
+    {
+        return $this->temp;
+    }
+
+    public function getRain()
+    {
+        return $this->rain;
+    }
 }
  

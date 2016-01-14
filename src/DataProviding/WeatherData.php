@@ -30,5 +30,10 @@ abstract class WeatherData
         $this->windDirection = $windDirection;
     }
 
+    public function getWindspeed()
+    {
+        return $this->windSpeed;
+    }
+
 }
  

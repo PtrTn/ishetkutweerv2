@@ -39,5 +39,10 @@ class Station
         return $this->knmiId;
     }
 
+    public function getName()
+    {
+        return $this->name;
+    }
+
 }
  

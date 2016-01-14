@@ -12,5 +12,10 @@ class PresentMessage
         $this->shortMsg = $shortMsg;
         $this->longMsg = $longMsg;
     }
+
+    public function getLongMsg()
+    {
+        return $this->longMsg;
+    }
 }
  
