@@ -2,8 +2,10 @@
 
 namespace Providers;
 
-use DataProviding\HistoricDataProvider;
-use DataProviding\PresentDataProvider;
+use JeroenDesloovere\Distance\Distance;
+use Location\Locator;
+use Location\StationFactory;
+use Location\StationFinder;
 use Silex\Application;
 use Silex\ServiceProviderInterface;
 
@@ -11,11 +13,17 @@ class LocationServiceProvider implements ServiceProviderInterface
 {
     public function register(Application $app)
     {
-        $app['presentDataProvider'] = function () use ($app) {
-            return new PresentDataProvider();
+        $app['locator'] = function () use ($app) {
+            return new Locator();
         };
-        $app['historicDataProvider'] = function () use ($app) {
-            return new HistoricDataProvider($app['db']);
+        $app['distanceCalc'] = function () {
+            return new Distance();
+        };
+        $app['stationFactory'] = function () use ($app) {
+            return new StationFactory();
+        };
+        $app['stationFinder'] = function () use ($app) {
+            return new StationFinder($app['stationFactory'], $app['distanceCalc']);
         };
     }
 
