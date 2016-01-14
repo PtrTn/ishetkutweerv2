@@ -1,14 +1,9 @@
 <?php
 
-date_default_timezone_set('Europe/Amsterdam');
 // Load application
 require('bootstrap.php');
 $app = new Silex\Application();
 $app['debug'] = true;
-
-$app->register(new Silex\Provider\TwigServiceProvider(), array(
-    'twig.path' => __DIR__ . '/resources/views',
-));
 
 // Load config file
 $app->register(new DerAlex\Silex\YamlConfigServiceProvider(__DIR__ . '/config/config.yaml'));
@@ -29,19 +24,16 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
         'driver' => $databaseConfig['driver']
     ),
 ));
-$dis = new JeroenDesloovere\Distance\Distance;
 
-$date = date('md');
-$result = $app['db']->fetchAll("SELECT * FROM weatherdata WHERE date LIKE ? ORDER BY date", array('%' . $date));
-//var_dump($date);
-//var_dump($result);
-
-// Set homepage
+// Setup views
+$app->register(new Silex\Provider\TwigServiceProvider(), array(
+    'twig.path' => __DIR__ . '/resources/views',
+));
 $app->get('/', function () use ($app) {
     return $app['twig']->render('home.twig');
 });
 
-
+// Define services
 $app['locator'] = function () use ($app) {
     return new \Location\Locator();
 };
