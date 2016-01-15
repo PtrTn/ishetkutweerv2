@@ -29,8 +29,18 @@ class HistoricWeatherData extends WeatherData
      */
     private $rainMax;
 
-    public function __construct($stationId, $date, $windDirection, $windSpeed, $tempAvg, $tempMin, $tempMax, $rainDuration, $rainSum, $rainMax)
-    {
+    public function __construct(
+        $stationId,
+        $date,
+        $windDirection,
+        $windSpeed,
+        $tempAvg,
+        $tempMin,
+        $tempMax,
+        $rainDuration,
+        $rainSum,
+        $rainMax
+    ) {
         parent::__construct($stationId, $date, $windDirection, $windSpeed);
         $this->tempAvg = $tempAvg;
         $this->tempMin = $tempMin;
@@ -38,6 +48,23 @@ class HistoricWeatherData extends WeatherData
         $this->rainDuration = $rainDuration;
         $this->rainSum = $rainSum;
         $this->rainMax = $rainMax;
+    }
+
+    public function isValid()
+    {
+        if (
+            !isset($this->stationId) ||
+            !isset($this->date) ||
+            !isset($this->tempAvg) ||
+            !isset($this->tempMin) ||
+            !isset($this->tempMax) ||
+            !isset($this->rainDuration) ||
+            !isset($this->rainSum) ||
+            !isset($this->rainMax)
+        ) {
+            return false;
+        }
+        return true;
     }
 }
  

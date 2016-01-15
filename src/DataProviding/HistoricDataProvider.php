@@ -51,7 +51,7 @@ class HistoricDataProvider
 
     private function toWeatherData($rows)
     {
-        $historicCollection = [];
+        $historicCollection = new HistoricDataCollection();
         foreach ($rows as $row) {
             $date = date('d-m-Y', strtotime($row['date']));
             $tempAvg = floatval(round($row['tempAvg'] / 10, 1));
@@ -65,7 +65,7 @@ class HistoricDataProvider
             if ($rainMax === -1) {
                 $rainMax = 0;
             }
-            $historicCollection[] = new HistoricWeatherData(
+            $historicCollection->add(new HistoricWeatherData(
                 $row['stationId'],
                 $date,
                 $windDirection,
@@ -76,7 +76,7 @@ class HistoricDataProvider
                 $rainDuration,
                 $rainSum,
                 $rainMax
-            );
+            ));
         }
         return $historicCollection;
     }
