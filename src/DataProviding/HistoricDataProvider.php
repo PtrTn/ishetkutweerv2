@@ -21,11 +21,22 @@ class HistoricDataProvider
         $query
             ->select('*')
             ->from('weatherdata')
-            ->where('date LIKE :date')
-            ->andWhere('stationId = :stationId')
+            ->where('stationId = :stationId')
             ->orderBy('date', 'desc')
             ->setParameter('stationId', $stationId)
             ->setParameter('date', '%-' . date('m-d'));
+        $where = '';
+        $years = [2015, 2014, 2013];
+        foreach($years as $index => $year) {
+            $date = $year . '-' . date('m-d');
+            $startDate = date('Y-m-d', strtotime('-7 days', strtotime($date)));
+            $endDate = date('Y-m-d', strtotime('+7 days', strtotime($date)));
+            if ($index !== 0) {
+                $where .= ' OR ';
+            }
+            $where .= 'date BETWEEN "' . $startDate . '" AND "' . $endDate . '"';
+        }
+        $query->andWhere($where);
         $statement = $query->execute();
         return $statement->fetchAll();
 
