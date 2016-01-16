@@ -33,6 +33,7 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 // Define service providers
 $app->register(new \Providers\LocationServiceProvider());
 $app->register(new \Providers\DataProvidingServiceProvider());
+$app->register(new \Providers\RatingServiceProvider());
 
 // Get IP using connection details
 $ip = $_SERVER['REMOTE_ADDR'];
@@ -51,14 +52,13 @@ $presentData = $app['presentDataProvider']->getDataByStation($station);
 $historicData = $app['historicDataProvider']->getDataByStation($station);
 $messages = $app['presentMessageProvider']->getData();
 
-var_dump($station);
-var_dump($messages);
+$rating = $app['ratingCalculator']->getRating($presentData, $historicData);
+
+//var_dump($station);
+//var_dump($messages);
+var_dump($rating);
 var_dump($presentData);
 var_dump($historicData);
-
-// TODO Gegevens verwerken (rating geven etc)
-
-// TODO Gegevens formatten voor weergaven
 
 $app->get('/', function () use ($app, $station, $messages, $presentData) {
     return $app['twig']->render('home.twig', [

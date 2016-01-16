@@ -17,7 +17,7 @@ class HistoricWeatherData extends WeatherData
      */
     private $tempMax;
     /**
-     * Duur van regenval in uren
+     * Duration of rainfall in hours
      */
     private $rainDuration;
     /**
@@ -65,6 +65,26 @@ class HistoricWeatherData extends WeatherData
             return false;
         }
         return true;
+    }
+
+    public function getTempAvg()
+    {
+        return $this->tempAvg;
+    }
+
+    public function getWindSpeed()
+    {
+        return $this->windSpeed;
+    }
+
+    public function getRainSum()
+    {
+        return $this->rainSum;
+    }
+
+    public function getRainDuration()
+    {
+        return $this->rainDuration;
     }
 }
  
