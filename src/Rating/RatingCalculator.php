@@ -47,7 +47,7 @@ class RatingCalculator
     {
         $avgWind = $historicData->getWindSpeedAvg();
         $currentWind = $presentData->getWindSpeed();
-        if ($currentWind > 100) {
+        if ($currentWind > 70) {
             return 0;
         }
         // TODO maybe add some range to avg (+- 10%)
