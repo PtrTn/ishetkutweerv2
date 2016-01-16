@@ -67,23 +67,22 @@ $app->get('/', function () use ($app, $station, $rating, $messages, $presentData
     ]);
 });
 
+// TODO split dataproviding into historic/present/forecast
+// TODO add gulp css compiling
 // TODO add long message as 'meer' option
-// TODO replace dummy data in table
-// TODO table coloring
+// TODO add 'meer' forecast
+// TODO windkracht in beaufort
+// TODO make php 5.4 compatible
+// TODO hover tooltip with historic averages (normaal is het .. )
+
+// TODO add open graph & twitter card implementation
+// TODO add daily social media posts
+// TODO weather-dependant background image
 // TODO allow location changing
 // TODO add javascript location precision
 // TODO better rating calculation
 // TODO cool measurement icons
-// TODO windkracht in beaufort
 // TODO weather alerts
-// TODO php 5.4 compatible maken
-// TODO split dataproviding into historic/present/forecast
 // TODO extend collection class?
-// TODO hover tooltip with historic averages (normaal is het .. )
-// TODO add open graph & twitter card implementation
-// TODO add daily social media posts
-// TODO add 'meer' forecast
-// TODO weather-dependant background image
-// TODO add gulp css compiling
 
 return $app;
