@@ -17,23 +17,56 @@ class Rating
 
     public function getOverall()
     {
-        $average = ($this->rainRating = $this->tempRating + $this->windRating) / 3;
-        return round($average);
+        return $this->toClass($this->getAvgRating());
+    }
+
+    public function getMessage()
+    {
+        switch($this->getAvgRating()) {
+            case 2:
+                return 'Het is geen kutweer!';
+            case 1:
+                return 'Het is redelijk kutweer!';
+            case 0:
+                return 'Het is kutweer!';
+            default:
+                return 'Het is misschien kutweer!';
+        }
     }
 
     public function getRain()
     {
-        return $this->rainRating;
+        return $this->toClass($this->rainRating);
     }
 
     public function getTemp()
     {
-        return $this->tempRating;
+        return $this->toClass($this->tempRating);
     }
 
     public function getWind()
     {
-        return $this->windRating;
+        return $this->toClass($this->windRating);
+    }
+
+    private function toClass($rating)
+    {
+        switch($rating) {
+            case 2:
+                return 'good';
+            case 1:
+                return 'meh';
+            case 0:
+                return 'bad';
+            default:
+                return 'neutral';
+        }
+    }
+
+    private function getAvgRating()
+    {
+        $average = ($this->rainRating + $this->tempRating + $this->windRating) / 3;
+        return round($average);
     }
 
 }

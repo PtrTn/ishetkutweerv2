@@ -52,20 +52,25 @@ $presentData = $app['presentDataProvider']->getDataByStation($station);
 $historicData = $app['historicDataProvider']->getDataByStation($station);
 $messages = $app['presentMessageProvider']->getData();
 
+// Rate current weather based on historical data and other rules
 $rating = $app['ratingCalculator']->getRating($presentData, $historicData);
 
-//var_dump($station);
-//var_dump($messages);
-var_dump($rating);
-var_dump($presentData);
-var_dump($historicData);
-
-$app->get('/', function () use ($app, $station, $messages, $presentData) {
+// Render page using found data
+$app->get('/', function () use ($app, $station, $rating, $messages, $presentData) {
     return $app['twig']->render('home.twig', [
         'station' => $station,
+        'rating' => $rating,
         'messages' => $messages,
         'data' => $presentData
     ]);
 });
+
+// TODO add long message as 'meer' option
+// TODO replace dummy data in table
+// TODO table coloring
+// TODO allow location changing
+// TODO add javascript location precision
+// TODO better rating calculation
+// TODO cool measurement icons
 
 return $app;

@@ -15,8 +15,8 @@
 </head>
 <body>
 <header id="page">
-    <div class="good" id="payoff">
-        <p>Het is geen kutweer</p>
+    <div class="{{ rating.getOverall() }}" id="payoff">
+        <p>{{ rating.getMessage() }}</p>
     </div>
     <div id="location-search">
         <i class="fa fa-location-arrow"></i>
@@ -26,21 +26,21 @@
 <div class="content">
     <div id="summary" class="block">
         <div class="measurements">
-            <div class="measurement good">
+            <div class="measurement {{ rating.getRain() }}">
                 <p>
                     <i class="wi wi-rain-mix"></i>
                     <span class="value">{{ data.getRain() }}</span>
                     <span class="suffix">mm</span>
                 </p>
             </div>
-            <div class="measurement meh">
+            <div class="measurement {{ rating.getTemp() }}">
                 <p>
                     <i class="wi wi-thermometer"></i>
                     <span class="value">{{ data.getTemp() }}</span>
                     <span class="suffix">&deg;C</span>
                 </p>
             </div>
-            <div class="measurement bad">
+            <div class="measurement {{ rating.getWind() }}">
                 <p>
                     <i class="wi wi-cloudy-windy"></i>
                     <span class="value">{{ data.getWindspeed() }}</span>
@@ -50,7 +50,7 @@
 
         </div>
         <div id="text-summary">
-            <p>{{ messages.getLongMsg() }}</p>
+            <p>{{ messages.getShortMsg() }}</p>
         </div>
     </div>
     <div id="table" class="block">
