@@ -1,0 +1,48 @@
+
+<div id="table" class="block">
+    <table id="week">
+        <tr>
+            <th></th>
+            {% for day in forecastData.getDays() %}
+                {% if loop.first %}
+                    <th>Nu</th>
+                {% else %}
+                    <th>{{ day.getDayname() }}</th>
+                {% endif %}
+            {% endfor %}
+        </tr>
+        <tr id="sun">
+            <td>
+                <i class="wi wi-thermometer"></i>
+            </td>
+            {% for day in forecastData.getDays() %}
+                <td>
+                    <span class="value">{{ day.getTemp() }}</span>
+                    <span class="suffix">&deg;C</span>
+                </td>
+            {% endfor %}
+        </tr>
+        <tr id="rain">
+            <td>
+                <i class="wi wi-rain-mix"></i>
+            </td>
+            {% for day in forecastData.getDays() %}
+                <td>
+                    <span class="value">{{ day.getRain() }}</span>
+                    <span class="suffix">mm</span>
+                </td>
+            {% endfor %}
+        </tr>
+        <tr id="wind">
+            <td>
+                <i class="wi wi-cloudy-windy"></i>
+            </td>
+            {% for day in forecastData.getDays() %}
+                <td>
+                    <span class="value">{{ day.getWindSpeed() }}</span>
+                    <span class="suffix">km/h</span>
+                </td>
+            {% endfor %}
+        </tr>
+    </table>
+</div>

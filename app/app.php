@@ -51,19 +51,19 @@ $station = $app['stationFinder']->findStation($location);
 $presentData = $app['presentDataProvider']->getDataByStation($station);
 $historicData = $app['historicDataProvider']->getDataByStation($station);
 $messages = $app['presentMessageProvider']->getData();
-$forecast = $app['forecastDataProvider']->getDataByStation($station);
-var_dump($forecast);
+$forecastData = $app['forecastDataProvider']->getDataByStation($station);
 
 // Rate current weather based on historical data and other rules
 $rating = $app['ratingCalculator']->getRating($presentData, $historicData);
 
 // Render page using found data
-$app->get('/', function () use ($app, $station, $rating, $messages, $presentData) {
+$app->get('/', function () use ($app, $station, $rating, $messages, $presentData, $forecastData) {
     return $app['twig']->render('home.twig', [
         'station' => $station,
         'rating' => $rating,
         'messages' => $messages,
-        'data' => $presentData
+        'presentData' => $presentData,
+        'forecastData' => $forecastData
     ]);
 });
 
@@ -80,5 +80,6 @@ $app->get('/', function () use ($app, $station, $rating, $messages, $presentData
 // TODO split dataproviding into historic/present/forecast
 // TODO extend collection class?
 // TODO hover tooltip with historic averages (normaal is het .. )
+// TODO refactor twig template into partials
 
 return $app;

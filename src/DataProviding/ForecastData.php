@@ -16,5 +16,9 @@ class ForecastData
         $this->days[] = $day;
     }
 
+    public function getDays()
+    {
+        return $this->days;
+    }
 }
  

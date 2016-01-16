@@ -29,21 +29,21 @@
             <div class="measurement {{ rating.getRain() }}">
                 <p>
                     <i class="wi wi-rain-mix"></i>
-                    <span class="value">{{ data.getRain() }}</span>
+                    <span class="value">{{ presentData.getRain() }}</span>
                     <span class="suffix">mm</span>
                 </p>
             </div>
             <div class="measurement {{ rating.getTemp() }}">
                 <p>
                     <i class="wi wi-thermometer"></i>
-                    <span class="value">{{ data.getTemp() }}</span>
+                    <span class="value">{{ presentData.getTemp() }}</span>
                     <span class="suffix">&deg;C</span>
                 </p>
             </div>
             <div class="measurement {{ rating.getWind() }}">
                 <p>
                     <i class="wi wi-cloudy-windy"></i>
-                    <span class="value">{{ data.getWindspeed() }}</span>
+                    <span class="value">{{ presentData.getWindspeed() }}</span>
                     <span class="suffix">km/h</span>
                 </p>
             </div>
@@ -53,119 +53,7 @@
             <p>{{ messages.getShortMsg() }}</p>
         </div>
     </div>
-    <div id="table" class="block">
-        <table id="week">
-            <tr>
-                <th></th>
-                <th>Ma</th>
-                <th>Di</th>
-                <th>Wo</th>
-                <th>Do</th>
-                <th>Vr</th>
-                <th>Za</th>
-                <th>Zo</th>
-            </tr>
-            <tr id="sun">
-                <td>
-                    <i class="wi wi-thermometer"></i>
-                </td>
-                <td>
-                    <span class="value">12</span>
-                    <span class="suffix">&deg;C</span>
-                </td>
-                <td>
-                    <span class="value">12</span>
-                    <span class="suffix">&deg;C</span>
-                </td>
-                <td>
-                    <span class="value">12</span>
-                    <span class="suffix">&deg;C</span>
-                </td>
-                <td>
-                    <span class="value">12</span>
-                    <span class="suffix">&deg;C</span>
-                </td>
-                <td>
-                    <span class="value">12</span>
-                    <span class="suffix">&deg;C</span>
-                </td>
-                <td>
-                    <span class="value">12</span>
-                    <span class="suffix">&deg;C</span>
-                </td>
-                <td>
-                    <span class="value">12</span>
-                    <span class="suffix">&deg;C</span>
-                </td>
-            </tr>
-            <tr id="rain">
-                <td>
-                    <i class="wi wi-rain-mix"></i>
-                </td>
-                <td>
-                    <span class="value">0</span>
-                    <span class="suffix">mm</span>
-                </td>
-                <td>
-                    <span class="value">0</span>
-                    <span class="suffix">mm</span>
-                </td>
-                <td>
-                    <span class="value">0</span>
-                    <span class="suffix">mm</span>
-                </td>
-                <td>
-                    <span class="value">0</span>
-                    <span class="suffix">mm</span>
-                </td>
-                <td>
-                    <span class="value">0</span>
-                    <span class="suffix">mm</span>
-                </td>
-                <td>
-                    <span class="value">0</span>
-                    <span class="suffix">mm</span>
-                </td>
-                <td>
-                    <span class="value">0</span>
-                    <span class="suffix">mm</span>
-                </td>
-            </tr>
-            <tr id="wind">
-                <td>
-                    <i class="wi wi-cloudy-windy"></i>
-                </td>
-                <td>
-                    <span class="value">20</span>
-                    <span class="suffix">km/h</span>
-                </td>
-                <td>
-                    <span class="value">20</span>
-                    <span class="suffix">km/h</span>
-                </td>
-                <td>
-                    <span class="value">20</span>
-                    <span class="suffix">km/h</span>
-                </td>
-                <td>
-                    <span class="value">20</span>
-                    <span class="suffix">km/h</span>
-                </td>
-                <td>
-                    <span class="value">20</span>
-                    <span class="suffix">km/h</span>
-                </td>
-                <td>
-                    <span class="value">20</span>
-                    <span class="suffix">km/h</span>
-                </td>
-                <td>
-                    <span class="value">20</span>
-                    <span class="suffix">km/h</span>
-                </td>
-            </tr>
-        </table>
-    </div>
+    {% include 'partials/forecast.twig' %}
 </div>
 </body>
 </html>
