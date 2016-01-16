@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8e89ab1236e21f97132e9282c8be4d39",
-    "content-hash": "047ef09c8372395b82cd05a7a920be24",
+    "hash": "430fb369706046e796d0e427e9018828",
+    "content-hash": "7d55db9f922692bf6d3a62d23447dc0d",
     "packages": [
         {
             "name": "deralex/yaml-config-service-provider",
@@ -1061,16 +1061,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.8.1",
+            "version": "v2.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "ac84cbb98b68a6abbc9f5149eb96ccc7b07b8966"
+                "reference": "34c8a4b51e751e7ea869b8262f883d008a2b81b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/ac84cbb98b68a6abbc9f5149eb96ccc7b07b8966",
-                "reference": "ac84cbb98b68a6abbc9f5149eb96ccc7b07b8966",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/34c8a4b51e751e7ea869b8262f883d008a2b81b8",
+                "reference": "34c8a4b51e751e7ea869b8262f883d008a2b81b8",
                 "shasum": ""
             },
             "require": {
@@ -1106,20 +1106,20 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2015-12-26 13:37:56"
+            "time": "2016-01-13 10:28:07"
         },
         {
             "name": "twig/twig",
-            "version": "v1.23.1",
+            "version": "v1.23.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "d9b6333ae8dd2c8e3fd256e127548def0bc614c6"
+                "reference": "ae53fc2c312fdee63773b75cb570304f85388b08"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/d9b6333ae8dd2c8e3fd256e127548def0bc614c6",
-                "reference": "d9b6333ae8dd2c8e3fd256e127548def0bc614c6",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/ae53fc2c312fdee63773b75cb570304f85388b08",
+                "reference": "ae53fc2c312fdee63773b75cb570304f85388b08",
                 "shasum": ""
             },
             "require": {
@@ -1167,13 +1167,51 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-11-05 12:49:06"
+            "time": "2016-01-11 14:02:19"
+        },
+        {
+            "name": "vertigolabs/overcast",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jaimz22/Overcast.git",
+                "reference": "41fb2dd194c011b491f3e5b54b98bf6e1353cbe0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jaimz22/Overcast/zipball/41fb2dd194c011b491f3e5b54b98bf6e1353cbe0",
+                "reference": "41fb2dd194c011b491f3e5b54b98bf6e1353cbe0",
+                "shasum": ""
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "Allows for better handling of http connections to Forecast.io webservice"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "VertigoLabs\\Overcast\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "James Murray",
+                    "email": "jaimz@vertigolabs.org"
+                }
+            ],
+            "description": "An easy to use wrapper for the Forecast.io API",
+            "time": "2015-06-08 19:54:08"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "vertigolabs/overcast": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

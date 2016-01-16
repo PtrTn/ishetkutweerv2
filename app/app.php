@@ -51,6 +51,8 @@ $station = $app['stationFinder']->findStation($location);
 $presentData = $app['presentDataProvider']->getDataByStation($station);
 $historicData = $app['historicDataProvider']->getDataByStation($station);
 $messages = $app['presentMessageProvider']->getData();
+$forecast = $app['forecastDataProvider']->getDataByStation($station);
+var_dump($forecast);
 
 // Rate current weather based on historical data and other rules
 $rating = $app['ratingCalculator']->getRating($presentData, $historicData);
@@ -72,5 +74,11 @@ $app->get('/', function () use ($app, $station, $rating, $messages, $presentData
 // TODO add javascript location precision
 // TODO better rating calculation
 // TODO cool measurement icons
+// TODO windkracht in beaufort
+// TODO weather alerts
+// TODO php 5.4 compatible maken
+// TODO split dataproviding into historic/present/forecast
+// TODO extend collection class?
+// TODO hover tooltip with historic averages (normaal is het .. )
 
 return $app;

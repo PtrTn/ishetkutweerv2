@@ -44,5 +44,14 @@ class Station
         return $this->name;
     }
 
+    public function getLat()
+    {
+        return $this->lat;
+    }
+
+    public function getLon()
+    {
+        return $this->lon;
+    }
 }
  

@@ -18,6 +18,7 @@
         "twig/twig": "^1.18",
         "doctrine/dbal": "~2.2",
         "deralex/yaml-config-service-provider": "^1.0",
-        "jeroendesloovere/distance": "1.0.*"
+        "jeroendesloovere/distance": "1.0.*",
+        "vertigolabs/overcast": "dev-master"
     }
 }
