@@ -3,7 +3,7 @@
 namespace Providers;
 
 use JeroenDesloovere\Distance\Distance;
-use Location\Locator;
+use Location\LocationDataProvider;
 use Location\StationFactory;
 use Location\StationFinder;
 use Silex\Application;
@@ -13,8 +13,8 @@ class LocationServiceProvider implements ServiceProviderInterface
 {
     public function register(Application $app)
     {
-        $app['locator'] = function () use ($app) {
-            return new Locator();
+        $app['locationDataProvider'] = function () use ($app) {
+            return new LocationDataProvider();
         };
         $app['distanceCalc'] = function () {
             return new Distance();

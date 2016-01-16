@@ -2,7 +2,7 @@
 
 namespace Location;
 
-class Locator
+class LocationDataProvider
 {
     private $locationServer;
 

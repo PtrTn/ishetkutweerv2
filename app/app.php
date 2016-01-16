@@ -42,7 +42,7 @@ if ($app['debug'] === true) {
 }
 
 // Get location based on IP
-$location = $app['locator']->getLocation($ip);
+$location = $app['locationDataProvider']->getLocation($ip);
 
 // Get station based on location
 $station = $app['stationFinder']->findStation($location);
