@@ -15,44 +15,10 @@
 </head>
 <body>
 <header id="page">
-    <div class="{{ rating.getOverall() }}" id="payoff">
-        <p>{{ rating.getMessage() }}</p>
-    </div>
-    <div id="location-search">
-        <i class="fa fa-location-arrow"></i>
-        <span id="location">{{ station.getName() }}</span>
-    </div>
+    {% include 'partials/header.twig' %}
 </header>
 <div class="content">
-    <div id="summary" class="block">
-        <div class="measurements">
-            <div class="measurement {{ rating.getRain() }}">
-                <p>
-                    <i class="wi wi-rain-mix"></i>
-                    <span class="value">{{ presentData.getRain() }}</span>
-                    <span class="suffix">mm</span>
-                </p>
-            </div>
-            <div class="measurement {{ rating.getTemp() }}">
-                <p>
-                    <i class="wi wi-thermometer"></i>
-                    <span class="value">{{ presentData.getTemp() }}</span>
-                    <span class="suffix">&deg;C</span>
-                </p>
-            </div>
-            <div class="measurement {{ rating.getWind() }}">
-                <p>
-                    <i class="wi wi-cloudy-windy"></i>
-                    <span class="value">{{ presentData.getWindspeed() }}</span>
-                    <span class="suffix">km/h</span>
-                </p>
-            </div>
-
-        </div>
-        <div id="text-summary">
-            <p>{{ messages.getShortMsg() }}</p>
-        </div>
-    </div>
+    {% include 'partials/summary.twig' %}
     {% include 'partials/forecast.twig' %}
 </div>
 </body>

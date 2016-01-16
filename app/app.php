@@ -80,6 +80,7 @@ $app->get('/', function () use ($app, $station, $rating, $messages, $presentData
 // TODO split dataproviding into historic/present/forecast
 // TODO extend collection class?
 // TODO hover tooltip with historic averages (normaal is het .. )
-// TODO refactor twig template into partials
+// TODO add open graph & twitter card implementation
+// TODO add daily social media posts
 
 return $app;
