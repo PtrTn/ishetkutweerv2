@@ -82,5 +82,8 @@ $app->get('/', function () use ($app, $station, $rating, $messages, $presentData
 // TODO hover tooltip with historic averages (normaal is het .. )
 // TODO add open graph & twitter card implementation
 // TODO add daily social media posts
+// TODO add 'meer' forecast
+// TODO weather-dependant background image
+// TODO add gulp css compiling
 
 return $app;
