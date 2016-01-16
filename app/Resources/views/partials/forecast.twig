@@ -1,48 +1,51 @@
-
+<style>
+    table#week {
+        border-collapse: collapse;
+    }
+    table#week tr:nth-of-type(even) {
+        background-color: white;
+    }
+</style>
 <div id="table" class="block">
     <table id="week">
+        <thead>
         <tr>
             <th></th>
-            {% for day in forecastData.getDays() %}
-                {% if loop.first %}
-                    <th>Nu</th>
-                {% else %}
-                    <th>{{ day.getDayname() }}</th>
-                {% endif %}
-            {% endfor %}
-        </tr>
-        <tr id="sun">
-            <td>
-                <i class="wi wi-thermometer"></i>
-            </td>
-            {% for day in forecastData.getDays() %}
-                <td>
-                    <span class="value">{{ day.getTemp() }}</span>
-                    <span class="suffix">&deg;C</span>
-                </td>
-            {% endfor %}
-        </tr>
-        <tr id="rain">
-            <td>
+            <th>
                 <i class="wi wi-rain-mix"></i>
-            </td>
-            {% for day in forecastData.getDays() %}
+            </th>
+            <th>
+                <i class="wi wi-thermometer"></i>
+            </th>
+            <th>
+                <i class="wi wi-cloudy-windy"></i>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for day in forecastData.getDays(5) %}
+            <tr>
+                {% if loop.index == 1 %}
+                    <td>Vandaag</td>
+                {% elseif loop.index == 2 %}
+                    <td>Morgen</td>
+                {% else %}
+                    <td>{{ day.getDayname() }}</td>
+                {% endif %}
                 <td>
                     <span class="value">{{ day.getRain() }}</span>
                     <span class="suffix">mm</span>
                 </td>
-            {% endfor %}
-        </tr>
-        <tr id="wind">
-            <td>
-                <i class="wi wi-cloudy-windy"></i>
-            </td>
-            {% for day in forecastData.getDays() %}
+                <td>
+                    <span class="value">{{ day.getTemp() }}</span>
+                    <span class="suffix">&deg;C</span>
+                </td>
                 <td>
                     <span class="value">{{ day.getWindSpeed() }}</span>
                     <span class="suffix">km/h</span>
                 </td>
-            {% endfor %}
-        </tr>
+            </tr>
+        {% endfor %}
+        </tbody>
     </table>
 </div>

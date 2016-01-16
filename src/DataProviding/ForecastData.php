@@ -16,8 +16,11 @@ class ForecastData
         $this->days[] = $day;
     }
 
-    public function getDays()
+    public function getDays($amount = false)
     {
+        if ($amount !== false) {
+            return array_slice($this->days, 0, $amount);
+        }
         return $this->days;
     }
 }

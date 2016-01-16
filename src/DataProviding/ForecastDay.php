@@ -22,19 +22,19 @@ class ForecastDay
         $dayofWeek = $this->date->format('N');
         switch($dayofWeek) {
             case 1:
-                return 'Ma';
+                return 'Maandag';
             case 2:
-                return 'Di';
+                return 'Dinsdag';
             case 3:
-                return 'Wo';
+                return 'Woensdag';
             case 4:
-                return 'Do';
+                return 'Donderdag';
             case 5:
-                return 'Vr';
+                return 'Vrijdag';
             case 6:
-                return 'Za';
+                return 'Zaterdag';
             case 7:
-                return 'Zo';
+                return 'Zondag';
             default:
                 return false;
         }
