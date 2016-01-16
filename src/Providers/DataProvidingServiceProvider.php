@@ -2,10 +2,10 @@
 
 namespace Providers;
 
-use DataProviding\ForecastDataProvider;
-use DataProviding\HistoricDataProvider;
-use DataProviding\PresentDataProvider;
-use DataProviding\PresentMessageProvider;
+use ForecastData\ForecastDataProvider;
+use HistoricData\HistoricDataProvider;
+use PresentData\PresentDataProvider;
+use PresentData\PresentMessageProvider;
 use Silex\Application;
 use Silex\ServiceProviderInterface;
 use VertigoLabs\Overcast\Overcast;

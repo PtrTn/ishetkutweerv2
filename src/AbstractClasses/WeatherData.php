@@ -1,6 +1,6 @@
 <?php
 
-namespace DataProviding;
+namespace AbstractClasses;
 
 abstract class WeatherData
 {

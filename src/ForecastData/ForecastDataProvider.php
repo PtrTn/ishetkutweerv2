@@ -1,6 +1,6 @@
 <?php
 
-namespace DataProviding;
+namespace ForecastData;
 
 use Location\Station;
 use VertigoLabs\Overcast\Overcast;

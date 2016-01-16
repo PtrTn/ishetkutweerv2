@@ -1,6 +1,6 @@
 <?php
 
-namespace DataProviding;
+namespace PresentData;
 
 use Location\Station;
 

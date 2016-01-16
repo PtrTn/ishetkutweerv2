@@ -1,6 +1,8 @@
 <?php
 
-namespace DataProviding;
+namespace PresentData;
+
+use AbstractClasses\WeatherData;
 
 class PresentWeatherData extends WeatherData
 {

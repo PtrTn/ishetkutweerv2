@@ -67,7 +67,6 @@ $app->get('/', function () use ($app, $station, $rating, $messages, $presentData
     ]);
 });
 
-// TODO split dataproviding into historic/present/forecast
 // TODO add gulp css compiling
 // TODO add long message as 'meer' option
 // TODO add 'meer' forecast

@@ -1,6 +1,6 @@
 <?php
 
-namespace DataProviding;
+namespace ForecastData;
 
 class ForecastData
 {

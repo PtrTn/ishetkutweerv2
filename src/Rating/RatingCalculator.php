@@ -2,8 +2,9 @@
 
 namespace Rating;
 
-use DataProviding\HistoricDataCollection;
-use DataProviding\PresentWeatherData;
+
+use HistoricData\HistoricDataCollection;
+use PresentData\PresentWeatherData;
 
 class RatingCalculator
 {

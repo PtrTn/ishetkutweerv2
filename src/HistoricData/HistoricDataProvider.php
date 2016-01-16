@@ -1,6 +1,6 @@
 <?php
 
-namespace DataProviding;
+namespace HistoricData;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Query\QueryBuilder;
