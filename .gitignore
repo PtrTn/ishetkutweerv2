@@ -1,6 +1,8 @@
 /.idea/
 /vendor/
+/node_modules
+/bower_components
 /app/config/*.yaml
-/public/styles/content
-/public/styles/general/reset.css
+/public/styles/*
+/public/fonts/*
 .sass-cache
