@@ -6,7 +6,7 @@
         background-color: white;
     }
 </style>
-<div id="table" class="block">
+<div id="table" class="block" ng-controller="forecastCtrl">
     <table id="week">
         <thead>
         <tr>
@@ -23,7 +23,7 @@
         </tr>
         </thead>
         <tbody>
-        {% for day in forecastData.getDays(5) %}
+        {% for day in forecastData.getDays(0, 5) %}
             <tr>
                 {% if loop.index == 1 %}
                     <td>Vandaag</td>
@@ -46,6 +46,31 @@
                 </td>
             </tr>
         {% endfor %}
+        {% for day in forecastData.getDays(5, 3) %}
+            <tr ng-show="more">
+                <td>{{ day.getDayname() }}</td>
+                <td>
+                    <span class="value">{{ day.getRain() }}</span>
+                    <span class="suffix">mm</span>
+                </td>
+                <td>
+                    <span class="value">{{ day.getTemp() }}</span>
+                    <span class="suffix">&deg;C</span>
+                </td>
+                <td>
+                    <span class="value">{{ day.getWindSpeed() }}</span>
+                    <span class="suffix">km/h</span>
+                </td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
+    <span ng-hide="more" class="more" ng-click="toggleMore()">
+        <i class="fa fa-angle-right"></i>
+        <span>Meer</span>
+    </span>
+    <span ng-show="more" class="more" ng-click="toggleMore()">
+        <i class="fa fa-angle-up"></i>
+        <span>Minder</span>
+    </span>
 </div>
