@@ -21,7 +21,7 @@ class DataProvidingServiceProvider implements ServiceProviderInterface
             return new PresentMessageProvider();
         };
         $app['historicDataProvider'] = function () use ($app) {
-            return new HistoricDataProvider($app['db']);
+            return new HistoricDataProvider($app['db'], $app['beaufortCalculator']);
         };
 
         // Get Forecast.io api key

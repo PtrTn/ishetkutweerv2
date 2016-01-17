@@ -33,6 +33,11 @@ class HistoricDataCollection
         return $this->getStatAvg('wind', 0);
     }
 
+    public function getBeaufortAvg()
+    {
+        return $this->getStatAvg('beaufort', 0);
+    }
+
     private function getStatAvg($stat, $precision)
     {
         $total = 0;
@@ -52,6 +57,9 @@ class HistoricDataCollection
                         break;
                     case 'wind':
                         $total += $weatherData->getWindSpeed();
+                        break;
+                    case 'beaufort':
+                        $total += $weatherData->getBeaufort();
                         break;
                     default:
                         throw new \Exception('No stat found called "' . $stat . '"');

@@ -11,7 +11,6 @@ The current and future weather in an easy readable way.
 * gulp
 
 ### Todo (high prio)
-* hover tooltip with historic averages (normaal is het .. )
 * add updated time
 * add social media icons
 * add footer /w credits

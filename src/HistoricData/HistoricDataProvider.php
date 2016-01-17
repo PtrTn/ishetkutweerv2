@@ -4,15 +4,18 @@ namespace HistoricData;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Query\QueryBuilder;
+use Helpers\BeaufortCalculator;
 use Location\Station;
 
 class HistoricDataProvider
 {
     private $connection;
+    private $beaufortCalculator;
 
-    public function __construct(Connection $connection)
+    public function __construct(Connection $connection, BeaufortCalculator $beaufortCalculator)
     {
         $this->connection = $connection;
+        $this->beaufortCalculator = $beaufortCalculator;
     }
 
     public function getData($stationId)
@@ -59,6 +62,7 @@ class HistoricDataProvider
             $tempMax = floatval(round($row['tempMax'] / 10, 1));
             $windSpeed = intval($row['windSpeed']);
             $windDirection = intval($row['windDirection']);
+            $beaufort = $this->beaufortCalculator->getBeaufort($windSpeed);
             $rainSum = floatval(round($row['rainSum'] / 10, 1));
             $rainDuration = floatval(round($row['rainDuration'] / 10, 1));
             $rainMax = floatval(round($row['rainMax'] / 10, 1));
@@ -70,6 +74,7 @@ class HistoricDataProvider
                 $date,
                 $windDirection,
                 $windSpeed,
+                $beaufort,
                 $tempAvg,
                 $tempMin,
                 $tempMax,

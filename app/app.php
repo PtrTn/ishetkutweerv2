@@ -58,11 +58,12 @@ $forecastData = $app['forecastDataProvider']->getDataByStation($station);
 $rating = $app['ratingCalculator']->getRating($presentData, $historicData);
 
 // Render page using found data
-$app->get('/', function () use ($app, $station, $rating, $messages, $presentData, $forecastData) {
+$app->get('/', function () use ($app, $station, $rating, $messages, $historicData, $presentData, $forecastData) {
     return $app['twig']->render('home.twig', [
         'station' => $station,
         'rating' => $rating,
         'messages' => $messages,
+        'historicData' => $historicData,
         'presentData' => $presentData,
         'forecastData' => $forecastData
     ]);

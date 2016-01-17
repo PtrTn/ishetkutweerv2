@@ -1,20 +1,20 @@
 <div id="summary" class="block" ng-controller="summaryCtrl">
     <div class="measurements">
-        <div class="measurement {{ rating.getTemp() }}">
+        <div class="measurement {{ rating.getTemp() }} tooltipster" title="Normaal is het {{ historicData.getTempAvg() }} &deg;C">
             <p>
                 <i class="wi wi-thermometer"></i>
                 <span class="value">{{ presentData.getTemp() }}</span>
                 <span class="suffix">&deg;C</span>
             </p>
         </div>
-        <div class="measurement {{ rating.getRain() }}">
+        <div class="measurement {{ rating.getRain() }} tooltipster" title="Normaal valt er {{ historicData.getRainAvg() }} mm/uur">
             <p>
                 <i class="wi wi-rain-mix"></i>
                 <span class="value">{{ presentData.getRain() }}</span>
                 <span class="suffix">mm</span>
             </p>
         </div>
-        <div class="measurement {{ rating.getWind() }}">
+        <div class="measurement {{ rating.getWind() }} tooltipster" title="Normaal is het windkracht {{ historicData.getBeaufortAvg() }}">
             <p>
                 <i class="wi wi-cloudy-windy"></i>
                 <span class="value">{{ presentData.getBeaufort() }}</span>

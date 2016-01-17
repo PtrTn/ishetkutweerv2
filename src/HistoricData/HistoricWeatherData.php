@@ -36,6 +36,7 @@ class HistoricWeatherData extends WeatherData
         $date,
         $windDirection,
         $windSpeed,
+        $beaufort,
         $tempAvg,
         $tempMin,
         $tempMax,
@@ -43,7 +44,7 @@ class HistoricWeatherData extends WeatherData
         $rainSum,
         $rainMax
     ) {
-        parent::__construct($stationId, $date, $windDirection, $windSpeed);
+        parent::__construct($stationId, $date, $windDirection, $windSpeed, $beaufort);
         $this->tempAvg = $tempAvg;
         $this->tempMin = $tempMin;
         $this->tempMax = $tempMax;

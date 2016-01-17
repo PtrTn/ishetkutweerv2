@@ -14,17 +14,12 @@ class PresentWeatherData extends WeatherData
      * Rain in millimeters per hour
      */
     private $rain;
-    /**
-     * Windspeed on the Beaufort scale
-     */
-    protected $beaufort;
 
-    public function __construct($stationId, $date, $windSpeed, $beaufort, $windDirection, $temp, $rain)
+    public function __construct($stationId, $date, $windDirection, $windSpeed, $beaufort, $temp, $rain)
     {
-        parent::__construct($stationId, $date, $windDirection, $windSpeed);
+        parent::__construct($stationId, $date, $windDirection, $windSpeed, $beaufort);
         $this->temp = $temp;
         $this->rain = $rain;
-        $this->beaufort = $beaufort;
     }
 
     public function getTemp()
@@ -35,11 +30,6 @@ class PresentWeatherData extends WeatherData
     public function getRain()
     {
         return $this->rain;
-    }
-
-    public function getBeaufort()
-    {
-        return $this->beaufort;
     }
 }
  

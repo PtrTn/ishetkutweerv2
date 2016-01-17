@@ -57,9 +57,9 @@ class PresentDataProvider
         return new PresentWeatherData(
             $id,
             $date,
+            $windDirection,
             $windSpeed,
             $beaufort,
-            $windDirection,
             $temp,
             $rain
         );
