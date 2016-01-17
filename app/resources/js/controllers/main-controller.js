@@ -1,4 +1,4 @@
-MainCtrl = ['$scope', function ($scope) {
-    $scope.test = 'Hello world';
+mainCtrl = ['$scope', function ($scope) {
+
 }];
-app.controller('mainCtrl', MainCtrl);
+app.controller('mainCtrl', mainCtrl);
