@@ -1,0 +1,16 @@
+{
+  "name": "ishetkutweerv2",
+  "version": "1.0.0",
+  "homepage": "https://github.com/Baabah/ishetkutweerv2",
+  "authors": [
+    "Peter Ton <peter@senturo.nl>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

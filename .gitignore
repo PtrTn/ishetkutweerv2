@@ -5,4 +5,5 @@
 /app/config/*.yaml
 /public/styles/*
 /public/fonts/*
+/public/scripts/*
 .sass-cache

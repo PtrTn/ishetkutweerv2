@@ -3,9 +3,27 @@ var notify = require("gulp-notify");
 var sass = require('gulp-sass');
 var merge = require('merge-stream');
 var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
+var plumber = require('gulp-plumber');
 
 gulp.task('default', ['styles']);
 
+gulp.task('scripts', function() {
+    return gulp.src('app/resources/js/**/*.js')
+        .pipe(plumber())
+        .pipe(uglify({mangle: false}))
+        .pipe(concat('scripts.js'))
+        .pipe(gulp.dest('public/scripts/'))
+        .pipe(notify({message: 'Scripts task complete'}));
+});
+
+gulp.task('scripts-vendor', function() {
+    return gulp.src('bower_components/angular/angular.min.js')
+        .pipe(plumber())
+        .pipe(concat('vendor.js'))
+        .pipe(gulp.dest('public/scripts'))
+        .pipe(notify({message: 'Vendor task complete'}));
+});
 
 gulp.task('styles', function () {
 
@@ -33,6 +51,7 @@ gulp.task('fonts', function() {
 
 gulp.task('watch', function () {
     gulp.start('default');
+    gulp.watch('app/resources/js/**/*.js', ['scripts']);
     gulp.watch([
         'app/resources/scss/**/*.scss',
         'app/resources/css/**/*.css'
