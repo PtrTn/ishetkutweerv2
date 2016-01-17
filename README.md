@@ -7,6 +7,7 @@ The current and future weather in an easy readable way.
 * git clone git@github.com:Baabah/ishetkutweerv2.git
 * composer update
 * npm update
+* bower update
 * gulp
 
 ### Todo (high prio)
