@@ -6,6 +6,10 @@
   text-align: center;
   min-width: 120px;
   max-width: 250px;
+
+  .value {
+    margin: 0 10px;
+  }
 }
 .measurements {
   display: flex;
