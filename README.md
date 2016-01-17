@@ -13,8 +13,10 @@ The current and future weather in an easy readable way.
 * add long message as 'meer' option
 * add 'meer' forecast
 * windkracht in beaufort
-* make php 5.4 compatible
 * hover tooltip with historic averages (normaal is het .. )
+* add updated time
+* add social media icons
+* add footer /w credits
 
 ### Todo (lower prio)
 * add open graph & twitter card implementation
