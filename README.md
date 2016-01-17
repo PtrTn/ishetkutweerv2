@@ -10,7 +10,6 @@ The current and future weather in an easy readable way.
 * gulp
 
 ### Todo (high prio)
-* add 'meer' forecast
 * windkracht in beaufort
 * hover tooltip with historic averages (normaal is het .. )
 * add updated time
