@@ -31,6 +31,7 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 ));
 
 // Define service providers
+$app->register(new \Providers\HelpersServiceProvider());
 $app->register(new \Providers\LocationServiceProvider());
 $app->register(new \Providers\DataProvidingServiceProvider());
 $app->register(new \Providers\RatingServiceProvider());
