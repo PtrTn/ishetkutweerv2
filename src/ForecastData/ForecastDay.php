@@ -8,13 +8,15 @@ class ForecastDay
     private $temp;
     private $rain;
     private $windSpeed;
+    private $beaufort;
 
-    public function __construct($date, $temp, $rain, $windSpeed)
+    public function __construct($date, $temp, $rain, $windSpeed, $beaufort)
     {
         $this->date = $date;
         $this->temp = $temp;
         $this->rain = $rain;
         $this->windSpeed = $windSpeed;
+        $this->beaufort = $beaufort;
     }
 
     public function getDayName()
@@ -50,9 +52,9 @@ class ForecastDay
         return $this->rain;
     }
 
-    public function getWindSpeed()
+    public function getBeaufort()
     {
-        return $this->windSpeed;
+        return $this->beaufort;
     }
 }
  

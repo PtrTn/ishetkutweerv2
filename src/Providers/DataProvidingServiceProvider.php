@@ -14,8 +14,8 @@ class DataProvidingServiceProvider implements ServiceProviderInterface
 {
     public function register(Application $app)
     {
-        $app['presentDataProvider'] = function () {
-            return new PresentDataProvider();
+        $app['presentDataProvider'] = function () use ($app) {
+            return new PresentDataProvider($app['beaufortCalculator']);
         };
         $app['presentMessageProvider'] = function () {
             return new PresentMessageProvider();
@@ -33,7 +33,7 @@ class DataProvidingServiceProvider implements ServiceProviderInterface
             return new Overcast($forecastApiKey);
         };
         $app['forecastDataProvider'] = function () use ($app) {
-            return new ForecastDataProvider($app['overcast']);
+            return new ForecastDataProvider($app['overcast'], $app['beaufortCalculator']);
         };
     }
 

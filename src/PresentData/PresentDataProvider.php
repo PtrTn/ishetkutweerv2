@@ -2,14 +2,17 @@
 
 namespace PresentData;
 
+use Helpers\BeaufortCalculator;
 use Location\Station;
 
 class PresentDataProvider
 {
     private $source;
+    private $beaufortCalculator;
 
-    public function __construct()
+    public function __construct(BeaufortCalculator $beaufortCalculator)
     {
+        $this->beaufortCalculator = $beaufortCalculator;
         $this->source = 'http://xml.buienradar.nl/';
     }
 
@@ -45,6 +48,7 @@ class PresentDataProvider
         $date = date('d-m-Y', strtotime($data->datum));
         $temp = floatval(round($data->temperatuurGC, 1));
         $windSpeed = intval(round($data->windsnelheidMS * 3.6));
+        $beaufort = $this->beaufortCalculator->getBeaufort($windSpeed);
         $windDirection = intval(round($data->windrichtingGR));
         $rain = floatval(round($data->regenMMPU, 1));
         if ($data->regenMMPU === '-') {
@@ -54,6 +58,7 @@ class PresentDataProvider
             $id,
             $date,
             $windSpeed,
+            $beaufort,
             $windDirection,
             $temp,
             $rain
