@@ -10,13 +10,13 @@ The current and future weather in an easy readable way.
 * gulp
 
 ### Todo (high prio)
-* add long message as 'meer' option
 * add 'meer' forecast
 * windkracht in beaufort
 * hover tooltip with historic averages (normaal is het .. )
 * add updated time
 * add social media icons
 * add footer /w credits
+* add animation for long/short messages
 
 ### Todo (lower prio)
 * add open graph & twitter card implementation
