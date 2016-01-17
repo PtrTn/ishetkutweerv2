@@ -67,7 +67,6 @@ $app->get('/', function () use ($app, $station, $rating, $messages, $presentData
     ]);
 });
 
-// TODO add gulp css compiling
 // TODO add long message as 'meer' option
 // TODO add 'meer' forecast
 // TODO windkracht in beaufort
@@ -83,5 +82,7 @@ $app->get('/', function () use ($app, $station, $rating, $messages, $presentData
 // TODO cool measurement icons
 // TODO weather alerts
 // TODO extend collection class?
+// TODO fix weather icons font
+// TODO retrieve font awesome via bower
 
 return $app;
