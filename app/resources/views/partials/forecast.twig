@@ -12,10 +12,10 @@
         <tr>
             <th></th>
             <th>
-                <i class="wi wi-rain-mix"></i>
+                <i class="wi wi-thermometer"></i>
             </th>
             <th>
-                <i class="wi wi-thermometer"></i>
+                <i class="wi wi-rain-mix"></i>
             </th>
             <th>
                 <i class="wi wi-cloudy-windy"></i>
@@ -33,12 +33,12 @@
                     <td>{{ day.getDayname() }}</td>
                 {% endif %}
                 <td>
-                    <span class="value">{{ day.getRain() }}</span>
-                    <span class="suffix">mm</span>
-                </td>
-                <td>
                     <span class="value">{{ day.getTemp() }}</span>
                     <span class="suffix">&deg;C</span>
+                </td>
+                <td>
+                    <span class="value">{{ day.getRain() }}</span>
+                    <span class="suffix">mm</span>
                 </td>
                 <td>
                     <span class="value">{{ day.getWindSpeed() }}</span>
@@ -50,12 +50,12 @@
             <tr ng-show="more">
                 <td>{{ day.getDayname() }}</td>
                 <td>
-                    <span class="value">{{ day.getRain() }}</span>
-                    <span class="suffix">mm</span>
-                </td>
-                <td>
                     <span class="value">{{ day.getTemp() }}</span>
                     <span class="suffix">&deg;C</span>
+                </td>
+                <td>
+                    <span class="value">{{ day.getRain() }}</span>
+                    <span class="suffix">mm</span>
                 </td>
                 <td>
                     <span class="value">{{ day.getWindSpeed() }}</span>
