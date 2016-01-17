@@ -25,16 +25,16 @@
     </div>
     <div id="text-summary" ng-hide="longMsg">
         <p>{{ messages.getShortMsg() }}</p>
-        <a href="#" class="more" ng-click="toggleSummaryMsg()">
+        <span class="more" ng-click="toggleSummaryMsg()">
             <i class="fa fa-angle-right"></i>
             <span>Meer</span>
-        </a>
+        </span>
     </div>
     <div id="text-summary" ng-show="longMsg">
         <p>{{ messages.getLongMsg() }}</p>
-        <a href="#" class="more" ng-click="toggleSummaryMsg()">
+        <span class="more" ng-click="toggleSummaryMsg()">
             <i class="fa fa-angle-up"></i>
             <span>Minder</span>
-        </a>
+        </span>
     </div>
 </div>
