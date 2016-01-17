@@ -1,0 +1,98 @@
+.measurement {
+  float: left;
+  position: relative;
+  border-radius: 5%;
+  width: 27%;
+  text-align: center;
+  min-width: 120px;
+  max-width: 250px;
+}
+.measurements {
+  display: flex;
+  justify-content: space-between;
+  overflow: auto;
+}
+.measurement:before {
+  content: "";
+  display: block;
+  padding-top: 80%; 	/* initial ratio of 1:1*/
+}
+.measurement p {
+  position:  absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  bottom: 0;
+  right: 0;
+  line-height: 1.3;
+}
+
+.measurement.good {
+  background-color: $green;
+  border: 1px solid $green-dark;
+}
+.measurement.meh {
+  background-color: $yellow;
+  border: 1px solid $yellow-dark;
+}
+.measurement.bad {
+  background-color: $red;
+  border: 1px solid $red-dark;
+}
+#text-summary {
+  padding-top: 40px;
+}
+
+/** Responsive styles **/
+@media (min-width: $screensize-tiny) {
+  .measurement {
+    .value {
+      font-size: $fontsize-small * $weatherValue;
+    }
+    i {
+      font-size: $fontsize-small * $weatherIcon;
+    }
+    .suffix {
+      font-size: $fontsize-small * $weatherSuffix;
+    }
+  }
+}
+@media (min-width: $screensize-small) {
+  .measurement {
+    .value {
+      font-size: $fontsize-medium * $weatherValue;
+    }
+    i {
+      font-size: $fontsize-medium * $weatherIcon;
+    }
+    .suffix {
+      font-size: $fontsize-medium * $weatherSuffix;
+    }
+  }
+}
+@media (min-width: $screensize-medium) {
+  .measurement {
+    .value {
+      font-size: $fontsize-large * $weatherValue;
+    }
+    i {
+      font-size: $fontsize-large * $weatherIcon;
+    }
+    .suffix {
+      font-size: $fontsize-large * $weatherSuffix;
+    }
+  }
+}
+@media (min-width: $screensize-huge) {
+  .measurement {
+    .value {
+      font-size: $fontsize-huge * $weatherValue;
+    }
+    i {
+      font-size: $fontsize-huge * $weatherIcon;
+    }
+    .suffix {
+      font-size: $fontsize-huge * $weatherSuffix;
+    }
+  }
+}
