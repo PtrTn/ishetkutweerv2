@@ -12,5 +12,9 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "tooltipster": "~3.3.0",
+    "angular": "~1.4.8"
+  }
 }

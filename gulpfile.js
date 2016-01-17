@@ -18,7 +18,11 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('scripts-vendor', function() {
-    return gulp.src('bower_components/angular/angular.min.js')
+    return gulp.src([
+        'bower_components/angular/angular.min.js',
+        'bower_components/jquery/dist/jquery.min.js',
+        'bower_components/tooltipster/js/jquery.tooltipster.min.js'
+    ])
         .pipe(plumber())
         .pipe(concat('vendor.js'))
         .pipe(gulp.dest('public/scripts'))
@@ -35,8 +39,13 @@ gulp.task('styles', function () {
     var cssStream = gulp.src('app/resources/css/**/*.css')
         .pipe(concat('css.css'));
 
+    // Merge vendor css aswell
+    var vendorCssStream = gulp.src(
+        'bower_components/tooltipster/css/tooltipster.css')
+        .pipe(concat('vendor.css'));
+
     // Merge scss and css into styles.css
-    return merge(scssStream, cssStream)
+    return merge(scssStream, cssStream, vendorCssStream)
         .pipe(concat('styles.css'))
         .pipe(gulp.dest('public/styles'))
         .pipe(notify({message: 'Styles task complete'}));
