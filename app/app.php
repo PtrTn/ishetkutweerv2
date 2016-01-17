@@ -67,22 +67,5 @@ $app->get('/', function () use ($app, $station, $rating, $messages, $presentData
     ]);
 });
 
-// TODO add long message as 'meer' option
-// TODO add 'meer' forecast
-// TODO windkracht in beaufort
-// TODO make php 5.4 compatible
-// TODO hover tooltip with historic averages (normaal is het .. )
-
-// TODO add open graph & twitter card implementation
-// TODO add daily social media posts
-// TODO weather-dependant background image
-// TODO allow location changing
-// TODO add javascript location precision
-// TODO better rating calculation
-// TODO cool measurement icons
-// TODO weather alerts
-// TODO extend collection class?
-// TODO fix weather icons font
-// TODO retrieve font awesome via bower
 
 return $app;
