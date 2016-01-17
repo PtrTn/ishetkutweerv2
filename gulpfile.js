@@ -6,12 +6,12 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var plumber = require('gulp-plumber');
 
-gulp.task('default', ['styles']);
+gulp.task('default', ['styles', 'scripts', 'scripts-vendor', 'fonts']);
 
 gulp.task('scripts', function() {
     return gulp.src('app/resources/js/**/*.js')
         .pipe(plumber())
-        .pipe(uglify({mangle: false}))
+        .pipe(uglify())
         .pipe(concat('scripts.js'))
         .pipe(gulp.dest('public/scripts/'))
         .pipe(notify({message: 'Scripts task complete'}));
