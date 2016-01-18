@@ -3,15 +3,16 @@
 // Load application
 require('bootstrap.php');
 $app = new Silex\Application();
-$app['debug'] = true;
+$app['debug'] = false;
 
 // Load config file
 $app->register(new DerAlex\Silex\YamlConfigServiceProvider(__DIR__ . '/config/config.yaml'));
 
 // Get database config based on env
-$databaseConfig = $app['config']['prod']['database'];
-if ($app['debug'] === true) {
-    $databaseConfig = $app['config']['dev']['database'];
+$app['env'] = $app['config']['env'];
+$databaseConfig = $app['config'][$app['env']]['database'];
+if($app['env'] === 'dev') {
+    $app['debug'] = true;
 }
 
 // Setup database
@@ -38,7 +39,7 @@ $app->register(new \Providers\RatingServiceProvider());
 
 // Get IP using connection details
 $ip = $_SERVER['REMOTE_ADDR'];
-if ($app['debug'] === true) {
+if ($app['env'] === true) {
     $ip = '213.34.236.130';
 }
 

@@ -1,3 +1,4 @@
+env: dev
 dev:
   database:
     name:
@@ -5,6 +6,8 @@ dev:
     user:
     password:
     driver:
+  api:
+    forecast:
 prod:
   database:
     name:
@@ -12,3 +15,5 @@ prod:
     user:
     password:
     driver:
+  api:
+    forecast:
