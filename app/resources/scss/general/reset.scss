@@ -2,3 +2,9 @@ body, html, p, h1, h2, h3, h4, ul, ol, li {
   margin: 0;
   padding: 0;
 }
+
+*,
+*:before,
+*:after {
+  @include css3-prefix('box-sizing', 'border-box');
+}
