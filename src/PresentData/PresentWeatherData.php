@@ -31,5 +31,10 @@ class PresentWeatherData extends WeatherData
     {
         return $this->rain;
     }
+
+    public function getUpdatedTime()
+    {
+        return date('H:i', strtotime($this->date));
+    }
 }
  
