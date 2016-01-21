@@ -39,7 +39,7 @@ $app->register(new \Providers\RatingServiceProvider());
 
 // Get IP using connection details
 $ip = $_SERVER['REMOTE_ADDR'];
-if ($app['env'] === true) {
+if ($ip === '127.0.0.1') {
     $ip = '213.34.236.130';
 }
 
