@@ -15,6 +15,7 @@ The current and future weather in an easy readable way.
 * add social media icons
 * add footer /w credits
 * add animation for long/short messages
+* get messages from other source than ftp (buienradar maybe?)
 
 ### Todo (lower prio)
 * add open graph & twitter card implementation
