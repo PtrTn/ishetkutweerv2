@@ -1,28 +1,70 @@
 <div id="summary" class="block" ng-controller="summaryCtrl">
     <div class="measurements">
-        <div class="measurement {{ rating.getTemp() }} tooltipster" title="Normaal is het {{ historicData.getTempAvg() }} &deg;C">
-            <p>
-                <i class="wi wi-thermometer"></i>
-                <span class="value">{{ presentData.getTemp() }}</span>
-                <span class="suffix">&deg;C</span>
-            </p>
+        <div class="measurement {{ rating.getTemp() }}">
+            <div class="indicator">
+                <div class="icon-container">
+                    <i class="pe-7w-thermometer-1-2"></i>
+                </div>
+                <p>Temperatuur</p>
+            </div>
+            <div class="average">
+                <div class="value-container">
+                    <p>Normaal is het</p>
+                    <span class="value">{{ historicData.getTempAvg() }}</span>
+                    <span>&deg;C</span>
+                </div>
+            </div>
+            <div class="indicator-value">
+                <div class="value-container">
+                    <p class="value">{{ presentData.getTemp() }}&deg;</p>
+                    <p class="suffix">Celsius</p>
+                </div>
+            </div>
         </div>
-        <div class="measurement {{ rating.getRain() }} tooltipster" title="Normaal valt er {{ historicData.getRainAvg() }} mm/uur">
-            <p>
-                <i class="wi wi-rain-mix"></i>
-                <span class="value">{{ presentData.getRain() }}</span>
-                <span class="suffix">mm</span>
-            </p>
+        <div class="measurement {{ rating.getRain() }}">
+            <div class="indicator">
+                <div class="icon-container">
+                    <i class="pe-7w-umbrella"></i>
+                </div>
+                <p>Regenval</p>
+            </div>
+            <div class="average">
+                <div class="value-container">
+                    <p>Normaal valt er</p>
+                    <p class="value">{{ historicData.getRainAvg() }}</p>
+                    <p>mm/uur</p>
+                </div>
+            </div>
+            <div class="indicator-value">
+                <div class="value-container">
+                    <p class="value">{{ presentData.getRain() }}</p>
+                    <p class="suffix">mm</p>
+                </div>
+            </div>
         </div>
-        <div class="measurement {{ rating.getWind() }} tooltipster" title="Normaal is het windkracht {{ historicData.getBeaufortAvg() }}">
-            <p>
-                <i class="wi wi-cloudy-windy"></i>
-                <span class="value">{{ presentData.getBeaufort() }}</span>
-                <span class="suffix">bft</span>
-            </p>
+        <div class="measurement {{ rating.getWind() }}">
+            <div class="indicator">
+                <div class="icon-container">
+                    <i class="pe-7w-wind"></i>
+                </div>
+                <p>Windkracht</p>
+            </div>
+            <div class="average">
+                <div class="value-container">
+                    <p>Normaal is het</p>
+                    <span class="value">{{ historicData.getBeaufortAvg() }}</span>
+                    <span>bft</span>
+                </div>
+            </div>
+            <div class="indicator-value">
+                <div class="value-container">
+                    <p class="value">{{ presentData.getBeaufort() }}</p>
+                    <p class="suffix">bft</p>
+                </div>
+            </div>
         </div>
-
     </div>
+    {# <p>Gemeten om {{ presentData.getUpdatedTime() }}</p> #}
     <div id="text-summary" ng-hide="longMsg">
         <p>{{ messages.getShortMsg() }}</p>
         <span class="more" ng-click="toggleSummaryMsg()">
