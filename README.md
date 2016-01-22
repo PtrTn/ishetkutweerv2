@@ -12,19 +12,19 @@ The current and future weather in an easy readable way.
 
 ### Todo (high prio)
 * check history wind force precision
-
-### Todo (lower prio)
 * add open graph & twitter card implementation
-* add daily social media posts
-* weather-dependant background image
 * allow location changing
 * add javascript location precision
+* retrieve font awesome via bower
+
+### Todo (lower prio)
+* possibly restyle footer and forecast
+* add daily social media posts
+* weather-dependant background image
 * better rating calculation
-* cool measurement icons
 * weather alerts
 * extend collection class?
 * fix weather icons font
-* retrieve font awesome via bower
 * unit testing
 * continuous integration
 * possibly calculate total rain amount by adding hourly values
