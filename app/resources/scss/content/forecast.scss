@@ -31,6 +31,15 @@ table#week {
   }
 
 }
+table#week {
+  border-collapse: collapse;
+}
+table#week tr:nth-of-type(even) {
+  background-color: white;
+}
+#text-summary {
+  padding-bottom: 40px;
+}
 
 /** Responsive styles **/
 @media (min-width: $screensize-tiny) {

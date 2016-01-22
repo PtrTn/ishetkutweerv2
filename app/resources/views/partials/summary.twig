@@ -1,4 +1,15 @@
-<div id="summary" class="block" ng-controller="summaryCtrl">
+<header id="summary" class="block">
+    <div class="header">
+        <div class="payoff {{ rating.getOverall() }}">
+            <p>{{ rating.getMessage() }}</p>
+        </div>
+        <div class="stationName">
+            <p>{{ station.getName() }}</p>
+        </div>
+        <div class="measureTime">
+            <p>Gemeten om {{ presentData.getUpdatedTime() }}</p>
+        </div>
+    </div>
     <div class="measurements">
         <div class="measurement {{ rating.getTemp() }}">
             <div class="indicator">
@@ -64,19 +75,4 @@
             </div>
         </div>
     </div>
-    {# <p>Gemeten om {{ presentData.getUpdatedTime() }}</p> #}
-    <div id="text-summary" ng-hide="longMsg">
-        <p>{{ messages.getShortMsg() }}</p>
-        <span class="more" ng-click="toggleSummaryMsg()">
-            <i class="fa fa-angle-right"></i>
-            <span>Meer</span>
-        </span>
-    </div>
-    <div id="text-summary" ng-show="longMsg">
-        <p>{{ messages.getLongMsg() }}</p>
-        <span class="more" ng-click="toggleSummaryMsg()">
-            <i class="fa fa-angle-up"></i>
-            <span>Minder</span>
-        </span>
-    </div>
-</div>
+</header>

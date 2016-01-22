@@ -1,6 +1,47 @@
+#summary {
+  background-image: url('../../images/flower.jpg');
+  background-size: cover;
+  position: relative;
+
+  .header {
+    width: 100%;
+    margin: 20px 0;
+    overflow: auto;
+
+    .payoff {
+      font-size: 40px;
+      color: white;
+      padding: 10px;
+      text-align: center;
+
+      &.good {
+        background-color: $green;
+      }
+      &.meh {
+        background-color: $yellow;
+      }
+      &.bad {
+        background-color: $red;
+      }
+    }
+    .stationName, .measureTime {
+      width: 30%;
+      background-color: white;
+      padding: 10px;
+      text-align: center;
+    }
+    .stationName {
+      float: left;
+    }
+    .measureTime {
+      float: right;
+    }
+  }
+}
+
 .measurement {
   float: left;
-  width: calc(33% - (40px / 3));
+  width: 30%;
   text-align: center;
   height: 250px;
   position: relative;
@@ -78,7 +119,7 @@
     }
   }
   &:not(:first-child):not(:last-child) {
-    margin: 0 20px;
+    margin: 0 5%;
   }
   &.good {
     background-color: $green;
@@ -94,60 +135,3 @@
   clear: both;
   overflow: auto;
 }
-#text-summary {
-  padding-top: 40px;
-}
-
-/** Responsive styles **/
-/**@media (min-width: $screensize-tiny) {
-  .measurement {
-    .value {
-      font-size: $fontsize-small * $weatherValue;
-    }
-    i {
-      font-size: $fontsize-small * $weatherIcon;
-    }
-    .suffix {
-      font-size: $fontsize-small * $weatherSuffix;
-    }
-  }
-}
-@media (min-width: $screensize-small) {
-  .measurement {
-    .value {
-      font-size: $fontsize-medium * $weatherValue;
-    }
-    i {
-      font-size: $fontsize-medium * $weatherIcon;
-    }
-    .suffix {
-      font-size: $fontsize-medium * $weatherSuffix;
-    }
-  }
-}
-@media (min-width: $screensize-medium) {
-  .measurement {
-    .value {
-      font-size: $fontsize-large * $weatherValue;
-    }
-    i {
-      font-size: $fontsize-large * $weatherIcon;
-    }
-    .suffix {
-      font-size: $fontsize-large * $weatherSuffix;
-    }
-  }
-}
-@media (min-width: $screensize-huge) {
-  .measurement {
-    .value {
-      font-size: $fontsize-huge * $weatherValue;
-    }
-    i {
-      font-size: $fontsize-huge * $weatherIcon;
-    }
-    .suffix {
-      font-size: $fontsize-huge * $weatherSuffix;
-    }
-  }
-}**/
