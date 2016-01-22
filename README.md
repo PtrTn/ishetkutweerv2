@@ -11,8 +11,6 @@ The current and future weather in an easy readable way.
 * gulp
 
 ### Todo (high prio)
-* add social media icons
-* add footer /w credits
 * get messages from other source than ftp (buienradar maybe?)
 * check forecast rain precision
 * check history wind force precision
