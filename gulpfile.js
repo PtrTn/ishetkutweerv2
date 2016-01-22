@@ -41,7 +41,7 @@ gulp.task('styles', function () {
 
     // Merge vendor css aswell
     var vendorCssStream = gulp.src(
-        'bower_components/tooltipster/css/tooltipster.css')
+        'bower_components/font-awesome/css/font-awesome.min.css')
         .pipe(concat('vendor.css'));
 
     // Merge scss and css into styles.css
@@ -54,7 +54,9 @@ gulp.task('styles', function () {
 // Copy fonts to public/fonts
 gulp.task('fonts', function() {
     return gulp.src([
-        'app/resources/fonts/**'])
+        'app/resources/fonts/**',
+        'bower_components/font-awesome/fonts/**'
+    ])
         .pipe(gulp.dest('public/fonts/'));
 });
 

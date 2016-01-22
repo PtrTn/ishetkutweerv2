@@ -15,7 +15,6 @@ The current and future weather in an easy readable way.
 * add open graph & twitter card implementation
 * allow location changing
 * add javascript location precision
-* retrieve font awesome via bower
 * weather-dependant background image
 
 ### Todo (lower prio)
