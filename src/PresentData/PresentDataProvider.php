@@ -32,17 +32,19 @@ class PresentDataProvider
         $data = $this->getData();
 
         $weerstations = $data->weergegevens->actueel_weer->weerstations->weerstation;
+        $shortMsg = ($data->weergegevens->verwachting_meerdaags->tekst_middellang);
+        $longMsg = $data->weergegevens->verwachting_vandaag->formattedtekst;
         if (empty($weerstations)) {
             return false;
         }
         foreach ($weerstations as $weerstation) {
             if ($weerstation->stationcode == $buienradarId) {
-                return $this->toWeatherData($weerstation);
+                return $this->toWeatherData($weerstation, $shortMsg, $longMsg);
             }
         }
     }
 
-    private function toWeatherData($data)
+    private function toWeatherData($data, $shortMsg, $longMsg)
     {
         $id = substr($data->stationcode, 1, 3);
         $date = date('d-m-Y H:i:s', strtotime($data->datum));
@@ -61,7 +63,9 @@ class PresentDataProvider
             $windSpeed,
             $beaufort,
             $temp,
-            $rain
+            $rain,
+            $shortMsg,
+            $longMsg
         );
     }
 

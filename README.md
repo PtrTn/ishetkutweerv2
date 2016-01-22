@@ -11,7 +11,6 @@ The current and future weather in an easy readable way.
 * gulp
 
 ### Todo (high prio)
-* get messages from other source than ftp (buienradar maybe?)
 * check history wind force precision
 
 ### Todo (lower prio)

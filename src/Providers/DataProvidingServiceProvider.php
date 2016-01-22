@@ -17,9 +17,6 @@ class DataProvidingServiceProvider implements ServiceProviderInterface
         $app['presentDataProvider'] = function () use ($app) {
             return new PresentDataProvider($app['beaufortCalculator']);
         };
-        $app['presentMessageProvider'] = function () {
-            return new PresentMessageProvider();
-        };
         $app['historicDataProvider'] = function () use ($app) {
             return new HistoricDataProvider($app['db'], $app['beaufortCalculator']);
         };

@@ -2,8 +2,8 @@
 </style>
 <div id="table" class="block" ng-controller="forecastCtrl">
     <div class="text-summary">
-        <p class="short-msg">{{ messages.getShortMsg() }}</p>
-        <p class="long-msg">{{ messages.getLongMsg() }}</p>
+        <p class="short-msg">{{ presentData.getShortMsg() }}</p>
+        <p class="long-msg">{{ presentData.getLongMsg() }}</p>
         <span class="more" ng-click="toggleSummaryMsg()">
             <i class="fa fa-angle-right"></i>
             <span>Meer</span>
