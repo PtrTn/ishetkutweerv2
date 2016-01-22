@@ -12,7 +12,6 @@ The current and future weather in an easy readable way.
 
 ### Todo (high prio)
 * get messages from other source than ftp (buienradar maybe?)
-* check forecast rain precision
 * check history wind force precision
 
 ### Todo (lower prio)
@@ -29,3 +28,4 @@ The current and future weather in an easy readable way.
 * retrieve font awesome via bower
 * unit testing
 * continuous integration
+* possibly calculate total rain amount by adding hourly values
