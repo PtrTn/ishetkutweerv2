@@ -38,6 +38,7 @@ table#week tr:nth-of-type(even) {
   background-color: white;
 }
 #text-summary {
+  overflow: auto;
   padding-bottom: 40px;
 }
 
