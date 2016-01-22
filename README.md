@@ -16,11 +16,12 @@ The current and future weather in an easy readable way.
 * allow location changing
 * add javascript location precision
 * retrieve font awesome via bower
+* weather-dependant background image
 
 ### Todo (lower prio)
 * possibly restyle footer and forecast
 * add daily social media posts
-* weather-dependant background image
+* prediction caching
 * better rating calculation
 * weather alerts
 * extend collection class?
