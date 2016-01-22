@@ -11,11 +11,11 @@ The current and future weather in an easy readable way.
 * gulp
 
 ### Todo (high prio)
-* add updated time
 * add social media icons
 * add footer /w credits
-* add animation for long/short messages
 * get messages from other source than ftp (buienradar maybe?)
+* check forecast rain precision
+* check history wind force precision
 
 ### Todo (lower prio)
 * add open graph & twitter card implementation

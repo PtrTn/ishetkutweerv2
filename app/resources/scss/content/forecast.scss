@@ -33,13 +33,21 @@ table#week {
 }
 table#week {
   border-collapse: collapse;
+
+  .extra {
+    display: none;
+  }
 }
 table#week tr:nth-of-type(even) {
   background-color: white;
 }
-#text-summary {
+.text-summary {
   overflow: auto;
   padding-bottom: 40px;
+
+  .long-msg {
+    display: none;
+  }
 }
 
 /** Responsive styles **/
