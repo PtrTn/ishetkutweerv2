@@ -40,8 +40,14 @@
                     <td>{{ day.getDayname() }}</td>
                 {% endif %}
                 <td>
-                    <span class="value">{{ day.getTemp() }}</span>
-                    <span class="suffix">&deg;C</span>
+                    <div class="max-temp">
+                        <span class="value">{{ day.getMaxTemp() }}</span>
+                        <span class="suffix">&deg;C</span>
+                    </div>
+                    <div class="min-temp">
+                        <span class="value">{{ day.getMinTemp() }}</span>
+                        <span class="suffix">&deg;C</span>
+                    </div>
                 </td>
                 <td>
                     <span class="value">{{ day.getRain() }}</span>

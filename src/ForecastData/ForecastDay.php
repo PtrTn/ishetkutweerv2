@@ -5,15 +5,17 @@ namespace ForecastData;
 class ForecastDay
 {
     private $date;
-    private $temp;
+    private $maxTemp;
+    private $minTemp;
     private $rain;
     private $windSpeed;
     private $beaufort;
 
-    public function __construct($date, $temp, $rain, $windSpeed, $beaufort)
+    public function __construct($date, $maxTemp, $minTemp, $rain, $windSpeed, $beaufort)
     {
         $this->date = $date;
-        $this->temp = $temp;
+        $this->maxTemp = $maxTemp;
+        $this->minTemp = $minTemp;
         $this->rain = $rain;
         $this->windSpeed = $windSpeed;
         $this->beaufort = $beaufort;
@@ -42,9 +44,14 @@ class ForecastDay
         }
     }
 
-    public function getTemp()
+    public function getMaxTemp()
     {
-        return $this->temp;
+        return $this->maxTemp;
+    }
+
+    public function getMinTemp()
+    {
+        return $this->minTemp;
     }
 
     public function getRain()

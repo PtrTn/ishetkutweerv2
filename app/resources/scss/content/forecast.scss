@@ -1,17 +1,3 @@
-@mixin scaleFontSize($multiple) {
-
-  table#week {
-    th, i {
-      font-size: $fontsize-small*$multiple;
-    }
-    .value {
-      font-size: $fontsize-tiny*$multiple;
-    }
-    .suffix {
-      font-size: $fontsize-tiny*5/10*$multiple;
-    }
-  }
-}
 #table {
   background-color: $gray-light;
 
@@ -23,11 +9,28 @@ table#week {
   width: 100%;
   color: $gray-dark;
 
+  th, i {
+    font-size: 40px;
+  }
+  .value {
+    font-size: 20px;
+  }
+  .suffix {
+    font-size: 15px;
+  }
   td {
     text-align: center;
+    width: 25%;
   }
   tr {
     height: 70px;
+  }
+  .max-temp, .min-temp {
+    display: inline-block;
+  }
+  .min-temp {
+    padding-left: 10px;
+    color: gray;
   }
 
 }
@@ -48,18 +51,4 @@ table#week tr:nth-of-type(even) {
   .long-msg {
     display: none;
   }
-}
-
-/** Responsive styles **/
-@media (min-width: $screensize-tiny) {
-  @include scaleFontSize(6/10);
-}
-@media (min-width: $screensize-small) {
-  @include scaleFontSize(8/10);
-}
-@media (min-width: $screensize-medium) {
-  @include scaleFontSize(1);
-}
-@media (min-width: $screensize-huge) {
-
 }
