@@ -23,10 +23,22 @@ class StationFinder
         return $stationArray['station'];
     }
 
-    public function findStationBySlug($slug) {
+    public function findStationBySlug($slug)
+    {
         $stations = $this->stationFactory->getStations();
         foreach ($stations as $station) {
             if ($station->getSlug() === $slug) {
+                return $station;
+            }
+        }
+        return false;
+    }
+
+    public function findStationById($id)
+    {
+        $stations = $this->stationFactory->getStations();
+        foreach ($stations as $station) {
+            if ($station->getBuienradarId() == $id) {
                 return $station;
             }
         }

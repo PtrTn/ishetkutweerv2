@@ -38,7 +38,7 @@ class RoutingController
         }
 
         // Fall back to Ip based data
-        return $this->getDataByIp($app);
+        return $this->renderByIp($app);
     }
 
     public function renderByCookie(Application $app, Request $request)
@@ -48,7 +48,26 @@ class RoutingController
         if(!is_null($location)) {
             return $this->renderBySlug($location, $app);
         }
+
+        // Check for id in cookies (backwards compatibility with ishetkutweer v1)
+        $stationId = $request->cookies->get('station');
+        if(!is_null($stationId)) {
+            return $this->renderByStationId($stationId, $app);
+        }
+
         return false;
+    }
+
+    private function renderByStationId($id, $app)
+    {
+        // Get station based on url slug
+        $station = $app['stationFinder']->findStationById($id);
+        if ($station !== false) {
+            return $this->renderByStation($station, $app);
+        }
+
+        // Fall back to Ip based data
+        return $this->renderByIp($app);
     }
 
     private function renderByStation(Station $station, Application $app, Cookie $cookie = null)
