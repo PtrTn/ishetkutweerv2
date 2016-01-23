@@ -12,7 +12,6 @@ The current and future weather in an easy readable way.
 
 ### Todo (high prio)
 * add open graph & twitter card implementation
-* add javascript location precision
 * weather-dependant background image
 * google maps to pick location
 
