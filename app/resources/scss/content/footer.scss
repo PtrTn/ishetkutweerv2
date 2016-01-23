@@ -14,9 +14,25 @@ footer {
   .social-media {
     padding-top: 20px;
 
-    i {
+    a {
+      margin: 0 20px;
       font-size: 50px;
-      padding: 0 20px;
+      display: inline-block;
+      overflow: hidden;
+
+      i {
+        transition: 0.3s;
+      }
+      .fa:hover {
+        transition: 0.3s;
+      }
+
+      .fa-facebook-official:hover {
+        color: #3B5998;
+      }
+      .fa-twitter-square:hover {
+        color: #4099ff;
+      }
     }
   }
 }
