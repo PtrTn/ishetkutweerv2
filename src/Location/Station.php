@@ -53,5 +53,11 @@ class Station
     {
         return $this->lon;
     }
+
+    public function getSlug()
+    {
+        $slug = str_replace(' ', '-', $this->name);
+        return strtolower($slug);
+    }
 }
  
