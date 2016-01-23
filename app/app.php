@@ -40,6 +40,9 @@ $app->register(new \Providers\RatingServiceProvider());
 $app->get('/{slug}', function ($slug) use ($app) {
     return $app['routingController']->renderBySlug($slug, $app);
 });
+$app->get('/{lat}/{lon}', function ($lat, $lon) use ($app) {
+    return $app['routingController']->renderByLatLon($lat, $lon, $app);
+});
 $app->get('/', function (\Symfony\Component\HttpFoundation\Request $request) use ($app) {
     $result = $app['routingController']->renderByCookie($app, $request);
     if ($result !== false) {

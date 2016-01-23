@@ -33,6 +33,19 @@
       &:hover {
         background-color: black;
       }
+
+      &.geoLocator {
+        text-align: center;
+        width: 96%;
+
+        li {
+          display: inline-block;
+        }
+        i {
+          font-size: 20px;
+          padding-right: 10px;
+        }
+      }
     }
   }
 }

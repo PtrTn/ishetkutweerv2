@@ -1,8 +1,14 @@
-<div class="overlay" ng-click="toggleMenu()"></div>
-<nav class="menu block" ng-click="toggleMenu()">
-    <ul>
-        {% for station in stations %}
-            <a href="/{{ station.getSlug() }}"><li>{{ station.getName() }}</li></a>
-        {% endfor %}
-    </ul>
-</nav>
+<div ng-controller="menuCtrl">
+    <div class="overlay" ng-click="toggleMenu()"></div>
+    <nav class="menu block" ng-click="toggleMenu()">
+        <ul>
+            <a class="geoLocator" href="#" ng-show="hasGeo" ng-click="promptLocation($event)">
+                <i class="fa fa-map-marker"></i>
+                <li>Gebruik mijn locatie</li>
+            </a>
+            {% for station in stations %}
+                <a href="/{{ station.getSlug() }}"><li>{{ station.getName() }}</li></a>
+            {% endfor %}
+        </ul>
+    </nav>
+</div>
