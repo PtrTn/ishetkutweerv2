@@ -4,12 +4,15 @@ namespace Helpers;
 
 use Location\Station;
 use Silex\Application;
+use Symfony\Component\HttpFoundation\Cookie;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class RoutingController
 {
-    public function getDataByIp(Application $app)
+    public function renderByIp(Application $app)
     {
-        // Get IP using connection details
+        // Get Ip using connection details
         $ip = $_SERVER['REMOTE_ADDR'];
         if ($ip === '127.0.0.1') {
             $ip = '213.34.236.130';
@@ -23,18 +26,32 @@ class RoutingController
         return $this->renderByStation($station, $app);
     }
 
-    public function getDataBySlug($slug, Application $app)
+    public function renderBySlug($slug, Application $app)
     {
         // Get station based on url slug
         $station = $app['stationFinder']->findStationBySlug($slug);
         if ($station !== false) {
-            return $this->renderByStation($station, $app);
+
+            // Save location to cookie
+            $cookie = new Cookie('location', $slug);
+            return $this->renderByStation($station, $app, $cookie);
         }
-        echo 'using IP fallback';
+
+        // Fall back to Ip based data
         return $this->getDataByIp($app);
     }
 
-    private function renderByStation(Station $station, Application $app)
+    public function renderByCookie(Application $app, Request $request)
+    {
+        // Check for location in cookies
+        $location = $request->cookies->get('location');
+        if(!is_null($location)) {
+            return $this->renderBySlug($location, $app);
+        }
+        return false;
+    }
+
+    private function renderByStation(Station $station, Application $app, Cookie $cookie = null)
     {
         $stations = $app['stationFactory']->getStations();
 
@@ -47,7 +64,7 @@ class RoutingController
         $rating = $app['ratingCalculator']->getRating($presentData, $historicData);
 
         // Render page using found data
-        return $app['twig']->render('home.twig', [
+        $template =  $app['twig']->render('home.twig', [
             'station' => $station,
             'stations' => $stations,
             'rating' => $rating,
@@ -55,6 +72,13 @@ class RoutingController
             'presentData' => $presentData,
             'forecastData' => $forecastData
         ]);
+
+        // Create response
+        $response = new Response($template);
+        if (!is_null($cookie)) {
+            $response->headers->setCookie($cookie);
+        }
+        return $response;
     }
 
 }

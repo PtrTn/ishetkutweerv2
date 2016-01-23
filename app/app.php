@@ -38,10 +38,14 @@ $app->register(new \Providers\DataProvidingServiceProvider());
 $app->register(new \Providers\RatingServiceProvider());
 
 $app->get('/{slug}', function ($slug) use ($app) {
-    return $app['routingController']->getDataBySlug($slug, $app);
+    return $app['routingController']->renderBySlug($slug, $app);
 });
-$app->get('/', function () use ($app) {
-    return $app['routingController']->getDataByIp($app);
+$app->get('/', function (\Symfony\Component\HttpFoundation\Request $request) use ($app) {
+    $result = $app['routingController']->renderByCookie($app, $request);
+    if ($result !== false) {
+        return $result;
+    }
+    return $app['routingController']->renderByIp($app);
 });
 
 return $app;
