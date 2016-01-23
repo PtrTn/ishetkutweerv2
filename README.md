@@ -14,8 +14,10 @@ The current and future weather in an easy readable way.
 * add open graph & twitter card implementation
 * add javascript location precision
 * weather-dependant background image
+* windforce comparison based on force rather than speed
 
 ### Todo (lower prio)
+* check cookie backwards compatibility
 * possibly restyle footer and forecast
 * add daily social media posts
 * prediction caching
