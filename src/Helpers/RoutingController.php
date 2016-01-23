@@ -66,7 +66,10 @@ class RoutingController
 
         // Get station based on location
         $station = $app['stationFinder']->findStationByLocation($location);
-        return $this->renderByStation($station, $app);
+
+        // Save location to cookie
+        $cookie = new Cookie('location', $station->getSlug());
+        return $this->renderByStation($station, $app, $cookie);
     }
 
     private function renderByStationId($id, $app)
