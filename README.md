@@ -15,8 +15,10 @@ The current and future weather in an easy readable way.
 * add javascript location precision
 * weather-dependant background image
 * windforce comparison based on force rather than speed
+* google maps to pick location
 
 ### Todo (lower prio)
+* backup when forecast.io reaches api limit
 * check cookie backwards compatibility
 * possibly restyle footer and forecast
 * add daily social media posts
