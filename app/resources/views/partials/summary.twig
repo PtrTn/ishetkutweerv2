@@ -4,10 +4,12 @@
             <p>{{ rating.getMessage() }}</p>
         </div>
         <div class="stationName">
-            <p ng-click="toggleMenu()">{{ station.getName() }}</p>
+            <i class="fa fa-location-arrow"></i>
+            <span ng-click="toggleMenu()">{{ station.getName() }}</span>
         </div>
         <div class="measureTime">
-            <p>Gemeten om {{ presentData.getUpdatedTime() }}</p>
+            <i class="fa fa-clock-o"></i>
+            <span>Gemeten om {{ presentData.getUpdatedTime() }}</span>
         </div>
     </div>
     <div class="measurements">
