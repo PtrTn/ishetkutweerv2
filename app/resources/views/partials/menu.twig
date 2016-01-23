@@ -1,0 +1,8 @@
+<div class="overlay" ng-click="toggleMenu()"></div>
+<nav class="menu block" ng-click="toggleMenu()">
+    <ul>
+        {% for i in range(1, 10) %}
+            <a href="/test{{ i }}"><li>Test{{ i }}</li></a>
+        {% endfor %}
+    </ul>
+</nav>

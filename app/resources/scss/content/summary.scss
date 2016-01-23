@@ -27,11 +27,20 @@
     .stationName, .measureTime {
       width: 30%;
       background-color: white;
-      padding: 10px;
       text-align: center;
+
+      p {
+        padding: 10px;
+      }
     }
     .stationName {
       float: left;
+
+      &:hover {
+        background-color: $gray;
+        transition: 0.3s;
+        cursor: pointer;
+      }
     }
     .measureTime {
       float: right;

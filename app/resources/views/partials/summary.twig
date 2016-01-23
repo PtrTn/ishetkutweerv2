@@ -4,7 +4,7 @@
             <p>{{ rating.getMessage() }}</p>
         </div>
         <div class="stationName">
-            <p>{{ station.getName() }}</p>
+            <p ng-click="toggleMenu()">{{ station.getName() }}</p>
         </div>
         <div class="measureTime">
             <p>Gemeten om {{ presentData.getUpdatedTime() }}</p>
