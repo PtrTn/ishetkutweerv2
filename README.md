@@ -22,8 +22,7 @@ The current and future weather in an easy readable way.
 * prediction caching
 * better rating calculation
 * weather alerts
-* extend collection class?
-* fix weather icons font
+* refactor collections to use abstraction
 * unit testing
 * continuous integration
 * possibly calculate total rain amount by adding hourly values
