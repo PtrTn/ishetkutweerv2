@@ -58,11 +58,11 @@
 
   &:hover .average {
     left: 0;
-    transition: 1s;
+    transition: 0.7s;
   }
   &:hover .indicator {
     left: 100%;
-    transition: 1s;
+    transition: 0.7s;
   }
   .average {
     position: absolute;
@@ -70,7 +70,7 @@
     height: 65%;
     width: 100%;
     color: white;
-    transition: 1s;
+    transition: 0.7s;
     display: table;
 
     .value-container {
