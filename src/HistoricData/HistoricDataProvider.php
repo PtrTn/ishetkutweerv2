@@ -60,7 +60,7 @@ class HistoricDataProvider
             $tempAvg = floatval(round($row['tempAvg'] / 10, 1));
             $tempMin = floatval(round($row['tempMin'] / 10, 1));
             $tempMax = floatval(round($row['tempMax'] / 10, 1));
-            $windSpeed = intval($row['windSpeed']);
+            $windSpeed = intval($row['windSpeed'] * 3.6 / 10);
             $windDirection = intval($row['windDirection']);
             $beaufort = $this->beaufortCalculator->getBeaufort($windSpeed);
             $rainSum = floatval(round($row['rainSum'] / 10, 1));

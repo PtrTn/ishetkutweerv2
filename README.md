@@ -11,7 +11,6 @@ The current and future weather in an easy readable way.
 * gulp
 
 ### Todo (high prio)
-* check history wind force precision
 * add open graph & twitter card implementation
 * allow location changing
 * add javascript location precision
