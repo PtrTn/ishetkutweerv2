@@ -14,7 +14,6 @@ The current and future weather in an easy readable way.
 * add open graph & twitter card implementation
 * add javascript location precision
 * weather-dependant background image
-* windforce comparison based on force rather than speed
 * google maps to pick location
 
 ### Todo (lower prio)
@@ -23,7 +22,6 @@ The current and future weather in an easy readable way.
 * possibly restyle footer and forecast
 * add daily social media posts
 * prediction caching
-* better rating calculation
 * weather alerts
 * refactor collections to use abstraction
 * unit testing

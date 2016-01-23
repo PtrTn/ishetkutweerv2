@@ -20,11 +20,15 @@ class RatingCalculator
     {
         $avgRain = $historicData->getRainAvg();
         $currentRain = $presentData->getRain();
+
+        // No rain is good
         if ($currentRain <= 0) {
             return 2;
         }
-        // TODO maybe add some range to avg (+- 10%)
-        if ($currentRain <= $avgRain) {
+
+        // Equal or less rain than normal (with 10% margin) is reasonable
+        $margin = 1.1;
+        if ($currentRain <= $avgRain * $margin) {
             return 1;
         }
         return 0;
@@ -34,11 +38,20 @@ class RatingCalculator
     {
         $avgTemp = $historicData->getTempAvg();
         $currentTemp = $presentData->getTemp();
-        // TODO maybe add something when its too hot?
-        if ($currentTemp < 0) {
+
+        // Below zero or above 35 deg is bad
+        if ($currentTemp < 0 || $currentTemp > 35) {
             return 0;
         }
-        if ($currentTemp > $avgTemp) {
+
+        // Above 30 is reasonable
+        if ($currentTemp > 30) {
+            return 2;
+        }
+
+        // Anything better or equal to average (with 2 deg margin) is reasonable
+        $margin = 2;
+        if ($currentTemp >= ($avgTemp - $margin)) {
             return 2;
         }
         return 1;
@@ -46,13 +59,17 @@ class RatingCalculator
 
     private function calcWindRating(PresentWeatherData $presentData, HistoricDataCollection $historicData)
     {
-        $avgWind = $historicData->getWindSpeedAvg();
-        $currentWind = $presentData->getWindSpeed();
-        if ($currentWind > 70) {
+        $avgWind = $historicData->getBeaufortAvg();
+        $currentWind = $presentData->getBeaufort();
+
+        // Anything above 8 bft is bad
+        if ($currentWind >= 8) {
             return 0;
         }
-        // TODO maybe add some range to avg (+- 10%)
-        if ($currentWind <= $avgWind) {
+
+        $margin = 1;
+        // Equal or lower than average (with 1 bft margin) is reasonable
+        if ($currentWind <= ($avgWind + $margin)) {
             return 2;
         }
         return 1;
