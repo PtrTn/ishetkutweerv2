@@ -1,43 +1,64 @@
 footer {
   background-color: $gray;
-  padding: 40px 0;
+  overflow: auto;
   text-align: center;
+  &.block {
+    padding-top: 40px;
+  }
 
   a {
     text-decoration: none;
     color: black;
   }
 
-  .source a {
-    font-weight: bold;
+  .text {
+    width: 100%;
+    clear: both;
+    padding-bottom: 40px;
+
+    a {
+      font-weight: bold;
+    }
   }
   .social-media {
-    padding-top: 20px;
+    width: 100%;
 
     a {
       margin: 0 20px;
-      font-size: 50px;
       display: inline-block;
-      overflow: hidden;
-      height: 60px;
-      width: 60px;
       background-color: white;
-      color: black;
-      border-radius: 10%;
+      color: white;
+      width: 100px;
 
       i {
+        padding: 10px 10px 5px;
         transition: 0.3s;
+        width: 100%;
+        font-size: 50px;
+      }
+
+      p {
+        width: 100%;
+        padding: 5px 10px;
+        color: black;
       }
       &:hover {
         transition: 0.3s;
       }
 
-      &.facebook:hover {
-        background-color: #3B5998;
+      &.facebook:hover p,
+      &.facebook i {
+        background-color: $facebook-blue;
         color: white;
       }
-      &.twitter:hover {
-        background-color: #4099ff;
+      &.twitter:hover p,
+      &.twitter i {
+        background-color: $twitter-blue;
+        color: white;
+      }
+      &.e-mail:hover p,
+      &.e-mail i {
+        background-color: $email-orange;
         color: white;
       }
     }
