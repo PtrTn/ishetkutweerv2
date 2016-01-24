@@ -7,6 +7,10 @@ use AbstractClasses\WeatherData;
 class PresentWeatherData extends WeatherData
 {
     /**
+     * Triple digit ID of station
+     */
+    protected $stationId;
+    /**
      * Temperature in celsius
      */
     private $temp;
@@ -23,9 +27,19 @@ class PresentWeatherData extends WeatherData
      */
     private $longMsg;
 
-    public function __construct($stationId, $date, $windDirection, $windSpeed, $beaufort, $temp, $rain, $shortMsg, $longMsg)
-    {
-        parent::__construct($stationId, $date, $windDirection, $windSpeed, $beaufort);
+    public function __construct(
+        $date,
+        $windDirection,
+        $windSpeed,
+        $beaufort,
+        $stationId,
+        $temp,
+        $rain,
+        $shortMsg,
+        $longMsg
+    ) {
+        parent::__construct($date, $windDirection, $windSpeed, $beaufort);
+        $this->stationId = $stationId;
         $this->temp = $temp;
         $this->rain = $rain;
         $this->shortMsg = $shortMsg;
@@ -44,14 +58,16 @@ class PresentWeatherData extends WeatherData
 
     public function getUpdatedTime()
     {
-        return date('H:i', strtotime($this->date));
+        return $this->date->format('H:i');
     }
 
-    public function getShortmsg() {
+    public function getShortmsg()
+    {
         return $this->shortMsg;
     }
 
-    public function getLongmsg() {
+    public function getLongmsg()
+    {
         return $this->longMsg;
     }
 }

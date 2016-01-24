@@ -7,6 +7,10 @@ use AbstractClasses\WeatherData;
 class HistoricWeatherData extends WeatherData
 {
     /**
+     * Triple digit ID of station
+     */
+    protected $stationId;
+    /**
      * Average temperature
      */
     private $tempAvg;
@@ -32,11 +36,11 @@ class HistoricWeatherData extends WeatherData
     private $rainMax;
 
     public function __construct(
-        $stationId,
         $date,
         $windDirection,
         $windSpeed,
         $beaufort,
+        $stationId,
         $tempAvg,
         $tempMin,
         $tempMax,
@@ -44,7 +48,8 @@ class HistoricWeatherData extends WeatherData
         $rainSum,
         $rainMax
     ) {
-        parent::__construct($stationId, $date, $windDirection, $windSpeed, $beaufort);
+        parent::__construct($date, $windDirection, $windSpeed, $beaufort);
+        $this->stationId = $stationId;
         $this->tempAvg = $tempAvg;
         $this->tempMin = $tempMin;
         $this->tempMax = $tempMax;

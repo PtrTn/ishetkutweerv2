@@ -3,23 +3,35 @@
 namespace Rating;
 
 
+use AbstractClasses\WeatherData;
+use ForecastData\ForecastData;
+use Helpers\RatingCollection;
 use HistoricData\HistoricDataCollection;
 use PresentData\PresentWeatherData;
 
 class RatingCalculator
 {
-    public function getRating(PresentWeatherData $presentData, HistoricDataCollection $historicData)
+    public function getRatingCollection(ForecastData $forecastData, HistoricDataCollection $historicData)
     {
-        $rainRating = $this->calcRainRating($presentData, $historicData);
-        $tempRating = $this->calcTempRating($presentData, $historicData);
-        $windRating = $this->calcWindRating($presentData, $historicData);
+        $ratings = new RatingCollection();
+        foreach ($forecastData->getDays() as $forecastDayData) {
+            $ratings->add($forecastDayData->getDate(), $this->getRating($forecastDayData, $historicData));
+        }
+        return $ratings;
+    }
+
+    public function getRating(WeatherData $weatherData, HistoricDataCollection $historicData)
+    {
+        $rainRating = $this->calcRainRating($weatherData, $historicData);
+        $tempRating = $this->calcTempRating($weatherData, $historicData);
+        $windRating = $this->calcWindRating($weatherData, $historicData);
         return new Rating($rainRating, $tempRating, $windRating);
     }
 
-    private function calcRainRating(PresentWeatherData $presentData, HistoricDataCollection $historicData)
+    private function calcRainRating(WeatherData $weatherData, HistoricDataCollection $historicData)
     {
         $avgRain = $historicData->getRainAvg();
-        $currentRain = $presentData->getRain();
+        $currentRain = $weatherData->getRain();
 
         // No rain is good
         if ($currentRain <= 0) {
@@ -34,10 +46,10 @@ class RatingCalculator
         return 0;
     }
 
-    private function calcTempRating(PresentWeatherData $presentData, HistoricDataCollection $historicData)
+    private function calcTempRating(WeatherData $weatherData, HistoricDataCollection $historicData)
     {
         $avgTemp = $historicData->getTempAvg();
-        $currentTemp = $presentData->getTemp();
+        $currentTemp = $weatherData->getTemp();
 
         // Below zero or above 35 deg is bad
         if ($currentTemp < 0 || $currentTemp > 35) {
@@ -57,10 +69,10 @@ class RatingCalculator
         return 1;
     }
 
-    private function calcWindRating(PresentWeatherData $presentData, HistoricDataCollection $historicData)
+    private function calcWindRating(WeatherData $weatherData, HistoricDataCollection $historicData)
     {
         $avgWind = $historicData->getBeaufortAvg();
-        $currentWind = $presentData->getBeaufort();
+        $currentWind = $weatherData->getBeaufort();
 
         // Anything above 8 bft is bad
         if ($currentWind >= 8) {

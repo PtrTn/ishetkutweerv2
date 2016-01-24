@@ -33,9 +33,9 @@
                 {% else %}
                     <tr>
                 {% endif %}
-                <td class="indicator">
+                <td class="indicator {{ forecastRatings.getByDate(day.getDate()).getOverall() }}">
                     <div>
-                        <p>Kut</p>
+                        <p>{{ forecastRatings.getByDate(day.getDate()).getShortMessage() }}</p>
                     </div>
                 </td>
                 {% if loop.index == 1 %}
@@ -45,7 +45,7 @@
                 {% else %}
                     <td>{{ day.getDayname() }}
                 {% endif %}
-                <p class="date">{{ day.getDate() }}</p></td>
+                <p class="date">{{ day.getFormattedDate() }}</p></td>
                 <td>
                     <div class="max-temp">
                         <span class="value">{{ day.getMaxTemp() }}</span>

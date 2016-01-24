@@ -52,11 +52,21 @@ table#week {
       width: 1px;
       position: relative;
 
-      div {
+      &.bad div {
         background-color: $red;
+      }
+      &.meh div {
+        background-color: $yellow;
+      }
+      &.good div {
+        background-color: $green;
+      }
+
+      div {
+        transition: 0.5s;
         position: absolute;
         top: 0;
-        right: -100px;
+        right: -90px;
         bottom: 0;
         width: 100px;
         z-index: 1;

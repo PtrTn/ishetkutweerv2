@@ -1,7 +1,7 @@
 <header id="summary" class="block">
     <div class="header">
-        <div class="payoff {{ rating.getOverall() }}">
-            <p>{{ rating.getMessage() }}</p>
+        <div class="payoff {{ presentRating.getOverall() }}">
+            <p>{{ presentRating.getMessage() }}</p>
         </div>
         <div class="stationName">
             <i class="fa fa-location-arrow"></i>
@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="measurements">
-        <div class="measurement {{ rating.getTemp() }}">
+        <div class="measurement {{ presentRating.getTemp() }}">
             <div class="indicator">
                 <div class="icon-container">
                     <i class="pe-7w-thermometer-1-2"></i>
@@ -34,7 +34,7 @@
                 </div>
             </div>
         </div>
-        <div class="measurement {{ rating.getRain() }}">
+        <div class="measurement {{ presentRating.getRain() }}">
             <div class="indicator">
                 <div class="icon-container">
                     <i class="pe-7w-umbrella"></i>
@@ -55,7 +55,7 @@
                 </div>
             </div>
         </div>
-        <div class="measurement {{ rating.getWind() }}">
+        <div class="measurement {{ presentRating.getWind() }}">
             <div class="indicator">
                 <div class="icon-container">
                     <i class="pe-7w-wind"></i>

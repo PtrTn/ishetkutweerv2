@@ -89,18 +89,20 @@ class RoutingController
         $stations = $app['stationFactory']->getStations();
 
         // Get data based on station
-        $presentData = $app['presentDataProvider']->getDataByStation($station);
         $historicData = $app['historicDataProvider']->getDataByStation($station);
+        $presentData = $app['presentDataProvider']->getDataByStation($station);
         $forecastData = $app['forecastDataProvider']->getDataByStation($station);
 
         // Rate current weather based on historical data and other rules
-        $rating = $app['ratingCalculator']->getRating($presentData, $historicData);
+        $presentRating = $app['ratingCalculator']->getRating($presentData, $historicData);
+        $forecastRatings = $app['ratingCalculator']->getRatingCollection($forecastData, $historicData);
 
         // Render page using found data
         $template =  $app['twig']->render('home.twig', [
             'station' => $station,
             'stations' => $stations,
-            'rating' => $rating,
+            'presentRating' => $presentRating,
+            'forecastRatings' => $forecastRatings,
             'historicData' => $historicData,
             'presentData' => $presentData,
             'forecastData' => $forecastData

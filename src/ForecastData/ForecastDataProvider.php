@@ -34,16 +34,20 @@ class ForecastDataProvider
         foreach($data->getDaily()->getData() as $dayData) {
             $maxTemp = round($dayData->getTemperature()->getMax());
             $minTemp = round($dayData->getTemperature()->getMin());
+            $avgTemp = round(($dayData->getTemperature()->getMax() + $dayData->getTemperature()->getMin()) / 2);
             $rain = intval(round($dayData->getPrecipitation()->getProbability() * 100));
-            $windSpeed = intval(round($dayData->getWindSpeed(), 0));
+            $windSpeed = intval(round($dayData->getWindSpeed()));
+            $windDirection = intval(round($dayData->getWindBearing()));
             $beaufort = $this->beaufortCalculator->getBeaufort($windSpeed);
             $forecast->add(new ForecastDay(
                 $dayData->getTime(),
+                $windDirection,
+                $windSpeed,
+                $beaufort,
+                $avgTemp,
                 $maxTemp,
                 $minTemp,
-                $rain,
-                $windSpeed,
-                $beaufort
+                $rain
             ));
         }
         return $forecast;

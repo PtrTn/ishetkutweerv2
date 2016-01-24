@@ -4,11 +4,6 @@ namespace AbstractClasses;
 
 abstract class WeatherData
 {
-
-    /**
-     * Triple digit ID of station
-     */
-    protected $stationId;
     /**
      * Date in dd/mm/yyyy format
      */
@@ -26,9 +21,8 @@ abstract class WeatherData
      */
     protected $beaufort;
 
-    public function __construct($stationId, $date, $windDirection, $windSpeed, $beaufort)
+    public function __construct($date, $windDirection, $windSpeed, $beaufort)
     {
-        $this->stationId = $stationId;
         $this->date = $date;
         $this->windSpeed = $windSpeed;
         $this->windDirection = $windDirection;
@@ -43,6 +37,11 @@ abstract class WeatherData
     public function getBeaufort()
     {
         return $this->beaufort;
+    }
+
+    public function getDate()
+    {
+        return $this->date;
     }
 
 }

@@ -56,7 +56,8 @@ class HistoricDataProvider
     {
         $historicCollection = new HistoricDataCollection();
         foreach ($rows as $row) {
-            $date = date('d-m-Y', strtotime($row['date']));
+            $stationId = $row['stationId'];
+            $date = new \DateTime($row['date']);
             $tempAvg = floatval(round($row['tempAvg'] / 10, 1));
             $tempMin = floatval(round($row['tempMin'] / 10, 1));
             $tempMax = floatval(round($row['tempMax'] / 10, 1));
@@ -70,11 +71,11 @@ class HistoricDataProvider
                 $rainMax = 0;
             }
             $historicCollection->add(new HistoricWeatherData(
-                $row['stationId'],
                 $date,
                 $windDirection,
                 $windSpeed,
                 $beaufort,
+                $stationId,
                 $tempAvg,
                 $tempMin,
                 $tempMax,

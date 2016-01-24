@@ -2,29 +2,28 @@
 
 namespace ForecastData;
 
-class ForecastDay
+use AbstractClasses\WeatherData;
+
+class ForecastDay extends WeatherData
 {
-    private $date;
     private $maxTemp;
     private $minTemp;
+    private $avgTemp;
     private $rain;
-    private $windSpeed;
-    private $beaufort;
 
-    public function __construct($date, $maxTemp, $minTemp, $rain, $windSpeed, $beaufort)
+    public function __construct($date, $windDirection, $windSpeed, $beaufort, $avgTemp, $maxTemp, $minTemp, $rain)
     {
-        $this->date = $date;
+        parent::__construct($date, $windDirection, $windSpeed, $beaufort);
+        $this->avgTemp = $avgTemp;
         $this->maxTemp = $maxTemp;
         $this->minTemp = $minTemp;
         $this->rain = $rain;
-        $this->windSpeed = $windSpeed;
-        $this->beaufort = $beaufort;
     }
 
     public function getDayName()
     {
         $dayofWeek = $this->date->format('N');
-        switch($dayofWeek) {
+        switch ($dayofWeek) {
             case 1:
                 return 'Maandag';
             case 2:
@@ -44,11 +43,16 @@ class ForecastDay
         }
     }
 
-    public function getDate()
+    public function getFormattedDate()
     {
         $month = $this->getMonth($this->date->format('n'));
         $day = $this->date->format('j');
         return $day . ' ' . $month;
+    }
+
+    public function getTemp()
+    {
+        return $this->avgTemp;
     }
 
     public function getMaxTemp()
@@ -66,14 +70,9 @@ class ForecastDay
         return $this->rain;
     }
 
-    public function getBeaufort()
-    {
-        return $this->beaufort;
-    }
-
     private function getMonth($month)
     {
-        switch($month) {
+        switch ($month) {
             case 1:
                 return 'Januari';
             case 2:

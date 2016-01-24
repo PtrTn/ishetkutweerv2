@@ -34,14 +34,28 @@ class Rating
         }
     }
 
-    public function getRain()
+    public function getShortMessage()
     {
-        return $this->toClass($this->rainRating);
+        switch($this->getAvgRating()) {
+            case 2:
+                return 'Niet kut';
+            case 1:
+                return 'Redelijk';
+            case 0:
+                return 'Kut';
+            default:
+                return 'Misschien kut';
+        }
     }
 
     public function getTemp()
     {
         return $this->toClass($this->tempRating);
+    }
+
+    public function getRain()
+    {
+        return $this->toClass($this->rainRating);
     }
 
     public function getWind()

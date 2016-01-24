@@ -47,7 +47,7 @@ class PresentDataProvider
     private function toWeatherData($data, $shortMsg, $longMsg)
     {
         $id = substr($data->stationcode, 1, 3);
-        $date = date('d-m-Y H:i:s', strtotime($data->datum));
+        $date = new \DateTime($data->datum);
         $temp = floatval(round($data->temperatuurGC, 1));
         $windSpeed = intval(round($data->windsnelheidMS * 3.6));
         $beaufort = $this->beaufortCalculator->getBeaufort($windSpeed);
@@ -57,11 +57,11 @@ class PresentDataProvider
             $rain = 0;
         }
         return new PresentWeatherData(
-            $id,
             $date,
             $windDirection,
             $windSpeed,
             $beaufort,
+            $id,
             $temp,
             $rain,
             $shortMsg,
