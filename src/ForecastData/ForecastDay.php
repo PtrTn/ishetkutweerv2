@@ -44,6 +44,13 @@ class ForecastDay
         }
     }
 
+    public function getDate()
+    {
+        $month = $this->getMonth($this->date->format('n'));
+        $day = $this->date->format('j');
+        return $day . ' ' . $month;
+    }
+
     public function getMaxTemp()
     {
         return $this->maxTemp;
@@ -62,6 +69,38 @@ class ForecastDay
     public function getBeaufort()
     {
         return $this->beaufort;
+    }
+
+    private function getMonth($month)
+    {
+        switch($month) {
+            case 1:
+                return 'Januari';
+            case 2:
+                return 'Februari';
+            case 3:
+                return 'Maart';
+            case 4:
+                return 'April';
+            case 5:
+                return 'Mei';
+            case 6:
+                return 'Juni';
+            case 7:
+                return 'Juli';
+            case 8:
+                return 'Augustus';
+            case 9:
+                return 'Septebmer';
+            case 10:
+                return 'Oktober';
+            case 11:
+                return 'November';
+            case 12:
+                return 'December';
+            default:
+                return false;
+        }
     }
 }
  
