@@ -4,19 +4,31 @@ namespace ForecastData;
 
 use AbstractClasses\WeatherData;
 
-class ForecastDay extends WeatherData
+class ForecastWeatherData extends WeatherData
 {
-    private $maxTemp;
-    private $minTemp;
-    private $avgTemp;
+    /**
+     * Average temperature
+     */
+    private $tempAvg;
+    /**
+     * Lowest temperature
+     */
+    private $tempMin;
+    /**
+     * Highest temperature
+     */
+    private $tempMax;
+    /**
+     * Total sum of rain in millimeters
+     */
     private $rain;
 
-    public function __construct($date, $windDirection, $windSpeed, $beaufort, $avgTemp, $maxTemp, $minTemp, $rain)
+    public function __construct($date, $windDirection, $windSpeed, $beaufort, $tempAvg, $tempMin, $tempMax, $rain)
     {
         parent::__construct($date, $windDirection, $windSpeed, $beaufort);
-        $this->avgTemp = $avgTemp;
-        $this->maxTemp = $maxTemp;
-        $this->minTemp = $minTemp;
+        $this->tempAvg = $tempAvg;
+        $this->tempMin = $tempMin;
+        $this->tempMax = $tempMax;
         $this->rain = $rain;
     }
 

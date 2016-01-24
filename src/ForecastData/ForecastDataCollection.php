@@ -2,7 +2,7 @@
 
 namespace ForecastData;
 
-class ForecastData
+class ForecastDataCollection
 {
     private $days;
 
@@ -11,7 +11,7 @@ class ForecastData
         $this->days = [];
     }
 
-    public function add(ForecastDay $day)
+    public function add(ForecastWeatherData $day)
     {
         $this->days[] = $day;
     }

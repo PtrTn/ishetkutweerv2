@@ -5,13 +5,13 @@ namespace Rating;
 
 use AbstractClasses\WeatherData;
 use ForecastData\ForecastData;
+use ForecastData\ForecastDataCollection;
 use Helpers\RatingCollection;
 use HistoricData\HistoricDataCollection;
-use PresentData\PresentWeatherData;
 
 class RatingCalculator
 {
-    public function getRatingCollection(ForecastData $forecastData, HistoricDataCollection $historicData)
+    public function getRatingCollection(ForecastDataCollection $forecastData, HistoricDataCollection $historicData)
     {
         $ratings = new RatingCollection();
         foreach ($forecastData->getDays() as $forecastDayData) {

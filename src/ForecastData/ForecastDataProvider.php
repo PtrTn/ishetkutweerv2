@@ -30,7 +30,7 @@ class ForecastDataProvider
 
     private function toForecastData($data)
     {
-        $forecast = new ForecastData();
+        $forecast = new ForecastDataCollection();
         foreach($data->getDaily()->getData() as $dayData) {
             $maxTemp = round($dayData->getTemperature()->getMax());
             $minTemp = round($dayData->getTemperature()->getMin());
@@ -39,14 +39,14 @@ class ForecastDataProvider
             $windSpeed = intval(round($dayData->getWindSpeed()));
             $windDirection = intval(round($dayData->getWindBearing()));
             $beaufort = $this->beaufortCalculator->getBeaufort($windSpeed);
-            $forecast->add(new ForecastDay(
+            $forecast->add(new ForecastWeatherData(
                 $dayData->getTime(),
                 $windDirection,
                 $windSpeed,
                 $beaufort,
                 $avgTemp,
-                $maxTemp,
                 $minTemp,
+                $maxTemp,
                 $rain
             ));
         }
