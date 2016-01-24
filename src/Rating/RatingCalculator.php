@@ -43,6 +43,8 @@ class RatingCalculator
         if ($currentRain <= $avgRain * $margin) {
             return 1;
         }
+
+        // Anything else is bad
         return 0;
     }
 
@@ -61,11 +63,13 @@ class RatingCalculator
             return 2;
         }
 
-        // Anything better or equal to average (with 2 deg margin) is reasonable
+        // Anything better or equal to average (with 2 deg margin) is good
         $margin = 2;
         if ($currentTemp >= ($avgTemp - $margin)) {
             return 2;
         }
+
+        // Anything else is reasonable
         return 1;
     }
 
@@ -79,11 +83,13 @@ class RatingCalculator
             return 0;
         }
 
+        // Equal or lower than average (with 1 bft margin) is good
         $margin = 1;
-        // Equal or lower than average (with 1 bft margin) is reasonable
         if ($currentWind <= ($avgWind + $margin)) {
             return 2;
         }
+
+        // Anything else is reasonable
         return 1;
     }
 
