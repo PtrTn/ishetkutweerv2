@@ -64,17 +64,17 @@ class ForecastWeatherData extends WeatherData
 
     public function getTemp()
     {
-        return $this->avgTemp;
+        return $this->tempAvg;
     }
 
     public function getMaxTemp()
     {
-        return $this->maxTemp;
+        return $this->tempMax;
     }
 
     public function getMinTemp()
     {
-        return $this->minTemp;
+        return $this->tempMin;
     }
 
     public function getRain()
