@@ -39,6 +39,11 @@
       &.geoLocator {
         text-align: center;
         width: 96%;
+        background-color: $primary-blue;
+        &:hover {
+          color: white;
+          background-color: $primary-dark-blue;
+        }
 
         li {
           display: inline-block;
