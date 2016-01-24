@@ -16,6 +16,7 @@ The current and future weather in an easy readable way.
 * google maps to pick location
 
 ### Todo (lower prio)
+* rain alert (when it will rain within the next 24h?)
 * backup when forecast.io reaches api limit
 * add daily social media posts
 * prediction caching
