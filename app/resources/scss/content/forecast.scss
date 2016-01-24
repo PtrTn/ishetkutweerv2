@@ -25,7 +25,7 @@ table#week {
     width: calc(25% - (10px / 4));
     background-color: $gray;
     position: relative;
-    z-index: 10;
+    z-index: 1;
     background-clip: padding-box;
 
     .date {
