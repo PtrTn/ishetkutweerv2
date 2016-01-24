@@ -17,8 +17,6 @@ The current and future weather in an easy readable way.
 
 ### Todo (lower prio)
 * backup when forecast.io reaches api limit
-* check cookie backwards compatibility
-* possibly restyle forecast (include metro style)
 * add daily social media posts
 * prediction caching
 * weather alerts
