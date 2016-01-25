@@ -26,8 +26,6 @@ class BackgroundController
                     return 'wind-2.jpg';
                 }
                 return 'wind-1.jpg';
-            case 'clear-night':
-                return 'clear-night.jpg';
             case 'snow':
                 return 'snow.jpg';
             case 'sleet':
@@ -38,8 +36,6 @@ class BackgroundController
                 return 'cloudy.jpg';
             case 'partly-cloudy-day':
                 return 'partly-cloudy-day.jpg';
-            case 'partly-cloudy-night':
-                return 'partly-cloudy-night.jpg';
             default:
                 return $this->getBackupBackground($weatherData);
         }
