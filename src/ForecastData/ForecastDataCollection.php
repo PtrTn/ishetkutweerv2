@@ -13,7 +13,7 @@ class ForecastDataCollection
 
     public function add(ForecastWeatherData $day)
     {
-        $this->days[] = $day;
+        $this->days[$day->getDate()->format('Y-m-d')] = $day;
     }
 
     public function getDays($start = false, $amount = false)
@@ -22,6 +22,14 @@ class ForecastDataCollection
             return array_slice($this->days, $start, $amount);
         }
         return $this->days;
+    }
+
+    public function getToday()
+    {
+        if (isset($this->days[date('Y-m-d')])) {
+            return $this->days[date('Y-m-d')];
+        }
+        return false;
     }
 }
  

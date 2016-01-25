@@ -2,6 +2,7 @@
 
 namespace Providers;
 
+use Helpers\BackgroundController;
 use Helpers\BeaufortCalculator;
 use Helpers\RoutingController;
 use Silex\Application;
@@ -16,6 +17,9 @@ class HelpersServiceProvider implements ServiceProviderInterface
         };
         $app['routingController'] = function () use ($app) {
             return new RoutingController();
+        };
+        $app['backgroundController'] = function () use ($app) {
+            return new BackgroundController();
         };
     }
 

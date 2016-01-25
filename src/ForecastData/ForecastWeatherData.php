@@ -22,14 +22,20 @@ class ForecastWeatherData extends WeatherData
      * Total sum of rain in millimeters
      */
     private $rain;
+    /**
+     * Icon of current weather, possible values are: clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy,
+     * partly-cloudy-day, or partly-cloudy-night
+     */
+    private $icon;
 
-    public function __construct($date, $windDirection, $windSpeed, $beaufort, $tempAvg, $tempMin, $tempMax, $rain)
+    public function __construct($date, $windDirection, $windSpeed, $beaufort, $tempAvg, $tempMin, $tempMax, $rain, $icon)
     {
         parent::__construct($date, $windDirection, $windSpeed, $beaufort);
         $this->tempAvg = $tempAvg;
         $this->tempMin = $tempMin;
         $this->tempMax = $tempMax;
         $this->rain = $rain;
+        $this->icon = $icon;
     }
 
     public function getDayName()
@@ -80,6 +86,11 @@ class ForecastWeatherData extends WeatherData
     public function getRain()
     {
         return $this->rain;
+    }
+
+    public function getIcon()
+    {
+        return $this->icon;
     }
 
     private function getMonth($month)

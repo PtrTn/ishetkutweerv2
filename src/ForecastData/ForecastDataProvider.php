@@ -32,6 +32,7 @@ class ForecastDataProvider
     {
         $forecast = new ForecastDataCollection();
         foreach($data->getDaily()->getData() as $dayData) {
+            $icon = $dayData->getIcon();
             $maxTemp = round($dayData->getTemperature()->getMax());
             $minTemp = round($dayData->getTemperature()->getMin());
             $avgTemp = round(($dayData->getTemperature()->getMax() + $dayData->getTemperature()->getMin()) / 2);
@@ -47,7 +48,8 @@ class ForecastDataProvider
                 $avgTemp,
                 $minTemp,
                 $maxTemp,
-                $rain
+                $rain,
+                $icon
             ));
         }
         return $forecast;
