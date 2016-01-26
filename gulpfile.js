@@ -21,7 +21,7 @@ gulp.task('scripts-vendor', function() {
     return gulp.src([
         'bower_components/angular/angular.min.js',
         'bower_components/jquery/dist/jquery.min.js',
-        'bower_components/tooltipster/js/jquery.tooltipster.min.js'
+        'bower_components/angular-timeago/dist/angular-timeago.min.js'
     ])
         .pipe(plumber())
         .pipe(concat('vendor.js'))

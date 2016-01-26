@@ -9,7 +9,7 @@
         </div>
         <div class="measureTime">
             <i class="fa fa-clock-o"></i>
-            <span>Gemeten om {{ presentData.getUpdatedTime() }}</span>
+            <span><time-ago from-time='{{ presentData.getUpdatedTime() }}'></time-ago></span>
         </div>
     </div>
     <div class="measurements">

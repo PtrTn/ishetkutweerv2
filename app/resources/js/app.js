@@ -1,1 +1,1 @@
-var app = angular.module('ishetkutweer', []);
+var app = angular.module('ishetkutweer', ['yaru22.angular-timeago']);

@@ -69,7 +69,7 @@ class PresentWeatherData extends WeatherData
 
     public function getUpdatedTime()
     {
-        return $this->date->format('H:i');
+        return $this->date->format('c');
     }
 
     public function getShortmsg()
