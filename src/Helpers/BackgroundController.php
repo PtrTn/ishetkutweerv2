@@ -14,8 +14,6 @@ class BackgroundController
         $wind = $weatherData->getBeaufort();
         $sight = $weatherData->getSight();
         $dateTime = $weatherData->getDate();
-
-        // TODO fog, cloudy, sleet, nighttime
         return $this->getImageByData($temp, $rain, $wind, $sight, $dateTime);
     }
 
