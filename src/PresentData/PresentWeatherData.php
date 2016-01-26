@@ -19,6 +19,10 @@ class PresentWeatherData extends WeatherData
      */
     private $rain;
     /**
+     * Sight in amount of meters
+     */
+    private $sight;
+    /**
      * Short text about todays weather
      */
     private $shortMsg;
@@ -35,6 +39,7 @@ class PresentWeatherData extends WeatherData
         $stationId,
         $temp,
         $rain,
+        $sight,
         $shortMsg,
         $longMsg
     ) {
@@ -42,6 +47,7 @@ class PresentWeatherData extends WeatherData
         $this->stationId = $stationId;
         $this->temp = $temp;
         $this->rain = $rain;
+        $this->sight = $sight;
         $this->shortMsg = $shortMsg;
         $this->longMsg = $longMsg;
     }
@@ -54,6 +60,11 @@ class PresentWeatherData extends WeatherData
     public function getRain()
     {
         return $this->rain;
+    }
+
+    public function getSight()
+    {
+        return $this->sight;
     }
 
     public function getUpdatedTime()

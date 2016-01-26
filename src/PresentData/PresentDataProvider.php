@@ -53,6 +53,7 @@ class PresentDataProvider
         $beaufort = $this->beaufortCalculator->getBeaufort($windSpeed);
         $windDirection = intval(round($data->windrichtingGR));
         $rain = floatval(round($data->regenMMPU, 1));
+        $sight = intval(round($data->zichtmeters));
         if ($data->regenMMPU === '-') {
             $rain = 0;
         }
@@ -64,6 +65,7 @@ class PresentDataProvider
             $id,
             $temp,
             $rain,
+            $sight,
             $shortMsg,
             $longMsg
         );

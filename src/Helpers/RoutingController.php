@@ -98,7 +98,7 @@ class RoutingController
         $forecastRatings = $app['ratingCalculator']->getRatingCollection($forecastData, $historicData);
 
         // Retrieve weather dependant background
-        $backgroundImage = $app['backgroundController']->getBackground($forecastData->getToday());
+        $backgroundImage = $app['backgroundController']->getBackground($presentData);
 
         // Render page using found data
         $template =  $app['twig']->render('home.twig', [
