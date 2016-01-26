@@ -25,7 +25,7 @@ class BackgroundController
         if ($rain > 0.5) {
             return 'rain-2.jpg';
         }
-        if ($rain > 0 && $rain < 0.5) {
+        if ($rain > 0 && $rain <= 0.5) {
             return 'rain-1.jpg';
         }
         $nightStart = new \DateTime('23:00');
