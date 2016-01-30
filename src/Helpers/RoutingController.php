@@ -32,10 +32,7 @@ class RoutingController
         // Get station based on url slug
         $station = $app['stationFinder']->findStationBySlug($slug);
         if ($station !== false) {
-
-            // Save location to cookie
-            $cookie = new Cookie('location', $slug);
-            return $this->renderByStation($station, $app, $cookie);
+            return $this->renderByStation($station, $app);
         }
 
         // Fall back to Ip based data
@@ -66,10 +63,7 @@ class RoutingController
 
         // Get station based on location
         $station = $app['stationFinder']->findStationByLocation($location);
-
-        // Save location to cookie
-        $cookie = new Cookie('location', $station->getSlug());
-        return $this->renderByStation($station, $app, $cookie);
+        return $this->renderByStation($station, $app);
     }
 
     private function renderByStationId($id, $app)
@@ -84,14 +78,14 @@ class RoutingController
         return $this->renderByIp($app);
     }
 
-    private function renderByStation(Station $station, Application $app, Cookie $cookie = null)
+    private function renderByStation(Station $station, Application $app)
     {
         $stations = $app['stationFactory']->getStations();
 
         // Get data based on station
         $historicData = $app['historicDataProvider']->getDataByStation($station);
         $presentData = $app['presentDataProvider']->getDataByStation($station);
-        $forecastData = $app['forecastDataProvider']->getDataByStation($station);
+        $forecastData = $app['forecastDataProvider']->getDataByLocation($station->getLocation());
 
         // Rate current weather based on historical data and other rules
         $presentRating = $app['ratingCalculator']->getRating($presentData, $historicData);
@@ -114,9 +108,10 @@ class RoutingController
 
         // Create response
         $response = new Response($template);
-        if (!is_null($cookie)) {
-            $response->headers->setCookie($cookie);
-        }
+
+        // Save location to cookie
+        $cookie = new Cookie('location', $station->getSlug());
+        $response->headers->setCookie($cookie);
         return $response;
     }
 
