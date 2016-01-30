@@ -7,24 +7,22 @@ class Station
     private $knmiId;
     private $buienradarId;
     private $name;
-    private $lat;
-    private $lon;
+    private $location;
 
     public function __construct($knmiId, $buienradarId, $name, $lat, $lon)
     {
         $this->knmiId = $knmiId;
         $this->buienradarId = $buienradarId;
         $this->name = $name;
-        $this->lat = $lat;
-        $this->lon = $lon;
+        $this->location = new Location($lat, $lon);
     }
 
     public function toArray()
     {
         return
         [
-            'latitude' => $this->lat,
-            'longitude' => $this->lon,
+            'latitude' => $this->location->getLat(),
+            'longitude' => $this->location->getLon(),
             'station' => $this
         ];
     }
@@ -44,14 +42,9 @@ class Station
         return $this->name;
     }
 
-    public function getLat()
+    public function getLocation()
     {
-        return $this->lat;
-    }
-
-    public function getLon()
-    {
-        return $this->lon;
+        return $this->location;
     }
 
     public function getSlug()
