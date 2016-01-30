@@ -5,17 +5,22 @@ namespace HistoricData;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Query\QueryBuilder;
 use Helpers\BeaufortCalculator;
+use Interfaces\DataProviderInterface;
+use Location\Location;
 use Location\Station;
+use Location\StationFinder;
 
-class HistoricDataProvider
+class HistoricDataProvider implements DataProviderInterface
 {
     private $connection;
     private $beaufortCalculator;
+    private $stationFinder;
 
-    public function __construct(Connection $connection, BeaufortCalculator $beaufortCalculator)
+    public function __construct(Connection $connection, BeaufortCalculator $beaufortCalculator, StationFinder $stationFinder)
     {
         $this->connection = $connection;
         $this->beaufortCalculator = $beaufortCalculator;
+        $this->stationFinder = $stationFinder;
     }
 
     public function getData($stationId)
@@ -42,7 +47,12 @@ class HistoricDataProvider
         $query->andWhere($where);
         $statement = $query->execute();
         return $statement->fetchAll();
+    }
 
+    public function getDataByLocation(Location $location)
+    {
+        $station = $this->stationFinder->findStationByLocation($location);
+        return $this->getDataByStation($station);
     }
 
     public function getDataByStation(Station $station)

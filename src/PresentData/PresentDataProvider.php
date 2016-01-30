@@ -3,16 +3,21 @@
 namespace PresentData;
 
 use Helpers\BeaufortCalculator;
+use Interfaces\DataProviderInterface;
+use Location\Location;
 use Location\Station;
+use Location\StationFinder;
 
-class PresentDataProvider
+class PresentDataProvider implements DataProviderInterface
 {
     private $source;
     private $beaufortCalculator;
+    private $stationFinder;
 
-    public function __construct(BeaufortCalculator $beaufortCalculator)
+    public function __construct(BeaufortCalculator $beaufortCalculator, StationFinder $stationFinder)
     {
         $this->beaufortCalculator = $beaufortCalculator;
+        $this->stationFinder = $stationFinder;
         $this->source = 'http://xml.buienradar.nl/';
     }
 
@@ -24,6 +29,12 @@ class PresentDataProvider
             return json_decode($json);
         }
         return false;
+    }
+
+    public function getDataByLocation(Location $location)
+    {
+        $station = $this->stationFinder->findStationByLocation($location);
+        return $this->getDataByStation($station);
     }
 
     public function getDataByStation(Station $station)
@@ -42,6 +53,7 @@ class PresentDataProvider
                 return $this->toWeatherData($weerstation, $shortMsg, $longMsg);
             }
         }
+        return false;
     }
 
     private function toWeatherData($data, $shortMsg, $longMsg)

@@ -15,10 +15,10 @@ class DataProvidingServiceProvider implements ServiceProviderInterface
     public function register(Application $app)
     {
         $app['presentDataProvider'] = function () use ($app) {
-            return new PresentDataProvider($app['beaufortCalculator']);
+            return new PresentDataProvider($app['beaufortCalculator'], $app['stationFinder']);
         };
         $app['historicDataProvider'] = function () use ($app) {
-            return new HistoricDataProvider($app['db'], $app['beaufortCalculator']);
+            return new HistoricDataProvider($app['db'], $app['beaufortCalculator'], $app['stationFinder']);
         };
 
         // Get Forecast.io api key

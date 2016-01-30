@@ -3,10 +3,11 @@
 namespace ForecastData;
 
 use Helpers\BeaufortCalculator;
-use Location\Station;
+use Interfaces\DataProviderInterface;
+use Location\Location;
 use VertigoLabs\Overcast\Overcast;
 
-class ForecastDataProvider
+class ForecastDataProvider implements DataProviderInterface
 {
     private $overcast;
     private $beaufortCalculator;
@@ -17,11 +18,11 @@ class ForecastDataProvider
         $this->beaufortCalculator = $beaufortCalculator;
     }
 
-    public function getDataByStation(Station $station)
+    public function getDataByLocation(Location $location)
     {
         $data = $this->overcast->getForecast(
-            $station->getLat(),
-            $station->getLon(),
+            $location->getLat(),
+            $location->getLon(),
             null,
             ['units' => 'ca']
         );
