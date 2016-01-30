@@ -20,7 +20,10 @@ class HistoricDataCollection
     {
         $rainSumAvg = $this->getStatAvg('rainSum', 1);
         $rainDurationAvg = $this->getStatAvg('rainDuration', 1);
-        return round($rainSumAvg / $rainDurationAvg, 1);
+        if ($rainDurationAvg > 0) {
+            return round($rainSumAvg / $rainDurationAvg, 1);
+        }
+        return 0;
     }
 
     public function getTempAvg()
