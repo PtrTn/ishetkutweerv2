@@ -24,3 +24,4 @@ The current and future weather in an easy readable way.
 * unit testing
 * continuous integration
 * possibly calculate total rain amount by adding hourly values
+* weatherdata interface
