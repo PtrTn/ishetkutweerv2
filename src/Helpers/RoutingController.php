@@ -11,22 +11,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class RoutingController
 {
-    public function renderByIp(Application $app)
-    {
-        // Get Ip using connection details
-        $ip = $_SERVER['REMOTE_ADDR'];
-        if ($ip === '127.0.0.1') {
-            $ip = '213.34.236.130';
-        }
-
-        // Get location based on IP
-        $location = $app['locationDataProvider']->getLocation($ip);
-
-        // Get station based on location
-        $station = $app['stationFinder']->findStationByLocation($location);
-        return $this->renderByStation($station, $app);
-    }
-
     public function renderBySlug($slug, Application $app)
     {
         // Get station based on url slug
@@ -37,6 +21,13 @@ class RoutingController
 
         // Fall back to Ip based data
         return $this->renderByIp($app);
+    }
+
+    public function renderByLatLon($lat, $lon, Application $app)
+    {
+        // Create location model
+        $location = new Location($lat, $lon);
+        return $this->renderByLocation($location, $app);
     }
 
     public function renderByCookie(Application $app, Request $request)
@@ -56,14 +47,24 @@ class RoutingController
         return false;
     }
 
-    public function renderByLatLon($lat, $lon, Application $app)
+    public function renderByIp(Application $app)
     {
-        // Create location model
-        $location = new Location($lat, $lon);
+        // Get Ip using connection details
+        $ip = $_SERVER['REMOTE_ADDR'];
+        if ($ip === '127.0.0.1') {
+            $ip = '213.34.236.130';
+        }
 
+        // Get location based on IP
+        $location = $app['locationDataProvider']->getLocation($ip);
+        return $this->renderByLocation($location, $app);
+    }
+
+    private function renderByLocation(Location $location, Application $app)
+    {
         // Get station based on location
         $station = $app['stationFinder']->findStationByLocation($location);
-        return $this->renderByStation($station, $app);
+        return $this->renderByStation($station, $app, $location);
     }
 
     private function renderByStationId($id, $app)
@@ -78,14 +79,19 @@ class RoutingController
         return $this->renderByIp($app);
     }
 
-    private function renderByStation(Station $station, Application $app)
+    private function renderByStation(Station $station, Application $app, Location $location = null)
     {
         $stations = $app['stationFactory']->getStations();
 
         // Get data based on station
         $historicData = $app['historicDataProvider']->getDataByStation($station);
         $presentData = $app['presentDataProvider']->getDataByStation($station);
-        $forecastData = $app['forecastDataProvider']->getDataByLocation($station->getLocation());
+
+        // Prefer given location over station location
+        if (is_null($location)) {
+            $location = $station->getLocation();
+        }
+        $forecastData = $app['forecastDataProvider']->getDataByLocation($location);
 
         // Rate current weather based on historical data and other rules
         $presentRating = $app['ratingCalculator']->getRating($presentData, $historicData);
@@ -114,6 +120,5 @@ class RoutingController
         $response->headers->setCookie($cookie);
         return $response;
     }
-
 }
  
