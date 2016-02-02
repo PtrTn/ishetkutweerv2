@@ -13,9 +13,12 @@ The current and future weather in an easy readable way.
 ### Todo (high prio)
 * add open graph & twitter card implementation
 * google maps to pick location
+* rain data for the coming 2 hours
+* rain data for the coming 24 hours
+* alert icon for incoming rain
 
 ### Todo (lower prio)
-* rain alert (when it will rain within the next 24h?)
+* general connector (instead of file_get_contents)
 * backup when forecast.io reaches api limit
 * add daily social media posts
 * prediction caching
