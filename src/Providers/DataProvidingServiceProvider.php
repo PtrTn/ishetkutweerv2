@@ -5,7 +5,7 @@ namespace Providers;
 use ForecastData\ForecastDataProvider;
 use HistoricData\HistoricDataProvider;
 use PresentData\PresentDataProvider;
-use PresentData\PresentMessageProvider;
+use RainData\RainDataProvider;
 use Silex\Application;
 use Silex\ServiceProviderInterface;
 use VertigoLabs\Overcast\Overcast;
@@ -19,6 +19,9 @@ class DataProvidingServiceProvider implements ServiceProviderInterface
         };
         $app['historicDataProvider'] = function () use ($app) {
             return new HistoricDataProvider($app['db'], $app['beaufortCalculator'], $app['stationFinder']);
+        };
+        $app['rainDataProvider'] = function () use ($app) {
+            return new RainDataProvider();
         };
 
         // Get Forecast.io api key
