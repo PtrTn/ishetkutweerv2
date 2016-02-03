@@ -36,7 +36,7 @@ class RainDataProvider
         $count = preg_match_all($pattern, $data, $matches);
         $rainData = new RainData();
         for ($i = 0; $i < $count; $i++) {
-            $amount = $matches[1][$i];
+            $amount = intval($matches[1][$i]);
             $time = $matches[2][$i];
             $rainData->addRain($time, $amount);
         }

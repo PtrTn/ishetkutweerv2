@@ -16,9 +16,19 @@ class RainData
         $this->rainMapping[$time] = $amount;
     }
 
-    public function getRainData()
+    public function printData()
     {
-        return $this->rainMapping;
+        $this->printAsJsVar('data', array_values($this->rainMapping));
+    }
+
+    public function printLabels()
+    {
+        $this->printAsJsVar('labels', array_keys($this->rainMapping));
+    }
+
+    private function printAsJsVar($var, array $data)
+    {
+        echo 'var ' . $var . ' = ' . json_encode($data) . ';';
     }
 }
  

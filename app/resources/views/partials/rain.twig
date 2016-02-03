@@ -1,6 +1,71 @@
 <div id="rain" class="block">
-    <h1>Regen</h1>
-    {% for time, amount in rainData.getRainData() %}
-        <p>{{ time }} - {{ amount }}</p>
-    {% endfor %}
+    <div id="container" style="width:100%; height:250px;"></div>
 </div>
+<script>
+    {{ rainData.printLabels() }}
+    {{ rainData.printData() }}
+    $(function () {
+        console.log(labels);
+        console.log(data);
+        $('#container').highcharts({
+            chart: {
+                type: 'column',
+                backgroundColor: '#d7d7d7'
+            },
+            title: {
+                text: 'Verwachte neerslag komende 2 uur'
+            },
+            xAxis: {
+                categories: labels,
+                labels: {
+                    step: 4
+                }
+            },
+            yAxis: {
+                title: {
+                    text: null
+                },
+                labels: {
+                    formatter: function() {
+                        var amount = this.value;
+                        if (amount == 0) {
+                            return 'Niets';
+                        }
+                        if (amount <= 25) {
+                            return 'Weinig';
+                        }
+                        if (amount <= 50) {
+                            return 'Middel';
+                        }
+                        if (amount <= 75) {
+                            return 'Veel';
+                        }
+                        if (amount > 75) {
+                            return 'Heel veel';
+                        }
+                        return this.value;
+                    }
+                },
+                showFirstLabel: false
+            },
+            legend: {
+                enabled: false
+            },
+            credits: {
+                enabled: false
+            },
+            tooltip: {
+                formatter: function () {
+                    var amount = this.y;
+                    var time = this.x;
+                    return '<b>' + amount + '</b> mm om ' + time;
+                }
+            },
+            series: [{
+                name: 'Regenval (in mm)',
+                data: data,
+                borderWidth: 0
+            }]
+        });
+    });
+</script>
