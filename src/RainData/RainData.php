@@ -15,5 +15,10 @@ class RainData
     {
         $this->rainMapping[$time] = $amount;
     }
+
+    public function getRainData()
+    {
+        return $this->rainMapping;
+    }
 }
  

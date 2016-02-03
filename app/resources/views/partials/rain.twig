@@ -1,0 +1,6 @@
+<div id="rain" class="block">
+    <h1>Regen</h1>
+    {% for time, amount in rainData.getRainData() %}
+        <p>{{ time }} - {{ amount }}</p>
+    {% endfor %}
+</div>

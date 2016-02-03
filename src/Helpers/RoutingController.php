@@ -111,6 +111,7 @@ class RoutingController
             'forecastRatings' => $forecastRatings,
             'historicData' => $historicData,
             'presentData' => $presentData,
+            'rainData' => $rainData,
             'forecastData' => $forecastData,
             'backgroundImage' => $backgroundImage
         ]);
