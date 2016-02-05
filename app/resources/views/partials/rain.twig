@@ -35,7 +35,7 @@
                             return 'Weinig';
                         }
                         if (amount <= 50) {
-                            return 'Middel';
+                            return 'Gemiddeld';
                         }
                         if (amount <= 75) {
                             return 'Veel';
@@ -46,13 +46,20 @@
                         return this.value;
                     }
                 },
-                showFirstLabel: false
+                showFirstLabel: false,
+                floor: 0,
+                max: 100
             },
             legend: {
                 enabled: false
             },
             credits: {
                 enabled: false
+            },
+            plotOptions: {
+                column: {
+                    minPointLength: 5
+                }
             },
             tooltip: {
                 formatter: function () {
