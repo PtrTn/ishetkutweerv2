@@ -6,7 +6,7 @@ use Interfaces\DataFactory;
 
 class LocationDataFactory implements DataFactory
 {
-    public function getDataBlock($data)
+    public function createDataBlock($data)
     {
         if (!$this->isValid($data)) {
             throw new \RuntimeException('No location data found');

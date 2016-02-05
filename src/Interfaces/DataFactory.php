@@ -5,5 +5,5 @@ namespace Interfaces;
 
 interface DataFactory
 {
-    public function getDataBlock($data);
+    public function createDataBlock($data);
 }
