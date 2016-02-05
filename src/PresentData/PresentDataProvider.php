@@ -41,6 +41,9 @@ class PresentDataProvider implements DataProviderInterface
     {
         $buienradarId = $station->getBuienradarId();
         $data = $this->getData();
+        if ($data === false) {
+            throw new \Exception('No data could be retrieved from "' . $this->source . '"');
+        }
 
         $weerstations = $data->weergegevens->actueel_weer->weerstations->weerstation;
         $shortMsg = ($data->weergegevens->verwachting_meerdaags->tekst_middellang);
