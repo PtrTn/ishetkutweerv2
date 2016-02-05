@@ -13,9 +13,6 @@ class LocationServiceProvider implements ServiceProviderInterface
 {
     public function register(Application $app)
     {
-        $app['locationDataProvider'] = function () use ($app) {
-            return new LocationDataProvider();
-        };
         $app['distanceCalc'] = function () {
             return new Distance();
         };

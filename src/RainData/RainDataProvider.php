@@ -2,7 +2,7 @@
 
 namespace RainData;
 
-use Location\Location;
+use Location\LocationDataBlock;
 use Location\Station;
 
 class RainDataProvider
@@ -19,7 +19,7 @@ class RainDataProvider
         return $this->getDataByLocation($station->getLocation());
     }
 
-    public function getDataByLocation(Location $location)
+    public function getDataByLocation(LocationDataBlock $location)
     {
         $parameters = [
             'lat' => $location->getLat(),

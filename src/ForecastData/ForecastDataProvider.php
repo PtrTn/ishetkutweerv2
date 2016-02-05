@@ -4,7 +4,7 @@ namespace ForecastData;
 
 use Helpers\BeaufortCalculator;
 use Interfaces\DataProviderInterface;
-use Location\Location;
+use Location\LocationDataBlock;
 use VertigoLabs\Overcast\Overcast;
 
 class ForecastDataProvider implements DataProviderInterface
@@ -18,7 +18,7 @@ class ForecastDataProvider implements DataProviderInterface
         $this->beaufortCalculator = $beaufortCalculator;
     }
 
-    public function getDataByLocation(Location $location)
+    public function getDataByLocation(LocationDataBlock $location)
     {
         $data = $this->overcast->getForecast(
             $location->getLat(),

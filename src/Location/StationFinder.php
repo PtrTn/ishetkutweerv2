@@ -15,7 +15,7 @@ class StationFinder
         $this->distanceCalc = $distanceCalc;
     }
 
-    public function findStationByLocation(Location $location)
+    public function findStationByLocation(LocationDataBlock $location)
     {
         $stations = $this->stationFactory->getStations();
         $stationsArray = $this->stationsToArray($stations);

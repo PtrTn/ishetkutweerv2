@@ -4,7 +4,7 @@ namespace PresentData;
 
 use Helpers\BeaufortCalculator;
 use Interfaces\DataProviderInterface;
-use Location\Location;
+use Location\LocationDataBlock;
 use Location\Station;
 use Location\StationFinder;
 
@@ -31,7 +31,7 @@ class PresentDataProvider implements DataProviderInterface
         return false;
     }
 
-    public function getDataByLocation(Location $location)
+    public function getDataByLocation(LocationDataBlock $location)
     {
         $station = $this->stationFinder->findStationByLocation($location);
         return $this->getDataByStation($station);

@@ -2,7 +2,7 @@
 
 namespace Helpers;
 
-use Location\Location;
+use Location\LocationDataBlock;
 use Location\Station;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Cookie;
@@ -26,7 +26,7 @@ class RoutingController
     public function renderByLatLon($lat, $lon, Application $app)
     {
         // Create location model
-        $location = new Location($lat, $lon);
+        $location = new LocationDataBlock($lat, $lon);
         return $this->renderByLocation($location, $app);
     }
 
@@ -56,11 +56,11 @@ class RoutingController
         }
 
         // Get location based on IP
-        $location = $app['locationDataProvider']->getLocation($ip);
+        $location = $app['locationDataSource']->getData($ip);
         return $this->renderByLocation($location, $app);
     }
 
-    private function renderByLocation(Location $location, Application $app)
+    private function renderByLocation(LocationDataBlock $location, Application $app)
     {
         // Get station based on location
         $station = $app['stationFinder']->findStationByLocation($location);
@@ -79,7 +79,7 @@ class RoutingController
         return $this->renderByIp($app);
     }
 
-    private function renderByStation(Station $station, Application $app, Location $location = null)
+    private function renderByStation(Station $station, Application $app, LocationDataBlock $location = null)
     {
         $stations = $app['stationFactory']->getStations();
 
