@@ -2,18 +2,18 @@
 
 namespace Helpers;
 
-use PresentData\PresentWeatherData;
+use CurrentData\CurrentDataBlock;
 
 class BackgroundController
 {
 
-    public function getBackground(PresentWeatherData $weatherData)
+    public function getBackground(CurrentDataBlock $dataBlock)
     {
-        $temp = $weatherData->getTemp();
-        $rain = $weatherData->getRain();
-        $wind = $weatherData->getBeaufort();
-        $sight = $weatherData->getSight();
-        $dateTime = $weatherData->getDate();
+        $temp = $dataBlock->getTemp();
+        $rain = $dataBlock->getRain();
+        $wind = $dataBlock->getBeaufort();
+        $sight = $dataBlock->getSight();
+        $dateTime = $dataBlock->getDate();
         return $this->getImageByData($temp, $rain, $wind, $sight, $dateTime);
     }
 
