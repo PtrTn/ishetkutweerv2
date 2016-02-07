@@ -29,7 +29,7 @@ class LocationDataSource implements DataSource
 
         $data = unserialize($this->httpClient->getData($url));
 
-        return $this->dataFactory->getDataBlock($data);
+        return $this->dataFactory->createDataBlock($data);
     }
 }
  
