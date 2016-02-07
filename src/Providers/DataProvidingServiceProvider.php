@@ -3,8 +3,6 @@
 namespace Providers;
 
 use ForecastData\ForecastDataProvider;
-use HistoricData\HistoricDataProvider;
-use PresentData\PresentDataProvider;
 use RainData\RainDataProvider;
 use Silex\Application;
 use Silex\ServiceProviderInterface;
@@ -14,12 +12,6 @@ class DataProvidingServiceProvider implements ServiceProviderInterface
 {
     public function register(Application $app)
     {
-        $app['presentDataProvider'] = function () use ($app) {
-            return new PresentDataProvider($app['beaufortCalculator'], $app['stationFinder']);
-        };
-        $app['historicDataProvider'] = function () use ($app) {
-            return new HistoricDataProvider($app['db'], $app['beaufortCalculator'], $app['stationFinder']);
-        };
         $app['rainDataProvider'] = function () use ($app) {
             return new RainDataProvider();
         };

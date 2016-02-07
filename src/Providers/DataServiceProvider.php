@@ -4,6 +4,8 @@ namespace Providers;
 
 use CurrentData\CurrentDataFactory;
 use CurrentData\CurrentDataSource;
+use HistoricData\HistoryDataFactory;
+use HistoricData\HistoryDataSource;
 use HttpClients\FileGetContentsClient;
 use Location\LocationDataFactory;
 use Location\LocationDataSource;
@@ -20,7 +22,7 @@ class DataServiceProvider implements ServiceProviderInterface
 
         // Location data
         $app['locationApiUrl'] = 'http://www.geoplugin.net/php.gp';
-        $app['locationDataFactory'] = function () use ($app) {
+        $app['locationDataFactory'] = function () {
             return new LocationDataFactory();
         };
         $app['locationDataSource'] = function () use ($app) {
@@ -29,11 +31,19 @@ class DataServiceProvider implements ServiceProviderInterface
 
         // Current data
         $app['currentApiUrl'] = 'http://xml.buienradar.nl/';
-        $app['currentDataFactory'] = function () use ($app) {
+        $app['currentDataFactory'] = function () {
             return new CurrentDataFactory();
         };
         $app['currentDataSource'] = function () use ($app) {
             return new CurrentDataSource($app['fileGetContentsClient'], $app['currentDataFactory'], $app['currentApiUrl']);
+        };
+
+        // Historic data
+        $app['historyDataFactory'] = function () {
+            return new HistoryDataFactory();
+        };
+        $app['historyDataSource'] = function () use ($app) {
+            return new HistoryDataSource($app['db'], $app['historyDataFactory']);
         };
     }
 
