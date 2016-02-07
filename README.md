@@ -18,6 +18,7 @@ The current and future weather in an easy readable way.
 * alert icon for incoming rain
 * refactor beaufort calc / station finder to static
 * rating collection to abstract collection (addKeyValue method)
+* add abstraction for weather data
 
 ### Todo (lower prio)
 * general connector (instead of file_get_contents)
