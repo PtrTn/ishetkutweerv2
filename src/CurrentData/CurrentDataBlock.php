@@ -3,8 +3,9 @@
 namespace CurrentData;
 
 use Helpers\BeaufortCalculator;
+use Interfaces\DataBlock;
 
-class CurrentDataBlock
+class CurrentDataBlock implements DataBlock
 {
     private $stationCode;
     private $date;
@@ -68,6 +69,11 @@ class CurrentDataBlock
     public function getLongMsg()
     {
         return $this->longMsg;
+    }
+
+    public function getDate()
+    {
+        return $this->date;
     }
 }
  

@@ -2,7 +2,9 @@
 
 namespace Location;
 
-class LocationDataBlock
+use Interfaces\DataBlock;
+
+class LocationDataBlock implements DataBlock
 {
     private $lat;
     private $lon;
