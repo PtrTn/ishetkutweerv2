@@ -2,35 +2,32 @@
 
 namespace Rating;
 
-
-use AbstractClasses\WeatherData;
-use ForecastData\ForecastData;
 use ForecastData\ForecastDataCollection;
-use Helpers\RatingCollection;
-use HistoricData\HistoricDataCollection;
+use HistoricData\HistoryDataCollection;
+use Interfaces\DataBlock;
 
 class RatingCalculator
 {
-    public function getRatingCollection(ForecastDataCollection $forecastData, HistoricDataCollection $historicData)
+    public function getRatingCollection(ForecastDataCollection $forecastData, HistoryDataCollection $historyData)
     {
         $ratings = new RatingCollection();
         foreach ($forecastData->getDays() as $forecastDayData) {
-            $ratings->add($forecastDayData->getDate(), $this->getRating($forecastDayData, $historicData));
+            $ratings->add($forecastDayData->getDate(), $this->getRating($forecastDayData, $historyData));
         }
         return $ratings;
     }
 
-    public function getRating(WeatherData $weatherData, HistoricDataCollection $historicData)
+    public function getRating(DataBlock $weatherData, HistoryDataCollection $historyData)
     {
-        $rainRating = $this->calcRainRating($weatherData, $historicData);
-        $tempRating = $this->calcTempRating($weatherData, $historicData);
-        $windRating = $this->calcWindRating($weatherData, $historicData);
+        $rainRating = $this->calcRainRating($weatherData, $historyData);
+        $tempRating = $this->calcTempRating($weatherData, $historyData);
+        $windRating = $this->calcWindRating($weatherData, $historyData);
         return new Rating($rainRating, $tempRating, $windRating);
     }
 
-    private function calcRainRating(WeatherData $weatherData, HistoricDataCollection $historicData)
+    private function calcRainRating(DataBlock $weatherData, HistoryDataCollection $historyData)
     {
-        $avgRain = $historicData->getRainAvg();
+        $avgRain = $historyData->getRainAvg();
         $currentRain = $weatherData->getRain();
 
         // No rain is good
@@ -48,9 +45,9 @@ class RatingCalculator
         return 0;
     }
 
-    private function calcTempRating(WeatherData $weatherData, HistoricDataCollection $historicData)
+    private function calcTempRating(DataBlock $weatherData, HistoryDataCollection $historyData)
     {
-        $avgTemp = $historicData->getTempAvg();
+        $avgTemp = $historyData->getTempAvg();
         $currentTemp = $weatherData->getTemp();
 
         // Below zero or above 35 deg is bad
@@ -73,9 +70,9 @@ class RatingCalculator
         return 1;
     }
 
-    private function calcWindRating(WeatherData $weatherData, HistoricDataCollection $historicData)
+    private function calcWindRating(DataBlock $weatherData, HistoryDataCollection $historyData)
     {
-        $avgWind = $historicData->getBeaufortAvg();
+        $avgWind = $historyData->getBeaufortAvg();
         $currentWind = $weatherData->getBeaufort();
 
         // Anything above 8 bft is bad
