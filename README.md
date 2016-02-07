@@ -16,6 +16,8 @@ The current and future weather in an easy readable way.
 * rain data for the coming 2 hours
 * rain data for the coming 24 hours
 * alert icon for incoming rain
+* refactor beaufort calc to static
+* refactor 
 
 ### Todo (lower prio)
 * general connector (instead of file_get_contents)
