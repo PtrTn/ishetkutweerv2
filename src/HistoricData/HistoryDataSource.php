@@ -10,14 +10,13 @@ use Location\Station;
 
 class HistoryDataSource implements DataSource
 {
-    private $connection;
     private $dataFactory;
+    private $connection;
 
-    // TODO maybe use database connector class?
-    public function __construct(Connection $connection, DataFactory $dataFactory)
+    public function __construct(DataFactory $dataFactory, Connection $connection)
     {
-        $this->connection = $connection;
         $this->dataFactory = $dataFactory;
+        $this->connection = $connection;
     }
 
     public function getData(Station $station = null)

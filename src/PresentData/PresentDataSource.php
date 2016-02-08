@@ -9,14 +9,14 @@ use Location\Station;
 
 class PresentDataSource implements DataSource
 {
-    private $httpClient;
     private $dataFactory;
+    private $httpClient;
     private $apiUrl;
 
-    public function __construct(HttpClient $httpClient, DataFactory $dataFactory, $apiUrl)
+    public function __construct(DataFactory $dataFactory, HttpClient $httpClient, $apiUrl)
     {
-        $this->httpClient = $httpClient;
         $this->dataFactory = $dataFactory;
+        $this->httpClient = $httpClient;
         $this->apiUrl = $apiUrl;
     }
 

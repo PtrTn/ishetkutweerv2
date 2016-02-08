@@ -8,12 +8,13 @@ use VertigoLabs\Overcast\Overcast;
 
 class ForecastDataSource implements DataSource
 {
+    private $dataFactory;
     private $overcast;
 
-    public function __construct(Overcast $overcast, ForecastDataFactory $dataFactory)
+    public function __construct(ForecastDataFactory $dataFactory, Overcast $overcast)
     {
-        $this->overcast = $overcast;
         $this->dataFactory = $dataFactory;
+        $this->overcast = $overcast;
     }
 
     public function getData(LocationDataBlock $location = null)

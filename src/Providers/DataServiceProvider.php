@@ -31,7 +31,7 @@ class DataServiceProvider implements ServiceProviderInterface
             return new LocationDataFactory();
         };
         $app['locationDataSource'] = function () use ($app) {
-            return new LocationDataSource($app['fileGetContentsClient'], $app['locationDataFactory'], $app['locationApiUrl']);
+            return new LocationDataSource($app['locationDataFactory'], $app['fileGetContentsClient'], $app['locationApiUrl']);
         };
 
         // Current data
@@ -40,7 +40,7 @@ class DataServiceProvider implements ServiceProviderInterface
             return new PresentDataFactory();
         };
         $app['presentDataSource'] = function () use ($app) {
-            return new PresentDataSource($app['fileGetContentsClient'], $app['presentDataFactory'], $app['presentApiUrl']);
+            return new PresentDataSource($app['presentDataFactory'], $app['fileGetContentsClient'], $app['presentApiUrl']);
         };
 
         // Historic data
@@ -48,7 +48,7 @@ class DataServiceProvider implements ServiceProviderInterface
             return new HistoryDataFactory();
         };
         $app['historyDataSource'] = function () use ($app) {
-            return new HistoryDataSource($app['db'], $app['historyDataFactory']);
+            return new HistoryDataSource($app['historyDataFactory'], $app['db']);
         };
 
         // Forecast data
@@ -63,7 +63,7 @@ class DataServiceProvider implements ServiceProviderInterface
             return new ForecastDataFactory();
         };
         $app['forecastDataSource'] = function () use ($app) {
-            return new ForecastDataSource($app['overcast'], $app['forecastDataFactory']);
+            return new ForecastDataSource($app['forecastDataFactory'], $app['overcast']);
         };
 
         // Rain Data
@@ -74,8 +74,6 @@ class DataServiceProvider implements ServiceProviderInterface
         $app['rainDataSource'] = function () use ($app) {
             return new RainDataSource($app['rainDataFactory'], $app['fileGetContentsClient'], $app['rainDataUrl']);
         };
-
-        // TODO move factory parameter
     }
 
     public function boot(Application $app)

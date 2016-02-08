@@ -8,14 +8,14 @@ use Interfaces\HttpClient;
 
 class LocationDataSource implements DataSource
 {
-    private $httpClient;
     private $dataFactory;
+    private $httpClient;
     private $baseUrl;
 
-    public function __construct(HttpClient $httpClient, DataFactory $dataFactory, $baseUrl)
+    public function __construct(DataFactory $dataFactory, HttpClient $httpClient, $baseUrl)
     {
-        $this->httpClient = $httpClient;
         $this->dataFactory = $dataFactory;
+        $this->httpClient = $httpClient;
         $this->baseUrl = $baseUrl;
     }
 
