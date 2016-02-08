@@ -2,7 +2,7 @@
 
 namespace HistoricData;
 
-use AbstractClasses\Collection;
+use Abstractions\Collection;
 
 class HistoryDataCollection extends Collection
 {

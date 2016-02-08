@@ -2,7 +2,7 @@
 
 namespace ForecastData;
 
-use AbstractClasses\Collection;
+use Abstractions\Collection;
 
 class ForecastDataCollection extends Collection
 {

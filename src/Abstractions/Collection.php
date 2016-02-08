@@ -1,7 +1,6 @@
 <?php
 
-namespace AbstractClasses;
-
+namespace Abstractions;
 
 use Interfaces\DataBlock;
 
