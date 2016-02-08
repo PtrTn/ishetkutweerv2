@@ -1,6 +1,6 @@
 <?php
 
-namespace CurrentData;
+namespace PresentData;
 
 use Interfaces\DataFactory;
 use Location\Station;

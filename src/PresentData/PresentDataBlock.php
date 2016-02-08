@@ -1,6 +1,6 @@
 <?php
 
-namespace CurrentData;
+namespace PresentData;
 
 use Helpers\BeaufortCalculator;
 use Interfaces\DataBlock;
