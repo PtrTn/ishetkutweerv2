@@ -31,7 +31,7 @@ class StationFinder
                 return $station;
             }
         }
-        return false;
+        return null;
     }
 
     public function findStationById($id)
@@ -42,7 +42,7 @@ class StationFinder
                 return $station;
             }
         }
-        return false;
+        return null;
     }
 
     private function stationsToArray(array $stations)

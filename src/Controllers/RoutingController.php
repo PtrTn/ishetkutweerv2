@@ -3,51 +3,63 @@
 namespace Controllers;
 
 use Location\LocationDataBlock;
-use Location\Station;
+use Location\LocationDataSource;
+use Location\StationFinder;
 use Silex\Application;
-use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class RoutingController
 {
-    public function renderBySlug($slug, Application $app)
+    private $viewController;
+    private $stationFinder;
+    private $locationDataSource;
+
+    public function __construct(ViewController $viewController, StationFinder $stationFinder, LocationDataSource $locationDataSource)
+    {
+        $this->viewController = $viewController;
+        $this->stationFinder = $stationFinder;
+        $this->locationDataSource = $locationDataSource;
+    }
+
+    public function renderBySlug($slug)
     {
         // Get station based on url slug
-        $station = $app['stationFinder']->findStationBySlug($slug);
-        if ($station !== false) {
-            return $this->renderByStation($station, $app);
+        $station = $this->stationFinder->findStationBySlug($slug);
+
+        if (!is_null($station)) {
+            return $this->viewController->loadView($station);
         }
 
         // Fall back to Ip based data
-        return $this->renderByIp($app);
+        return $this->renderByIp();
     }
 
-    public function renderByLatLon($lat, $lon, Application $app)
+    public function renderByLatLon($lat, $lon)
     {
         // Create location model
         $location = new LocationDataBlock($lat, $lon);
-        return $this->renderByLocation($location, $app);
+        return $this->renderByLocation($location);
     }
 
-    public function renderByCookie(Application $app, Request $request)
+    public function renderByCookie(Request $request)
     {
         // Check for location in cookies
         $location = $request->cookies->get('location');
         if(!is_null($location)) {
-            return $this->renderBySlug($location, $app);
+            return $this->renderBySlug($location);
         }
 
         // Check for id in cookies (backwards compatibility with ishetkutweer v1)
         $stationId = $request->cookies->get('station');
         if(!is_null($stationId)) {
-            return $this->renderByStationId($stationId, $app);
+            return $this->renderByStationId($stationId);
         }
 
-        return false;
+        // Fall back to Ip based data
+        $this->renderByIp();
     }
 
-    public function renderByIp(Application $app)
+    public function renderByIp()
     {
         // Get Ip using connection details
         $ip = $_SERVER['REMOTE_ADDR'];
@@ -56,72 +68,28 @@ class RoutingController
         }
 
         // Get location based on IP
-        $location = $app['locationDataSource']->getData($ip);
-        return $this->renderByLocation($location, $app);
+        $location = $this->locationDataSource->getData($ip);
+        return $this->renderByLocation($location);
     }
 
-    private function renderByLocation(LocationDataBlock $location, Application $app)
+    private function renderByLocation(LocationDataBlock $location)
     {
         // Get station based on location
-        $station = $app['stationFinder']->findStationByLocation($location);
-        return $this->renderByStation($station, $app, $location);
+        $station = $this->stationFinder->findStationByLocation($location);
+        return $this->viewController->loadView($station, $location);
     }
 
-    private function renderByStationId($id, $app)
+    private function renderByStationId($id)
     {
         // Get station based on url slug
-        $station = $app['stationFinder']->findStationById($id);
-        if ($station !== false) {
-            return $this->renderByStation($station, $app);
+        $station = $this->stationFinder->findStationById($id);
+
+        if (!is_null($station)) {
+            return $this->viewController->loadView($station);
         }
 
         // Fall back to Ip based data
-        return $this->renderByIp($app);
-    }
-
-    private function renderByStation(Station $station, Application $app, LocationDataBlock $location = null)
-    {
-        $stations = $app['stationFactory']->getStations();
-
-        // Get data based on station
-        $historyData = $app['historyDataSource']->getData($station);
-        $presentData = $app['presentDataSource']->getData($station);
-
-        // Prefer given location over station location
-        if (is_null($location)) {
-            $location = $station->getLocation();
-        }
-        $forecastData = $app['forecastDataSource']->getData($location);
-
-        // Rate current and future weather based on historical data and other rules
-        $currentRating = $app['ratingCalculator']->getRating($presentData, $historyData);
-        $forecastRatings = $app['ratingCalculator']->getRatingCollection($forecastData, $historyData);
-
-        // Retrieve weather dependant background
-        $backgroundImage = $app['backgroundController']->getBackground($presentData);
-
-        // Retrieve weather data for coming 2 hours
-        $rainData = $app['rainDataSource']->getData($location);
-
-        // Render page using found data
-        $template =  $app['twig']->render('home.twig', [
-            'station' => $station,
-            'stations' => $stations,
-            'presentRating' => $currentRating,
-            'forecastRatings' => $forecastRatings,
-            'historicData' => $historyData,
-            'presentData' => $presentData,
-            'forecastData' => $forecastData,
-            'backgroundImage' => $backgroundImage
-        ]);
-
-        // Create response
-        $response = new Response($template);
-
-        // Save location to cookie
-        $cookie = new Cookie('location', $station->getSlug());
-        $response->headers->setCookie($cookie);
-        return $response;
+        return $this->renderByIp();
     }
 }
  
