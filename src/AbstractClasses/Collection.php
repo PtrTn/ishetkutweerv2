@@ -7,15 +7,28 @@ use Interfaces\DataBlock;
 
 abstract class Collection
 {
-    protected $collection;
+    protected $dataBlocks;
 
     public function __construct()
     {
-        $this->collection = [];
+        $this->dataBlocks = [];
     }
 
     public function add(DataBlock $dataBlock)
     {
-        $this->collection[] = $dataBlock;
+        $this->dataBlocks[] = $dataBlock;
+    }
+
+    public function addByKeyValue($key, DataBlock $dataBlock)
+    {
+        if (isset($this->dataBlocks[$key])) {
+            throw new \RuntimeException('Duplicate keys found');
+        }
+        $this->dataBlocks[$key] = $dataBlock;
+    }
+
+    public function getDataBlocks()
+    {
+        return $this->dataBlocks;
     }
 } 

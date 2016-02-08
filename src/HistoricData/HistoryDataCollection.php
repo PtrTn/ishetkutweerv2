@@ -40,7 +40,7 @@ class HistoryDataCollection extends Collection
     {
         $total = 0;
         $count = 0;
-        foreach ($this->collection as $weatherData) {
+        foreach ($this->dataBlocks as $weatherData) {
             // TODO check for enough valid entries
             if ($weatherData->isValid()) {
                 switch($stat) {
