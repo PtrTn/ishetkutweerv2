@@ -3,7 +3,6 @@
 namespace Providers;
 
 use JeroenDesloovere\Distance\Distance;
-use Location\LocationDataProvider;
 use Location\StationFactory;
 use Location\StationFinder;
 use Silex\Application;

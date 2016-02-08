@@ -3,7 +3,6 @@
 namespace Providers;
 
 use Controllers\BackgroundController;
-use Controllers\DataController;
 use Controllers\RoutingController;
 use Controllers\ViewController;
 use Silex\Application;
