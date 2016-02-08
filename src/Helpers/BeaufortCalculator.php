@@ -4,11 +4,22 @@ namespace Helpers;
 
 class BeaufortCalculator
 {
-    private static $ranges;
-
-    public function __construct()
+    public static function getBeaufort($windSpeed)
     {
-        self::$ranges = [
+        foreach(self::getRanges() as $beaufort => $range) {
+            if ($windSpeed >= $range['min'] && $windSpeed <= $range['max']) {
+                return $beaufort;
+            }
+            if ($windSpeed >= $range['min'] && $range['max'] === false) {
+                return $beaufort;
+            }
+        }
+        return false;
+    }
+
+    private static function getRanges()
+    {
+        return [
             0 => ['min' => 0,'max' => 1],
             1 => ['min' => 2,'max' => 5],
             2 => ['min' => 6,'max' => 11],
@@ -24,19 +35,5 @@ class BeaufortCalculator
             12 => ['min' => 177,'max' => false]
         ];
     }
-
-    public static function getBeaufort($windSpeed)
-    {
-        foreach(self::$ranges as $beaufort => $range) {
-            if ($windSpeed >= $range['min'] && $windSpeed <= $range['max']) {
-                return $beaufort;
-            }
-            if ($windSpeed >= $range['min'] && $range['max'] === false) {
-                return $beaufort;
-            }
-        }
-        return false;
-    }
-
 }
  
