@@ -11,7 +11,7 @@ class RatingCalculator
     public function getRatingCollection(ForecastDataCollection $forecastData, HistoryDataCollection $historyData)
     {
         $ratings = new RatingCollection();
-        foreach ($forecastData->getDays() as $forecastDayData) {
+        foreach ($forecastData->getDataBlocks() as $forecastDayData) {
             $ratings->add($forecastDayData->getDate(), $this->getRating($forecastDayData, $historyData));
         }
         return $ratings;

@@ -27,7 +27,7 @@
             </tr>
             </thead>
             <tbody>
-            {% for day in forecastData.getDays() %}
+            {% for day in forecastData.getDataBlocks() %}
                 {% if loop.index > 5 %}
                     <tr class="extra">
                 {% else %}
@@ -48,11 +48,11 @@
                 <p class="date">{{ day.getFormattedDate() }}</p></td>
                 <td>
                     <div class="max-temp">
-                        <span class="value">{{ day.getMaxTemp() }}</span>
+                        <span class="value">{{ day.getTempMax() }}</span>
                         <span class="suffix">&deg;C</span>
                     </div>
                     <div class="min-temp">
-                        <span class="value">{{ day.getMinTemp() }}</span>
+                        <span class="value">{{ day.getTempMin() }}</span>
                         <span class="suffix">&deg;C</span>
                     </div>
                 </td>

@@ -4,6 +4,8 @@ namespace Providers;
 
 use CurrentData\CurrentDataFactory;
 use CurrentData\CurrentDataSource;
+use ForecastData\ForecastDataFactory;
+use ForecastData\ForecastDataSource;
 use HistoricData\HistoryDataFactory;
 use HistoricData\HistoryDataSource;
 use HttpClients\FileGetContentsClient;
@@ -11,6 +13,7 @@ use Location\LocationDataFactory;
 use Location\LocationDataSource;
 use Silex\Application;
 use Silex\ServiceProviderInterface;
+use VertigoLabs\Overcast\Overcast;
 
 class DataServiceProvider implements ServiceProviderInterface
 {
@@ -44,6 +47,21 @@ class DataServiceProvider implements ServiceProviderInterface
         };
         $app['historyDataSource'] = function () use ($app) {
             return new HistoryDataSource($app['db'], $app['historyDataFactory']);
+        };
+
+        // Forecast data
+        $forecastApiKey = $app['config']['prod']['api']['forecast'];
+        if ($app['debug'] === true) {
+            $forecastApiKey = $app['config']['dev']['api']['forecast'];
+        }
+        $app['overcast'] = function () use ($forecastApiKey) {
+            return new Overcast($forecastApiKey);
+        };
+        $app['forecastDataFactory'] = function () {
+            return new ForecastDataFactory();
+        };
+        $app['forecastDataSource'] = function () use ($app) {
+            return new ForecastDataSource($app['overcast'], $app['forecastDataFactory']);
         };
     }
 
