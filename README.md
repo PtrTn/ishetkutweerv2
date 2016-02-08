@@ -19,7 +19,6 @@ The current and future weather in an easy readable way.
 * add abstraction for weather data
 * fix forecast rain / temp data rating
 * refactor stationfinder
-* guzzle http client
 
 ### Todo (lower prio)
 * backup when forecast.io reaches api limit
