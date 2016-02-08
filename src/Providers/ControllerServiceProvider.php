@@ -14,7 +14,16 @@ class ControllerServiceProvider implements ServiceProviderInterface
     public function register(Application $app)
     {
         $app['viewController'] = function () use ($app) {
-            return new ViewController($app);
+            return new ViewController(
+                $app['stationFactory'],
+                $app['historyDataSource'],
+                $app['presentDataSource'],
+                $app['forecastDataSource'],
+                $app['rainDataSource'],
+                $app['ratingCalculator'],
+                $app['backgroundController'],
+                $app['twig']
+            );
         };
         $app['routingController'] = function () use ($app) {
             return new RoutingController($app['viewController'], $app['stationFinder'], $app['locationDataSource']);
