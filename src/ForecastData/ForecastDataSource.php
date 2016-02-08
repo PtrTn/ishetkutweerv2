@@ -18,6 +18,9 @@ class ForecastDataSource implements DataSource
 
     public function getData(LocationDataBlock $location = null)
     {
+        if (is_null($location)) {
+            throw new \LogicException('No location provided for ForecastDataSource');
+        }
         $data = $this->overcast->getForecast(
             $location->getLat(),
             $location->getLon(),
