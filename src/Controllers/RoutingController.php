@@ -101,7 +101,7 @@ class RoutingController
         $backgroundImage = $app['backgroundController']->getBackground($presentData);
 
         // Retrieve weather data for coming 2 hours
-        $rainData = $app['rainDataProvider']->getDataByLocation($location);
+        $rainData = $app['rainDataSource']->getData($location);
 
         // Render page using found data
         $template =  $app['twig']->render('home.twig', [

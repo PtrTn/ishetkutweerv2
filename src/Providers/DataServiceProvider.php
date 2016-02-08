@@ -2,8 +2,8 @@
 
 namespace Providers;
 
-use CurrentData\PresentDataFactory;
-use CurrentData\PresentDataSource;
+use PresentData\PresentDataFactory;
+use PresentData\PresentDataSource;
 use ForecastData\ForecastDataFactory;
 use ForecastData\ForecastDataSource;
 use HistoricData\HistoryDataFactory;
@@ -11,6 +11,8 @@ use HistoricData\HistoryDataSource;
 use HttpClients\FileGetContentsClient;
 use Location\LocationDataFactory;
 use Location\LocationDataSource;
+use RainData\RainDataFactory;
+use RainData\RainDataSource;
 use Silex\Application;
 use Silex\ServiceProviderInterface;
 use VertigoLabs\Overcast\Overcast;
@@ -63,6 +65,17 @@ class DataServiceProvider implements ServiceProviderInterface
         $app['forecastDataSource'] = function () use ($app) {
             return new ForecastDataSource($app['overcast'], $app['forecastDataFactory']);
         };
+
+        // Rain Data
+        $app['rainDataUrl'] = 'http://gps.buienradar.nl/getrr.php';
+        $app['rainDataFactory'] = function () {
+            return new RainDataFactory();
+        };
+        $app['rainDataSource'] = function () use ($app) {
+            return new RainDataSource($app['rainDataFactory'], $app['fileGetContentsClient'], $app['rainDataUrl']);
+        };
+
+        // TODO move factory parameter
     }
 
     public function boot(Application $app)
