@@ -1,6 +1,6 @@
 <?php
 
-namespace Helpers;
+namespace Controllers;
 
 use Location\LocationDataBlock;
 use Location\Station;

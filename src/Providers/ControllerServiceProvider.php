@@ -2,19 +2,15 @@
 
 namespace Providers;
 
-use Helpers\BackgroundController;
-use Helpers\BeaufortCalculator;
-use Helpers\RoutingController;
+use Controllers\BackgroundController;
+use Controllers\RoutingController;
 use Silex\Application;
 use Silex\ServiceProviderInterface;
 
-class HelpersServiceProvider implements ServiceProviderInterface
+class ControllerServiceProvider implements ServiceProviderInterface
 {
     public function register(Application $app)
     {
-        $app['beaufortCalculator'] = function () use ($app) {
-            return new BeaufortCalculator();
-        };
         $app['routingController'] = function () use ($app) {
             return new RoutingController();
         };
