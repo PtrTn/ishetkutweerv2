@@ -84,21 +84,21 @@ class RoutingController
         $stations = $app['stationFactory']->getStations();
 
         // Get data based on station
-        $historicData = $app['historicDataProvider']->getDataByStation($station);
-        $presentData = $app['presentDataProvider']->getDataByStation($station);
+        $historyData = $app['historyDataSource']->getData($station);
+        $currentData = $app['currentDataSource']->getData($station);
 
         // Prefer given location over station location
         if (is_null($location)) {
             $location = $station->getLocation();
         }
-        $forecastData = $app['forecastDataProvider']->getDataByLocation($location);
+        $forecastData = $app['forecastDataSource']->getData($location);
 
-        // Rate current weather based on historical data and other rules
-        $presentRating = $app['ratingCalculator']->getRating($presentData, $historicData);
-        $forecastRatings = $app['ratingCalculator']->getRatingCollection($forecastData, $historicData);
+        // Rate current and future weather based on historical data and other rules
+        $currentRating = $app['ratingCalculator']->getRating($currentData, $historyData);
+        $forecastRatings = $app['ratingCalculator']->getRatingCollection($forecastData, $historyData);
 
         // Retrieve weather dependant background
-        $backgroundImage = $app['backgroundController']->getBackground($presentData);
+        $backgroundImage = $app['backgroundController']->getBackground($currentData);
 
         // Retrieve weather data for coming 2 hours
         $rainData = $app['rainDataProvider']->getDataByLocation($location);
@@ -107,10 +107,10 @@ class RoutingController
         $template =  $app['twig']->render('home.twig', [
             'station' => $station,
             'stations' => $stations,
-            'presentRating' => $presentRating,
+            'presentRating' => $currentRating,
             'forecastRatings' => $forecastRatings,
-            'historicData' => $historicData,
-            'presentData' => $presentData,
+            'historicData' => $historyData,
+            'presentData' => $currentData,
             'forecastData' => $forecastData,
             'backgroundImage' => $backgroundImage
         ]);
