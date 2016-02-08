@@ -85,7 +85,7 @@ class RoutingController
 
         // Get data based on station
         $historyData = $app['historyDataSource']->getData($station);
-        $currentData = $app['currentDataSource']->getData($station);
+        $presentData = $app['presentDataSource']->getData($station);
 
         // Prefer given location over station location
         if (is_null($location)) {
@@ -94,11 +94,11 @@ class RoutingController
         $forecastData = $app['forecastDataSource']->getData($location);
 
         // Rate current and future weather based on historical data and other rules
-        $currentRating = $app['ratingCalculator']->getRating($currentData, $historyData);
+        $currentRating = $app['ratingCalculator']->getRating($presentData, $historyData);
         $forecastRatings = $app['ratingCalculator']->getRatingCollection($forecastData, $historyData);
 
         // Retrieve weather dependant background
-        $backgroundImage = $app['backgroundController']->getBackground($currentData);
+        $backgroundImage = $app['backgroundController']->getBackground($presentData);
 
         // Retrieve weather data for coming 2 hours
         $rainData = $app['rainDataProvider']->getDataByLocation($location);
@@ -110,7 +110,7 @@ class RoutingController
             'presentRating' => $currentRating,
             'forecastRatings' => $forecastRatings,
             'historicData' => $historyData,
-            'presentData' => $currentData,
+            'presentData' => $presentData,
             'forecastData' => $forecastData,
             'backgroundImage' => $backgroundImage
         ]);

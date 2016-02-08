@@ -5,7 +5,7 @@ namespace CurrentData;
 use Helpers\BeaufortCalculator;
 use Interfaces\DataBlock;
 
-class CurrentDataBlock implements DataBlock
+class PresentDataBlock implements DataBlock
 {
     private $stationCode;
     private $date;

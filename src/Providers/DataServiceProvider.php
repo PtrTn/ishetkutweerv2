@@ -2,8 +2,8 @@
 
 namespace Providers;
 
-use CurrentData\CurrentDataFactory;
-use CurrentData\CurrentDataSource;
+use CurrentData\PresentDataFactory;
+use CurrentData\PresentDataSource;
 use ForecastData\ForecastDataFactory;
 use ForecastData\ForecastDataSource;
 use HistoricData\HistoryDataFactory;
@@ -33,12 +33,12 @@ class DataServiceProvider implements ServiceProviderInterface
         };
 
         // Current data
-        $app['currentApiUrl'] = 'http://xml.buienradar.nl/';
-        $app['currentDataFactory'] = function () {
-            return new CurrentDataFactory();
+        $app['presentApiUrl'] = 'http://xml.buienradar.nl/';
+        $app['presentDataFactory'] = function () {
+            return new PresentDataFactory();
         };
-        $app['currentDataSource'] = function () use ($app) {
-            return new CurrentDataSource($app['fileGetContentsClient'], $app['currentDataFactory'], $app['currentApiUrl']);
+        $app['presentDataSource'] = function () use ($app) {
+            return new PresentDataSource($app['fileGetContentsClient'], $app['presentDataFactory'], $app['presentApiUrl']);
         };
 
         // Historic data

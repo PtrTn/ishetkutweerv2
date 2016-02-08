@@ -7,7 +7,7 @@ use Interfaces\DataSource;
 use Interfaces\HttpClient;
 use Location\Station;
 
-class CurrentDataSource implements DataSource
+class PresentDataSource implements DataSource
 {
     private $httpClient;
     private $dataFactory;

@@ -5,7 +5,7 @@ namespace CurrentData;
 use Interfaces\DataFactory;
 use Location\Station;
 
-class CurrentDataFactory implements DataFactory
+class PresentDataFactory implements DataFactory
 {
     public function createDataBlock($data, Station $station = null)
     {
@@ -21,7 +21,7 @@ class CurrentDataFactory implements DataFactory
         $longMsg = $this->getLongMsg($xml);
 
         // Return DataBlock based on data
-        return new CurrentDataBlock(
+        return new PresentDataBlock(
             $station->getBuienradarId(),
             $stationData->datum,
             $stationData->temperatuurGC,

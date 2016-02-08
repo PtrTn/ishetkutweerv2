@@ -2,12 +2,12 @@
 
 namespace Helpers;
 
-use CurrentData\CurrentDataBlock;
+use CurrentData\PresentDataBlock;
 
 class BackgroundController
 {
 
-    public function getBackground(CurrentDataBlock $dataBlock)
+    public function getBackground(PresentDataBlock $dataBlock)
     {
         $temp = $dataBlock->getTemp();
         $rain = $dataBlock->getRain();
