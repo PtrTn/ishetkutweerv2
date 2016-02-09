@@ -12,6 +12,7 @@ class ForecastDataBlock implements DataBlock
     private $tempMin;
     private $tempMax;
     private $rainProb;
+    private $rainMax;
     private $windSpeed;
     private $windDirection;
 
@@ -20,6 +21,7 @@ class ForecastDataBlock implements DataBlock
         $tempMin,
         $tempMax,
         $rainProb,
+        $rainMax,
         $windSpeed,
         $windDirection
     ) {
@@ -27,6 +29,7 @@ class ForecastDataBlock implements DataBlock
         $this->tempMin = round($tempMin);
         $this->tempMax = round($tempMax);
         $this->rainProb = intval(round($rainProb * 100));
+        $this->rainMax = floatval(round($rainMax, 1));
         $this->windSpeed = intval(round($windSpeed));
         $this->windDirection = intval(round($windDirection));
     }
@@ -34,12 +37,6 @@ class ForecastDataBlock implements DataBlock
     public function getDate()
     {
         return $this->date;
-    }
-
-    public function getTemp()
-    {
-        // TODO fix this!
-        return round(($this->tempMin + $this->tempMax) /2);
     }
 
     public function getTempMax()
@@ -52,10 +49,14 @@ class ForecastDataBlock implements DataBlock
         return $this->tempMin;
     }
 
-    public function getRain()
+    public function getRainProb()
     {
-        // TODO fix this!
         return $this->rainProb;
+    }
+
+    public function getRainMax()
+    {
+        return $this->rainMax;
     }
 
     public function getBeaufort()

@@ -26,6 +26,16 @@ class HistoryDataCollection extends Collection
         return $this->getStatAvg('temp', 1);
     }
 
+    public function getTempMinAvg()
+    {
+        return $this->getStatAvg('tempMin', 1);
+    }
+
+    public function getTempMaxAvg()
+    {
+        return $this->getStatAvg('tempMax', 1);
+    }
+
     public function getWindSpeedAvg()
     {
         return $this->getStatAvg('wind', 0);
@@ -36,12 +46,16 @@ class HistoryDataCollection extends Collection
         return $this->getStatAvg('beaufort', 0);
     }
 
+    public function getRainMaxAvg()
+    {
+        return $this->getStatAvg('rainMax', 1);
+    }
+
     private function getStatAvg($stat, $precision)
     {
         $total = 0;
         $count = 0;
         foreach ($this->dataBlocks as $weatherData) {
-            // TODO check for enough valid entries
             if ($weatherData->isValid()) {
                 switch($stat) {
                     case 'rainSum':
@@ -50,8 +64,17 @@ class HistoryDataCollection extends Collection
                     case 'rainDuration':
                         $total += $weatherData->getRainDuration();
                         break;
+                    case 'rainMax':
+                        $total += $weatherData->getRainMax();
+                        break;
                     case 'temp':
                         $total += $weatherData->getTempAvg();
+                        break;
+                    case 'tempMin':
+                        $total += $weatherData->getTempMin();
+                        break;
+                    case 'tempMax':
+                        $total += $weatherData->getTempMax();
                         break;
                     case 'wind':
                         $total += $weatherData->getWindSpeed();

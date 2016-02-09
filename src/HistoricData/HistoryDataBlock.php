@@ -71,6 +71,16 @@ class HistoryDataBlock implements DataBlock
         return $this->tempAvg;
     }
 
+    public function getTempMin()
+    {
+        return $this->tempMin;
+    }
+
+    public function getTempMax()
+    {
+        return $this->tempMax;
+    }
+
     public function getWindSpeed()
     {
         return $this->windSpeed;
@@ -79,6 +89,11 @@ class HistoryDataBlock implements DataBlock
     public function getRainSum()
     {
         return $this->rainSum;
+    }
+
+    public function getRainMax()
+    {
+        return $this->rainMax;
     }
 
     public function getRainDuration()

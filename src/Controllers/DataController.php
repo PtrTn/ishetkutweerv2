@@ -47,7 +47,7 @@ class DataController
         $forecastData = $this->forecastDataSource->getData($location);
 
         // Rate current and future weather based on historical data and other rules
-        $currentRating = $this->ratingCalculator->getRating($presentData, $historyData);
+        $currentRating = $this->ratingCalculator->getPresentRating($presentData, $historyData);
         $forecastRatings = $this->ratingCalculator->getRatingCollection($forecastData, $historyData);
 
         // Retrieve weather dependant background

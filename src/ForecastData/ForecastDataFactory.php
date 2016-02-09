@@ -15,6 +15,7 @@ class ForecastDataFactory implements DataFactory
                 $dayData->getTemperature()->getMin(),
                 $dayData->getTemperature()->getMax(),
                 $dayData->getPrecipitation()->getProbability(),
+                $dayData->getPrecipitation()->getMaxIntensity(),
                 $dayData->getWindSpeed(),
                 $dayData->getWindBearing()
             ));

@@ -17,7 +17,6 @@ The current and future weather in an easy readable way.
 * rain data for the coming 24 hours
 * alert icon for incoming rain
 * add abstraction for weather data
-* fix forecast rain / temp data rating
 * async data loading
 
 ### Todo (lower prio)
