@@ -5,7 +5,7 @@ namespace PresentData;
 use Interfaces\DataFactory;
 use Interfaces\DataSource;
 use Interfaces\HttpClient;
-use Location\Station;
+use Station\Station;
 
 class PresentDataSource implements DataSource
 {

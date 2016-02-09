@@ -1,8 +1,9 @@
 <?php
 
-namespace Location;
+namespace Station;
 
 use JeroenDesloovere\Distance\Distance;
+use Location\LocationDataBlock;
 
 class StationFinder
 {

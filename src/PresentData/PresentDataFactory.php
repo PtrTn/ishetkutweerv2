@@ -3,7 +3,7 @@
 namespace PresentData;
 
 use Interfaces\DataFactory;
-use Location\Station;
+use Station\Station;
 
 class PresentDataFactory implements DataFactory
 {

@@ -5,12 +5,12 @@ namespace Controllers;
 use ForecastData\ForecastDataSource;
 use HistoricData\HistoryDataSource;
 use Location\LocationDataBlock;
-use Location\Station;
-use Location\StationFactory;
 use PresentData\PresentDataSource;
 use RainData\RainDataSource;
 use Rating\RatingCalculator;
 use Silex\Application;
+use Station\Station;
+use Station\StationFactory;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Response;
 

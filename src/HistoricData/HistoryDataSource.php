@@ -6,7 +6,7 @@ use Doctrine\DBAL\Query\QueryBuilder;
 use Interfaces\DataFactory;
 use Interfaces\DataSource;
 use Doctrine\DBAL\Connection;
-use Location\Station;
+use Station\Station;
 
 class HistoryDataSource implements DataSource
 {

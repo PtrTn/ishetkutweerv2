@@ -4,8 +4,8 @@ namespace Controllers;
 
 use Location\LocationDataBlock;
 use Location\LocationDataSource;
-use Location\StationFinder;
 use Silex\Application;
+use Station\StationFinder;
 use Symfony\Component\HttpFoundation\Request;
 
 class RoutingController
@@ -56,7 +56,7 @@ class RoutingController
         }
 
         // Fall back to Ip based data
-        $this->renderByIp();
+        return $this->renderByIp();
     }
 
     public function renderByIp()

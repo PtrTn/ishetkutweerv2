@@ -3,12 +3,12 @@
 namespace Providers;
 
 use JeroenDesloovere\Distance\Distance;
-use Location\StationFactory;
-use Location\StationFinder;
+use Station\StationFactory;
+use Station\StationFinder;
 use Silex\Application;
 use Silex\ServiceProviderInterface;
 
-class LocationServiceProvider implements ServiceProviderInterface
+class StationServiceProvider implements ServiceProviderInterface
 {
     public function register(Application $app)
     {

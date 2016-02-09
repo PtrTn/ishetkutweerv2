@@ -1,6 +1,6 @@
 <?php
 
-namespace Location;
+namespace Station;
 
 class StationFactory
 {

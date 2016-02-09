@@ -1,6 +1,8 @@
 <?php
 
-namespace Location;
+namespace Station;
+
+use Location\LocationDataBlock;
 
 class Station
 {
