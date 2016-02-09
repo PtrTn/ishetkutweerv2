@@ -79,8 +79,7 @@ class Rating
 
     private function getAvgRating()
     {
-        $average = ($this->rainRating + $this->tempRating + $this->windRating) / 3;
-        return round($average);
+        return min($this->rainRating, $this->tempRating, $this->windRating);
     }
 
 }
