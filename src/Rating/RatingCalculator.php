@@ -95,9 +95,9 @@ class RatingCalculator
             return 2;
         }
 
-        // Equal or less rain than normal (with 10% margin) is reasonable
-        $margin = 1.1;
-        if ($actual <= $expected * $margin) {
+        // Equal or less rain than normal (with 1 mm/h margin) is reasonable
+        $margin = 1;
+        if ($actual <= $expected + $margin) {
             return 1;
         }
 
