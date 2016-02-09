@@ -18,6 +18,7 @@ The current and future weather in an easy readable way.
 * alert icon for incoming rain
 * add abstraction for weather data
 * fix forecast rain / temp data rating
+* async data loading
 
 ### Todo (lower prio)
 * backup when forecast.io reaches api limit
