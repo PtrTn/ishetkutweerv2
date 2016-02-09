@@ -2,6 +2,7 @@
 
 namespace Providers;
 
+use CacheProviders\FilesystemCacheProvider;
 use GuzzleHttp\Client;
 use HttpClients\GuzzleClient;
 use PresentData\PresentDataFactory;
@@ -33,8 +34,13 @@ class DataServiceProvider implements ServiceProviderInterface
             $client->setDefaultOption('verify', false);
             return $client;
         };
+        $app['cacheDir'] = __DIR__ . '/../../app/cache/';
+        $app['cacheTtl'] = 60 * 15; // 15 minutes
+        $app['filesystemCacheProvider'] = function () use ($app) {
+            return new FilesystemCacheProvider($app['cacheDir'], $app['cacheTtl']);
+        };
         $app['guzzleClient'] = function () use ($app) {
-            return new GuzzleClient($app['guzzleHttpClient']);
+            return new GuzzleClient($app['guzzleHttpClient'], $app['filesystemCacheProvider']);
         };
 
         // Location data

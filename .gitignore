@@ -7,3 +7,4 @@
 /public/fonts/*
 /public/scripts/*
 .sass-cache
+/app/cache/*.cache

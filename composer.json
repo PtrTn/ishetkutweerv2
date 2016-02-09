@@ -20,6 +20,7 @@
         "deralex/yaml-config-service-provider": "^1.0",
         "jeroendesloovere/distance": "1.0.*",
         "vertigolabs/overcast": "dev-master",
-        "guzzlehttp/guzzle": "~5.0"
+        "guzzlehttp/guzzle": "~5.0",
+        "jdorn/file-system-cache": "dev-master"
     }
 }

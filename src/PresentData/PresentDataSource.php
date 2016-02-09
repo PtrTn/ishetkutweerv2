@@ -25,7 +25,7 @@ class PresentDataSource implements DataSource
         if (is_null($station)) {
             throw new \LogicException('No Station provided for LocationDataSource');
         }
-        $data = $this->httpClient->getData($this->apiUrl);
+        $data = $this->httpClient->getData($this->apiUrl, true);
         if(!isset($data) || empty($data)) {
             throw new \RuntimeException('No current data found');
         }
