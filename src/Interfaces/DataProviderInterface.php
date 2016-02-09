@@ -2,10 +2,10 @@
 
 namespace Interfaces;
 
-use Location\Location;
+use Location\LocationDataBlock;
 
 interface DataProviderInterface
 {
-    public function getDataByLocation(Location $location);
+    public function getDataByLocation(LocationDataBlock $location);
 }
  

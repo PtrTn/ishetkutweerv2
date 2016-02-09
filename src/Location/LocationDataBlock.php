@@ -2,7 +2,9 @@
 
 namespace Location;
 
-class Location
+use Interfaces\DataBlock;
+
+class LocationDataBlock implements DataBlock
 {
     private $lat;
     private $lon;
@@ -18,10 +20,9 @@ class Location
         return $this->lat;
     }
 
-    public function getLon()
+    public function getlon()
     {
         return $this->lon;
     }
-
 }
  

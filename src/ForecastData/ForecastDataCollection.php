@@ -2,32 +2,21 @@
 
 namespace ForecastData;
 
-class ForecastDataCollection
+use Abstractions\Collection;
+
+class ForecastDataCollection extends Collection
 {
-    private $days;
 
-    public function __construct()
+    public function add(ForecastDataBlock $dayDataBlock)
     {
-        $this->days = [];
-    }
-
-    public function add(ForecastWeatherData $day)
-    {
-        $this->days[$day->getDate()->format('Y-m-d')] = $day;
-    }
-
-    public function getDays($start = false, $amount = false)
-    {
-        if ($amount !== false && $start !== false) {
-            return array_slice($this->days, $start, $amount);
-        }
-        return $this->days;
+        $date = $dayDataBlock->getDate()->format('Y-m-d');
+        parent::addByKeyValue($date, $dayDataBlock);
     }
 
     public function getToday()
     {
-        if (isset($this->days[date('Y-m-d')])) {
-            return $this->days[date('Y-m-d')];
+        if (isset($this->dataBlocks[date('Y-m-d')])) {
+            return $this->dataBlocks[date('Y-m-d')];
         }
         return false;
     }

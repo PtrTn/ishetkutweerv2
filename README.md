@@ -16,15 +16,15 @@ The current and future weather in an easy readable way.
 * rain data for the coming 2 hours
 * rain data for the coming 24 hours
 * alert icon for incoming rain
+* add abstraction for weather data
+* fix forecast rain / temp data rating
+* refactor stationfinder
 
 ### Todo (lower prio)
-* general connector (instead of file_get_contents)
 * backup when forecast.io reaches api limit
 * add daily social media posts
 * prediction caching
 * weather alerts
-* refactor collections to use abstraction
 * unit testing
 * continuous integration
 * possibly calculate total rain amount by adding hourly values
-* weatherdata interface

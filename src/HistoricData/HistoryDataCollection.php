@@ -2,18 +2,13 @@
 
 namespace HistoricData;
 
-class HistoricDataCollection
+use Abstractions\Collection;
+
+class HistoryDataCollection extends Collection
 {
-    private $collection;
-
-    public function __construct()
+    public function add(HistoryDataBlock $dataBlock)
     {
-        $this->collection = [];
-    }
-
-    public function add(HistoricWeatherData $weatherData)
-    {
-        $this->collection[] = $weatherData;
+        parent::add($dataBlock);
     }
 
     public function getRainAvg()
@@ -45,7 +40,7 @@ class HistoricDataCollection
     {
         $total = 0;
         $count = 0;
-        foreach ($this->collection as $weatherData) {
+        foreach ($this->dataBlocks as $weatherData) {
             // TODO check for enough valid entries
             if ($weatherData->isValid()) {
                 switch($stat) {
@@ -73,6 +68,5 @@ class HistoricDataCollection
         $average = $total / $count;
         return round($average, $precision);
     }
-
 }
  

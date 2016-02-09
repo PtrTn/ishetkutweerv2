@@ -1,8 +1,9 @@
 <?php
 
-namespace Location;
+namespace Station;
 
 use JeroenDesloovere\Distance\Distance;
+use Location\LocationDataBlock;
 
 class StationFinder
 {
@@ -15,7 +16,7 @@ class StationFinder
         $this->distanceCalc = $distanceCalc;
     }
 
-    public function findStationByLocation(Location $location)
+    public function findStationByLocation(LocationDataBlock $location)
     {
         $stations = $this->stationFactory->getStations();
         $stationsArray = $this->stationsToArray($stations);
@@ -31,7 +32,7 @@ class StationFinder
                 return $station;
             }
         }
-        return false;
+        return null;
     }
 
     public function findStationById($id)
@@ -42,7 +43,7 @@ class StationFinder
                 return $station;
             }
         }
-        return false;
+        return null;
     }
 
     private function stationsToArray(array $stations)

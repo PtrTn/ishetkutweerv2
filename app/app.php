@@ -32,23 +32,20 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 ));
 
 // Define service providers
-$app->register(new \Providers\HelpersServiceProvider());
-$app->register(new \Providers\LocationServiceProvider());
-$app->register(new \Providers\DataProvidingServiceProvider());
+$app->register(new \Providers\DataServiceProvider());
+$app->register(new \Providers\ControllerServiceProvider());
+$app->register(new \Providers\StationServiceProvider());
 $app->register(new \Providers\RatingServiceProvider());
 
+// Define routes
 $app->get('/{slug}', function ($slug) use ($app) {
-    return $app['routingController']->renderBySlug($slug, $app);
+    return $app['routingController']->renderBySlug($slug);
 });
 $app->get('/{lat}/{lon}', function ($lat, $lon) use ($app) {
-    return $app['routingController']->renderByLatLon($lat, $lon, $app);
+    return $app['routingController']->renderByLatLon($lat, $lon);
 });
 $app->get('/', function (\Symfony\Component\HttpFoundation\Request $request) use ($app) {
-    $result = $app['routingController']->renderByCookie($app, $request);
-    if ($result !== false) {
-        return $result;
-    }
-    return $app['routingController']->renderByIp($app);
+    return $app['routingController']->renderByCookie($request);
 });
 
 return $app;

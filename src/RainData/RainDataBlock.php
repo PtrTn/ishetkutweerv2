@@ -2,7 +2,9 @@
 
 namespace RainData;
 
-class RainData
+use Interfaces\DataBlock;
+
+class RainDataBlock implements DataBlock
 {
     private $rainMapping;
 

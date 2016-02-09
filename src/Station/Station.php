@@ -1,6 +1,8 @@
 <?php
 
-namespace Location;
+namespace Station;
+
+use Location\LocationDataBlock;
 
 class Station
 {
@@ -14,7 +16,7 @@ class Station
         $this->knmiId = $knmiId;
         $this->buienradarId = $buienradarId;
         $this->name = $name;
-        $this->location = new Location($lat, $lon);
+        $this->location = new LocationDataBlock($lat, $lon);
     }
 
     public function toArray()
