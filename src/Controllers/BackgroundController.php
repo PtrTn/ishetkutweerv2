@@ -22,10 +22,10 @@ class BackgroundController
         if ($temp < 0 && $rain > 0) {
             return 'snow.jpg';
         }
-        if ($rain > 0.5) {
+        if ($rain > 3) {
             return 'rain-2.jpg';
         }
-        if ($rain > 0 && $rain <= 0.5) {
+        if ($rain > 0 && $rain <= 3) {
             return 'rain-1.jpg';
         }
         $nightStart = new \DateTime('23:00');
