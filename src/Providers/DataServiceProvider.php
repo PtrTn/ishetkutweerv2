@@ -38,12 +38,11 @@ class DataServiceProvider implements ServiceProviderInterface
         };
 
         // Location data
-        $app['locationApiUrl'] = 'http://www.geoplugin.net/php.gp';
         $app['locationDataFactory'] = function () {
             return new LocationDataFactory();
         };
         $app['locationDataSource'] = function () use ($app) {
-            return new LocationDataSource($app['locationDataFactory'], $app['guzzleClient'], $app['locationApiUrl']);
+            return new LocationDataSource($app['locationDataFactory'], $app['db']);
         };
 
         // Current data

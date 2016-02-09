@@ -12,8 +12,9 @@ class LocationDataFactory implements DataFactory
             throw new \RuntimeException('No location data found');
         }
         return new LocationDataBlock(
-            $data['geoplugin_latitude'],
-            $data['geoplugin_longitude']
+            $data['latitude'],
+            $data['longitude'],
+            $data['city_name']
         );
     }
 
@@ -22,10 +23,13 @@ class LocationDataFactory implements DataFactory
         if (empty($data)) {
             return false;
         }
-        if (empty($data['geoplugin_latitude'])) {
+        if (empty($data['latitude'])) {
             return false;
         }
-        if (empty($data['geoplugin_longitude'])) {
+        if (empty($data['longitude'])) {
+            return false;
+        }
+        if (empty($data['city_name'])) {
             return false;
         }
         return true;

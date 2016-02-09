@@ -18,7 +18,7 @@ The current and future weather in an easy readable way.
 * alert icon for incoming rain
 * add abstraction for weather data
 * async data loading
-* better ip to location
+* ipv6 support for ip to location
 * possibly remove station locations
 * use geolocation for exact city name
 

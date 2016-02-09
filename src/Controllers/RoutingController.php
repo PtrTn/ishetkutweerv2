@@ -40,7 +40,7 @@ class RoutingController
     public function renderByLatLon($lat, $lon)
     {
         // Create location model
-        $location = new LocationDataBlock($lat, $lon);
+        $location = new LocationDataBlock($lat, $lon, 'Gps');
         return $this->renderByLocation($location);
     }
 
@@ -67,7 +67,7 @@ class RoutingController
         // Get Ip using connection details
         $ip = $_SERVER['REMOTE_ADDR'];
         if ($ip === '127.0.0.1') {
-            $ip = '213.34.236.130';
+            $ip = '62.238.138.125';
         }
 
         // Get location based on IP

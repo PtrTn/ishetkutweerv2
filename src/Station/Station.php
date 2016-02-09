@@ -16,7 +16,7 @@ class Station
         $this->knmiId = $knmiId;
         $this->buienradarId = $buienradarId;
         $this->name = $name;
-        $this->location = new LocationDataBlock($lat, $lon);
+        $this->location = new LocationDataBlock($lat, $lon, $name);
     }
 
     public function toArray()

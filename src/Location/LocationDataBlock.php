@@ -8,11 +8,13 @@ class LocationDataBlock implements DataBlock
 {
     private $lat;
     private $lon;
+    private $city;
 
-    public function __construct($lat, $lon)
+    public function __construct($lat, $lon, $city)
     {
         $this->lat = $lat;
         $this->lon = $lon;
+        $this->city = $city;
     }
 
     public function getLat()
