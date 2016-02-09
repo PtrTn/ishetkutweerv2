@@ -5,8 +5,11 @@ namespace Controllers;
 use Location\LocationDataBlock;
 use Location\LocationDataSource;
 use Silex\Application;
+use Station\Station;
 use Station\StationFinder;
+use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class RoutingController
 {
@@ -27,7 +30,7 @@ class RoutingController
         $station = $this->stationFinder->findStationBySlug($slug);
 
         if (!is_null($station)) {
-            return $this->viewController->loadView($station);
+            return $this->renderView($station);
         }
 
         // Fall back to Ip based data
@@ -76,7 +79,7 @@ class RoutingController
     {
         // Get station based on location
         $station = $this->stationFinder->findStationByLocation($location);
-        return $this->viewController->loadView($station, $location);
+        return $this->renderView($station, $location);
     }
 
     private function renderByStationId($id)
@@ -85,11 +88,32 @@ class RoutingController
         $station = $this->stationFinder->findStationById($id);
 
         if (!is_null($station)) {
-            return $this->viewController->loadView($station);
+            return $this->renderView($station);
         }
 
         // Fall back to Ip based data
         return $this->renderByIp();
+    }
+    
+    private function renderView(Station $station, LocationDataBlock $location = null)
+    {
+        // Prefer given location over station location
+        if (is_null($location)) {
+            $location = $station->getLocation();
+        }
+
+        // Retrieve view
+        $view = $this->getView($station, $location);
+
+        // Create response
+        $response = new Response($view);
+
+        // Save location to cookie
+        $cookie = new Cookie('location', $station->getSlug());
+        $response->headers->setCookie($cookie);
+
+        // Return created response
+        return $response;
     }
 }
  
