@@ -103,7 +103,7 @@ class RoutingController
         }
 
         // Retrieve view
-        $view = $this->getView($station, $location);
+        $view = $this->viewController->getView($station, $location);
 
         // Create response
         $response = new Response($view);
