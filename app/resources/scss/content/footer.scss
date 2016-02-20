@@ -12,7 +12,7 @@ footer {
   }
   .explanation {
     float: left;
-    padding-bottom: 40px;
+    padding-bottom: 20px;
     width: 100%;
     clear: both;
 
@@ -25,6 +25,10 @@ footer {
   }
   .social-media {
     width: 100%;
+
+    p {
+      padding-bottom: 20px;
+    }
 
     a {
       margin: 0 20px;
