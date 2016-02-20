@@ -2,11 +2,13 @@
 <meta charset="UTF-8">
 <html lang="nl_NL"></html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
     <!-- Basic SEO properties -->
-    <title>Is het kutweer v2</title>
+    <title>Ishetkutweer.nl</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ app.request.basepath }}/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ app.request.basepath }}/images/favicon.ico" type="image/x-icon">
 
     <!-- Styles -->
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
@@ -16,6 +18,21 @@
     {% if app.debug == false %}
         {% include 'partials/analytics.twig' %}
     {% endif %}
+
+    <!-- Open graph -->
+    <meta property="og:site_name" content="Ishetkutweer.nl"/>
+    <meta property="og:title" content="Ishetkutweer.nl"/>
+    <meta property="og:image" content="{{ app.request.basepath }}/images/logo_wide.png"/>
+    <meta property="og:url" content="http://www.ishetkutweer.nl"/>
+    <meta property="og:description" content="Ishetkutweer.nl | Het weer in duidelijke taal">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter card -->
+    <meta name="twitter:site" content="@Ishetkutweer">
+    <meta name="twitter:image" content="{{ app.request.basepath }}/images/logo_wide.png">
+    <meta name="twitter:title" content="Ishetkutweer.nl | Het weer in duidelijke taal">
+    <meta name="twitter:card" content="summary">
+
 </head>
 <body ng-app="ishetkutweer" ng-controller="mainCtrl">
 <div class="content">
