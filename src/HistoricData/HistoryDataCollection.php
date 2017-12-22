@@ -3,10 +3,11 @@
 namespace HistoricData;
 
 use Abstractions\Collection;
+use Interfaces\DataBlock;
 
 class HistoryDataCollection extends Collection
 {
-    public function add(HistoryDataBlock $dataBlock)
+    public function add(DataBlock $dataBlock)
     {
         parent::add($dataBlock);
     }

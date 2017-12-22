@@ -40,7 +40,7 @@ class HistoryDataBlock implements DataBlock
         $this->rainSum = floatval(round($rainSum / 10, 1));
         $this->rainDuration = floatval(round($rainDuration / 10, 1));
         if ($rainMax !== -1) {
-            $this->rainMax = floatval(round($rainMax / 10, 1));
+            $this->rainMax = floatval(round(((int)$rainMax) / 10, 1));
         }
         else {
             $this->rainMax = 0;
