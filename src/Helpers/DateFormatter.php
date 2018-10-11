@@ -24,7 +24,7 @@ class DateFormatter
             case 8:
                 return 'Augustus';
             case 9:
-                return 'Septebmer';
+                return 'September';
             case 10:
                 return 'Oktober';
             case 11:
